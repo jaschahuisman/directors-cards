@@ -979,6 +979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  spelerId: 0
   spelersCamera: {fileID: 945193605857020294}
   leftController: {fileID: 566552434645966945}
   rightController: {fileID: 1384241321906748235}

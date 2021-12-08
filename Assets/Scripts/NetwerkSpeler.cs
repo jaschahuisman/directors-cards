@@ -7,6 +7,9 @@ using Mirror;
 
 public class NetwerkSpeler : NetworkBehaviour
 {
+    [Header("Spelers identiteit")]
+    public SpelerId spelerId;
+
     [Header("Speler trackable objecten")]
     [SerializeField] private GameObject spelersCamera;
     [SerializeField] private GameObject leftController;
@@ -41,4 +44,17 @@ public class NetwerkSpeler : NetworkBehaviour
             trackablesUitgeschakeld = true;
         }
     }
+
+    [ClientRpc]
+    public void UpdateSpelerIdentiteit(SpelerId id)
+    {
+        Debug.Log(id);
+        spelerId = id;
+    }
+}
+
+public enum SpelerId
+{
+    Speler1,
+    Speler2
 }

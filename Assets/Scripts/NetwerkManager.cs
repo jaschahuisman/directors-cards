@@ -14,7 +14,6 @@ public class NetwerkManager : NetworkManager
     // De static netwerk instance
     public static NetwerkManager Instance;
     
-
     public override void Awake()
     {
         // Maak de static netwerk instance
@@ -41,5 +40,22 @@ public class NetwerkManager : NetworkManager
         // Verwijder verbroken verbinding uit client-verbindingen
         verbindingen.Remove(verbinding);
         base.OnServerConnect(verbinding);
+    }
+
+    public override void OnServerAddPlayer(NetworkConnection verbinding)
+    {
+        // Maak een speler instance van de playerPrefab en
+        // krijg toegang tot het "NetwerkSpeler" component
+        GameObject speler = Instantiate(playerPrefab);
+        NetwerkSpeler netwerkSpeler = speler.GetComponent<NetwerkSpeler>();
+
+        // Voeg de speler toe aan de netwerk server
+        NetworkServer.AddPlayerForConnection(verbinding, speler);
+
+        // Na het toevoegen van de speler aan de server:
+        // update de identiteit van de speler
+        SpelerId spelerId = (verbindingen.Count % 2 == 1) ? SpelerId.Speler1 : SpelerId.Speler2;
+        netwerkSpeler.spelerId = spelerId;                      // Update server variabele
+        netwerkSpeler.UpdateSpelerIdentiteit(spelerId);         // Update client variabele
     }
 }
