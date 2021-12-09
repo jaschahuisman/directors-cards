@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class TheatersportDatabase : MonoBehaviour
 {
-    // De static database instance
-    private static TheatersportDatabase Instance;
-
     // Briefing dataset
     public List<TheatersportBriefing> briefings;
 
@@ -15,6 +12,9 @@ public class TheatersportDatabase : MonoBehaviour
     public List<TheatersportKaart> restrictieKaarten;
     public List<TheatersportKaart> objectiefKaarten;
     public List<TheatersportKaart> eindeKaarten;
+
+    // De static database instance
+    private static TheatersportDatabase Instance;
 
     private void Awake()
     {

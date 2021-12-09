@@ -12,13 +12,13 @@ public class GameManager : NetworkBehaviour
     // Event hook die luistert naar verandering in de gamestatus
     public static event Action<GameStatus> OnGameStatusChanged;
 
-    // De static netwerk instance
-    private NetwerkManager netwerk;
+    // De static gamemanager instance
+    public static GameManager Instance;
 
     private void Start()
     {
-        // Sla de static netwerk instance op
-        netwerk = NetwerkManager.Instance;
+        // Maak de static database instance
+        Instance = this;
 
         // Luister naar veranderingen in verbindingen
         NetwerkManager.OnVerbindingenChange += OnVerbindingenChange;
