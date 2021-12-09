@@ -8,6 +8,7 @@ public class BriefingManager : NetworkBehaviour
     private NetwerkManager netwerk;
     private TheatersportDatabase database;
     private GameManager gameManager;
+    private List<NetworkIdentity> spelersReady = new List<NetworkIdentity>();
 
     private void Start()
     {
@@ -22,6 +23,7 @@ public class BriefingManager : NetworkBehaviour
     {
         if(nieuweStatus == GameStatus.Briefing)
         {
+            spelersReady.Clear();
             StartBriefing();
         }
     }

@@ -39,16 +39,19 @@ public class GameManager : NetworkBehaviour
     {
         Debug.Log(nieuweStatus);
 
-        // Verander de gamestatus (server)
-        gameStatus = nieuweStatus;
-        OnGameStatusChanged?.Invoke(nieuweStatus);
+        if (isServerOnly)
+        {
+            // Verander de gamestatus (server)
+            gameStatus = nieuweStatus;
+            OnGameStatusChanged?.Invoke(nieuweStatus);
 
-        // Verander de gamestatus (client)
-        UpdateClientGameStatus(nieuweStatus);
+            // Verander de gamestatus (client)
+            UpdateClientGameStatus(nieuweStatus);
+        }
     }
 
     [ClientRpc]
-    public void UpdateClientGameStatus(GameStatus nieuweStatus)
+    private void UpdateClientGameStatus(GameStatus nieuweStatus)
     {
         if (!isServer)
         {
@@ -58,7 +61,8 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    public void OnVerbindingenChange(int aantalSpelers)
+    [Server]
+    private void OnVerbindingenChange(int aantalSpelers)
     {
         // Hou in de gaten of het spel genoeg spelers heeft
         if (aantalSpelers < 2 && gameStatus != GameStatus.Incompleet)
