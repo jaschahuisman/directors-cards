@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,9 @@ public class NetwerkManager : NetworkManager
 
     // De static netwerk instance
     public static NetwerkManager Instance;
+
+    // Event hook die luistert naar wijzigingen in verbindingen
+    public static event Action<int> OnVerbindingenChange;
     
     public override void Awake()
     {
@@ -33,6 +37,7 @@ public class NetwerkManager : NetworkManager
         // Voeg nieuwe verbinding toe aan client-verbindingen
         verbindingen.Add(verbinding);
         base.OnServerConnect(verbinding);
+        OnVerbindingenChange?.Invoke(verbindingen.Count);
     }
 
     public override void OnServerDisconnect(NetworkConnection verbinding)
@@ -40,6 +45,7 @@ public class NetwerkManager : NetworkManager
         // Verwijder verbroken verbinding uit client-verbindingen
         verbindingen.Remove(verbinding);
         base.OnServerConnect(verbinding);
+        OnVerbindingenChange?.Invoke(verbindingen.Count);
     }
 
     public override void OnServerAddPlayer(NetworkConnection verbinding)
@@ -57,5 +63,8 @@ public class NetwerkManager : NetworkManager
         SpelerId spelerId = (verbindingen.Count % 2 == 1) ? SpelerId.Speler1 : SpelerId.Speler2;
         netwerkSpeler.spelerId = spelerId;                      // Update server variabele
         netwerkSpeler.UpdateSpelerIdentiteit(spelerId);         // Update client variabele
+
+        // Debug spelernaam in editor van de server
+        netwerkSpeler.gameObject.name = $"Netwerk Speler: ${spelerId}";
     }
 }

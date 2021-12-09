@@ -46,10 +46,9 @@ public class NetwerkSpeler : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void UpdateSpelerIdentiteit(SpelerId id)
+    public void UpdateSpelerIdentiteit(SpelerId nieuweSpelerId)
     {
-        Debug.Log(id);
-        spelerId = id;
+       spelerId = nieuweSpelerId;
     }
 }
 
