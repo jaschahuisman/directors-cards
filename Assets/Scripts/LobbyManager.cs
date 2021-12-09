@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
+using Mirror;
+using Mirror.Discovery;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -16,14 +18,12 @@ public class LobbyManager : MonoBehaviour
     [Header("Lobby canvas (regisseur)")]
     [SerializeField] private Button regisseurStartServerKnop;
 
-    // De static netwerk instance
-    private NetwerkManager netwerk;
+    [Header("Netwerkgegevens")]
+    public NetwerkManager netwerk;
+    public NetworkDiscovery discovery;
 
     private void Start()
     {
-        // Sla de static netwerk instance op
-        netwerk = NetwerkManager.Instance;
-
         // Maak de scene gereed
         SetupEventListeners();
         SetupGebruiker();
@@ -34,6 +34,9 @@ public class LobbyManager : MonoBehaviour
         // Voeg eventlisteners to aan de canvas UI knoppen
         regisseurStartServerKnop.onClick.AddListener(StartServer);
         spelerVerbindKnop.onClick.AddListener(VerbindSpeler);
+
+        // Stel verbindingsfunctie in
+        discovery.OnServerFound.AddListener(OnServerFound);
     }
 
     private void SetupGebruiker()
@@ -53,7 +56,8 @@ public class LobbyManager : MonoBehaviour
     private void StartServer()
     {
         // Start een server op het netwerk
-        netwerk.StartServer();
+        NetwerkManager.singleton.StartServer();
+        discovery.AdvertiseServer();
 
         // Geef user feedback weer
         spelerVerbindKnop.GetComponentInChildren<Text>().text = "Server starten...";
@@ -61,13 +65,16 @@ public class LobbyManager : MonoBehaviour
 
     private void VerbindSpeler()
     {
-        // Stel verbindingsfunctie in
-        netwerk.discovery.OnServerFound.AddListener((verbinding) => netwerk.StartClient(verbinding.uri));
-
         // Geef user feedback weer
         spelerVerbindKnop.GetComponentInChildren<Text>().text = "Server zoeken...";
 
         // Zoek een verbinding
-        netwerk.discovery.StartDiscovery();
+        discovery.StartDiscovery();
+    }
+
+    private void OnServerFound(ServerResponse response)
+    {
+        // Verbind de speler door naar de server
+        netwerk.StartClient(response.uri);
     }
 }

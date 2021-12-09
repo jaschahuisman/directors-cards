@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,7 @@ public class NetwerkManager : NetworkManager
 {
     // Alle client-verbindingen
     [HideInInspector] public List<NetworkConnection> verbindingen = new List<NetworkConnection>();
-    // De netwerk "zoeker"
-    [HideInInspector] public NetworkDiscovery discovery;
+    public static Action<int> OnVerbindingChange;
 
     // De static netwerk instance
     public static NetwerkManager Instance;
@@ -19,13 +19,6 @@ public class NetwerkManager : NetworkManager
         // Maak de static netwerk instance
         Instance = this;
         base.Awake();
-    }
-
-    public override void Start()
-    {
-        // Sla de netwerk "zoeker" op
-        discovery = GetComponent<NetworkDiscovery>();
-        base.Start();
     }
 
     public override void OnServerConnect(NetworkConnection verbinding)
@@ -39,6 +32,7 @@ public class NetwerkManager : NetworkManager
     {
         // Verwijder verbroken verbinding uit client-verbindingen
         verbindingen.Remove(verbinding);
+        OnVerbindingChange?.Invoke(verbindingen.Count);
         base.OnServerConnect(verbinding);
     }
 
@@ -49,8 +43,11 @@ public class NetwerkManager : NetworkManager
         GameObject speler = Instantiate(playerPrefab);
         NetwerkSpeler netwerkSpeler = speler.GetComponent<NetwerkSpeler>();
 
+
         // Voeg de speler toe aan de netwerk server
         NetworkServer.AddPlayerForConnection(verbinding, speler);
+
+        OnVerbindingChange?.Invoke(verbindingen.Count);
 
         // Na het toevoegen van de speler aan de server:
         // update de identiteit van de speler
