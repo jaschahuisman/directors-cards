@@ -9,6 +9,8 @@ public class NetwerkManager : NetworkManager
 {
     // Alle client-verbindingen
     [HideInInspector] public List<NetworkConnection> verbindingen = new List<NetworkConnection>();
+    [HideInInspector] public List<NetwerkSpeler> spelers = new List<NetwerkSpeler>();
+
     // De netwerk "zoeker"
     [HideInInspector] public NetworkDiscovery discovery;
 
@@ -36,16 +38,17 @@ public class NetwerkManager : NetworkManager
     {
         // Voeg nieuwe verbinding toe aan client-verbindingen
         verbindingen.Add(verbinding);
-        base.OnServerConnect(verbinding);
         OnVerbindingenChange?.Invoke(verbindingen.Count);
+        base.OnServerConnect(verbinding);
     }
 
     public override void OnServerDisconnect(NetworkConnection verbinding)
     {
         // Verwijder verbroken verbinding uit client-verbindingen
         verbindingen.Remove(verbinding);
-        base.OnServerConnect(verbinding);
+        spelers.Remove(verbinding.identity.GetComponent<NetwerkSpeler>());
         OnVerbindingenChange?.Invoke(verbindingen.Count);
+        base.OnServerConnect(verbinding);
     }
 
     public override void OnServerAddPlayer(NetworkConnection verbinding)
@@ -57,6 +60,9 @@ public class NetwerkManager : NetworkManager
 
         // Voeg de speler toe aan de netwerk server
         NetworkServer.AddPlayerForConnection(verbinding, speler);
+
+        // Voeg nieuwe verbinding toe aan client-verbindingen (netwerkspeler)
+        spelers.Add(verbinding.identity.GetComponent<NetwerkSpeler>());
 
         // Na het toevoegen van de speler aan de server:
         // update de identiteit van de speler

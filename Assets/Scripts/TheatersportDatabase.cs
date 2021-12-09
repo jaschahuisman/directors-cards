@@ -5,16 +5,16 @@ using UnityEngine;
 public class TheatersportDatabase : MonoBehaviour
 {
     // Briefing dataset
-    public List<TheatersportBriefing> briefings;
+    public List<TheatersportBriefing> briefings = new List<TheatersportBriefing>();
 
     // Kaarten datasets
-    public List<TheatersportKaart> emotieKaarten;
-    public List<TheatersportKaart> restrictieKaarten;
-    public List<TheatersportKaart> objectiefKaarten;
-    public List<TheatersportKaart> eindeKaarten;
+    public List<TheatersportKaart> emotieKaarten = new List<TheatersportKaart>();
+    public List<TheatersportKaart> restrictieKaarten = new List<TheatersportKaart>();
+    public List<TheatersportKaart> objectiefKaarten = new List<TheatersportKaart>();
+    public List<TheatersportKaart> eindeKaarten = new List<TheatersportKaart>();
 
     // De static database instance
-    private static TheatersportDatabase Instance;
+    public static TheatersportDatabase Instance;
 
     private void Awake()
     {

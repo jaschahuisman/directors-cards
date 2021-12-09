@@ -6,11 +6,15 @@ using Mirror;
 
 public class GameManager : NetworkBehaviour
 {
+    [Header("Spel status")]
     // De huidige status van het spel
     public GameStatus gameStatus;
 
     // Event hook die luistert naar verandering in de gamestatus
     public static event Action<GameStatus> OnGameStatusChanged;
+
+    [Header("Spel managers")]
+    public BriefingManager briefingManager;
 
     // De static gamemanager instance
     public static GameManager Instance;
@@ -20,6 +24,9 @@ public class GameManager : NetworkBehaviour
         // Maak de static database instance
         Instance = this;
 
+        // Verkrijg spelmanager componenten
+        briefingManager = GetComponent<BriefingManager>();
+
         // Luister naar veranderingen in verbindingen
         NetwerkManager.OnVerbindingenChange += OnVerbindingenChange;
 
@@ -27,19 +34,28 @@ public class GameManager : NetworkBehaviour
         UpdateGameStatus(GameStatus.Incompleet);
     }
 
+    [Server]
     public void UpdateGameStatus(GameStatus nieuweStatus)
     {
+        Debug.Log(nieuweStatus);
+
         // Verander de gamestatus (server)
         gameStatus = nieuweStatus;
         OnGameStatusChanged?.Invoke(nieuweStatus);
+
+        // Verander de gamestatus (client)
+        UpdateClientGameStatus(nieuweStatus);
     }
 
     [ClientRpc]
     public void UpdateClientGameStatus(GameStatus nieuweStatus)
     {
-        // Verander de gamestatus (vlient)
-        gameStatus = nieuweStatus;
-        OnGameStatusChanged?.Invoke(nieuweStatus);
+        if (!isServer)
+        {
+            // Verander de gamestatus (client)
+            gameStatus = nieuweStatus;
+            OnGameStatusChanged?.Invoke(nieuweStatus);
+        }
     }
 
     public void OnVerbindingenChange(int aantalSpelers)

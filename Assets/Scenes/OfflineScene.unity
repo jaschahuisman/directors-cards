@@ -666,7 +666,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b5dedcb534edf438354d68ee1612c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theatersportBriefings: []
+  briefings:
+  - {fileID: 11400000, guid: fd5581af39a76b24aa2675c06739952c, type: 2}
+  emotieKaarten: []
+  restrictieKaarten: []
+  objectiefKaarten: []
+  eindeKaarten: []
 --- !u!1 &50926031
 GameObject:
   m_ObjectHideFlags: 0

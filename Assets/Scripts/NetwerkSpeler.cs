@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SpatialTracking;
 using UnityEngine.XR.Interaction.Toolkit;
 using Mirror;
@@ -16,13 +17,24 @@ public class NetwerkSpeler : NetworkBehaviour
     [SerializeField] private GameObject rightController;
     [SerializeField] private bool trackablesUitgeschakeld;
 
+    [Header("Speler audio source")]
+    [SerializeField] private AudioSource audioSource;
+
     // De static netwerk instance
     private NetwerkManager netwerk;
+    private TheatersportDatabase database;
+    private GameManager gameManager;
+
 
     private void Start()
     {
-        // Sla de static netwerk instance op
+        // Verkrijg de audiosource
+        audioSource = GetComponent<AudioSource>();
+
+        // Sla de static manager-instances op
         netwerk = NetwerkManager.Instance;
+        database = TheatersportDatabase.Instance;
+        gameManager = GameManager.Instance;
     }
 
     private void Update()
@@ -48,7 +60,21 @@ public class NetwerkSpeler : NetworkBehaviour
     [ClientRpc]
     public void UpdateSpelerIdentiteit(SpelerId nieuweSpelerId)
     {
-       spelerId = nieuweSpelerId;
+        spelerId = nieuweSpelerId;
+    }
+
+    [ClientRpc]
+    public void StartBriefing(int briefingIndex) {
+        TheatersportBriefing briefing = database.briefings[briefingIndex];
+        AudioClip speler1Audio = briefing.spelerRol1.briefingAudio;
+        AudioClip speler2Audio = briefing.spelerRol2.briefingAudio;
+
+        if (isLocalPlayer)
+        {
+            // Speel de clip van de juiste speler op het juiste device af
+            audioSource.clip = spelerId == SpelerId.Speler1 ? speler1Audio : speler2Audio;
+            audioSource.Play();
+        }
     }
 }
 

@@ -8,5 +8,4 @@ public class TheatersportBriefing : ScriptableObject
     public new string name;
     public TheatersportRol spelerRol1;
     public TheatersportRol spelerRol2;
-    public int id;
 }
