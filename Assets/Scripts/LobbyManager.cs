@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR;
-using Mirror;
+using UnityEngine.XR; 
 using Mirror.Discovery;
 
 public class LobbyManager : MonoBehaviour

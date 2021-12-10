@@ -33,7 +33,7 @@ public class NetwerkManager : NetworkManager
         // Verwijder verbroken verbinding uit client-verbindingen
         verbindingen.Remove(verbinding);
         OnVerbindingChange?.Invoke(verbindingen.Count);
-        base.OnServerConnect(verbinding);
+        base.OnServerDisconnect(verbinding);
     }
 
     public override void OnServerAddPlayer(NetworkConnection verbinding)
