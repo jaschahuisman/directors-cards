@@ -10,6 +10,9 @@ public class GameManager : NetworkBehaviour
     // De huidige status van het spel
     public GameStatus gameStatus;
 
+    [SyncVar]
+    public int briefingIndex;
+
     // Event hook die luistert naar verandering in de gamestatus
     public static event Action<GameStatus> OnGameStatusChanged;
 
@@ -97,6 +100,19 @@ public class GameManager : NetworkBehaviour
         // Verwijder de status van gebriefte spelers en
         // en zet de spelstatus op briefing
         gebriefteVerbindingen.Clear();
+
+        // Laad een briefing uit de database
+        int aantalBriefings = TheatersportDatabase.Instance.briefings.Count;
+        int randomBriefingIndex = UnityEngine.Random.Range(0, aantalBriefings);
+
+        briefingIndex = randomBriefingIndex;
+
+        foreach (NetworkConnection verbinding in NetwerkManager.Instance.verbindingen)
+        {
+            NetwerkSpeler netwerkSpeler = verbinding.identity.GetComponent<NetwerkSpeler>();
+            netwerkSpeler.StartBriefing(randomBriefingIndex);
+        }
+
         UpdateGameStatus(GameStatus.Briefing);
     }
 

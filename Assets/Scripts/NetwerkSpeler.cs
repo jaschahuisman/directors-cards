@@ -31,6 +31,12 @@ public class NetwerkSpeler : NetworkBehaviour
         GameManager.OnGameStatusChanged += OnGameStatusChanged;
     }
 
+    public override void OnStopClient()
+    {
+        GameManager.OnGameStatusChanged -= OnGameStatusChanged;
+        base.OnStopClient();
+    }
+
     private void Update()
     {
         // Schakel de trackables (camera + controllers) uit wanneer
@@ -56,19 +62,17 @@ public class NetwerkSpeler : NetworkBehaviour
 
     private void OnGameStatusChanged(GameStatus nieuweStatus)
     {
-        if (isClient && nieuweStatus == GameStatus.Briefing)
-        {
-            // Start de briefing
-            StartBriefing();
-        }
     }
 
-    public void StartBriefing()
+    [ClientRpc]
+    public void StartBriefing(int briefingIndex)
     {
         if (isClient)
         {
+            Debug.Log(briefingIndex);
             // Wacht tot de opgegeven tijd is verstreken en laat
             // de server weten dat de speler gebrieft is
+            StopAllCoroutines();
             StartCoroutine(StopBriefingNaTijd(5.0f));
         }
     }

@@ -984,6 +984,7 @@ MonoBehaviour:
   leftController: {fileID: 566552434645966945}
   rightController: {fileID: 1384241321906748235}
   trackablesUitgeschakeld: 0
+  briefingIndex: 0
 --- !u!114 &7983371668610520478
 MonoBehaviour:
   m_ObjectHideFlags: 0
