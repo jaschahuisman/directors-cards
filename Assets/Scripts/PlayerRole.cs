@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
+using UnityEngine.Playables;
 
 [System.Serializable]
-public class TheatersportRol
+public class PlayerRole
 {
-    public string rol;
-    public AudioClip briefingAudio;
+    public string name;
+    public PlayableAsset briefingTimeline;
     public GameObject characterModel;
 }

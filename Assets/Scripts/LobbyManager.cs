@@ -7,73 +7,62 @@ using Mirror.Discovery;
 
 public class LobbyManager : MonoBehaviour
 {
-    [Header("Camera objecten")]
-    [SerializeField] private GameObject spelersCamera;
-    [SerializeField] private GameObject regisseurCamera;
+    [Header("Camera objects")]
+    [SerializeField] private GameObject playerCamera;
+    [SerializeField] private GameObject directorCamera;
 
-    [Header("Lobby canvas (speler)")]
-    [SerializeField] private Button spelerVerbindKnop;
+    [Header("Lobby canvas (player)")]
+    [SerializeField] private Button connectPlayerButton;
 
-    [Header("Lobby canvas (regisseur)")]
-    [SerializeField] private Button regisseurStartServerKnop;
+    [Header("Lobby canvas (director)")]
+    [SerializeField] private Button connectDirectorButton;
 
     [Header("Netwerkgegevens")]
-    public NetwerkManager netwerk;
+    public NetworkManagerExtended network;
     public NetworkDiscovery discovery;
 
     private void Start()
     {
-        // Maak de scene gereed
         SetupEventListeners();
-        SetupGebruiker();
+        SetupUserByDevice();
     }
 
     private void SetupEventListeners()
     {
-        // Voeg eventlisteners to aan de canvas UI knoppen
-        regisseurStartServerKnop.onClick.AddListener(StartServer);
-        spelerVerbindKnop.onClick.AddListener(VerbindSpeler);
+        connectDirectorButton.onClick.AddListener(StartServer);
+        connectPlayerButton.onClick.AddListener(ConnectPlayer);
 
-        // Stel verbindingsfunctie in
         discovery.OnServerFound.AddListener(OnServerFound);
     }
 
-    private void SetupGebruiker()
+    private void SetupUserByDevice()
     {
-        // Check of de speler een VR headset op heeft
-        // door te controleren of er VR "userpresence" is
-        bool isVRSpeler;
+        bool isVrPlayer;
         InputDevices
             .GetDeviceAtXRNode(XRNode.Head)
-            .TryGetFeatureValue(CommonUsages.userPresence, out isVRSpeler);
+            .TryGetFeatureValue(CommonUsages.userPresence, out isVrPlayer);
 
-        // Activeer de juiste camera voor het juiste devicetype
-        spelersCamera.SetActive(isVRSpeler);
-        regisseurCamera.SetActive(!isVRSpeler);
+        playerCamera.SetActive(isVrPlayer);
+        directorCamera.SetActive(!isVrPlayer);
     }
 
     private void StartServer()
     {
-        // Start een server op het netwerk
-        NetwerkManager.singleton.StartServer();
+        NetworkManagerExtended.singleton.StartServer();
         discovery.AdvertiseServer();
 
-        // Geef user feedback weer
-        spelerVerbindKnop.GetComponentInChildren<Text>().text = "Server starten...";
+        connectPlayerButton.GetComponentInChildren<Text>().text = "Server starten...";
     }
 
-    private void VerbindSpeler()
+    private void ConnectPlayer()
     {
-        // Geef user feedback weer
-        spelerVerbindKnop.GetComponentInChildren<Text>().text = "Server zoeken...";
-
-        // Zoek een verbinding
         discovery.StartDiscovery();
+
+        connectPlayerButton.GetComponentInChildren<Text>().text = "Server zoeken...";
     }
 
     private void OnServerFound(ServerResponse response)
     {
-        // Verbind de speler door naar de server
-        netwerk.StartClient(response.uri);
+        network.StartClient(response.uri);
     }
 }

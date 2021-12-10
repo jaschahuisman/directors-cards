@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca88e63138691d24a83103471da33d47, type: 3}
-  m_Name: Briefing_01
+  m_Name: 00_briefing_name
   m_EditorClassIdentifier: 
   name: 
   spelerRol1:
-    rol: 
-    briefingAudio: {fileID: 8300000, guid: c27176f1241311f4a9e8fe6396c37f3c, type: 3}
+    name: 
+    briefingTimeline: {fileID: 11400000, guid: c29b97f0f9cfe294da05584d40a5dfbc, type: 2}
     characterModel: {fileID: 0}
   spelerRol2:
-    rol: 
-    briefingAudio: {fileID: 8300000, guid: 710afbc53d102584998b4429f64424fe, type: 3}
+    name: 
+    briefingTimeline: {fileID: 0}
     characterModel: {fileID: 0}
