@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca88e63138691d24a83103471da33d47, type: 3}
-  m_Name: 01_B_Test
+  m_Name: mock_briefing 1
   m_EditorClassIdentifier: 
   name: Test Briefing
   timeline: {fileID: 11400000, guid: f823150a6ff041240a725d387bcb2c61, type: 2}
