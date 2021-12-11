@@ -8,6 +8,9 @@ public class Database : MonoBehaviour
     public List<Briefing> briefings = new List<Briefing>();
     public List<ImprovCard> improvCards = new List<ImprovCard>();
 
+    public List<int> deckPlayer1 = new List<int>();
+    public List<int> deckPlayer2 = new List<int>();
+
     public static Database Instance;
 
     private void Awake()
@@ -23,29 +26,50 @@ public class Database : MonoBehaviour
         }
     }
 
-    public CardDeck GetImprovCardDeck() {
-        List<ImprovCard> emotionCards = improvCards.Where(improvCard => improvCard.type == ImprovCardType.Emotion).ToList();
-        List<ImprovCard> actionCards = improvCards.Where(improvCard => improvCard.type == ImprovCardType.Action).ToList();
-        List<ImprovCard> restrictionCards = improvCards.Where(improvCard => improvCard.type == ImprovCardType.Restriction).ToList();
-
-        int emotionIndex = improvCards.IndexOf(emotionCards[Random.Range(0, emotionCards.Count)]);
-        int actionIndex = improvCards.IndexOf(actionCards[Random.Range(0, emotionCards.Count)]);
-        int restrictionIndex = improvCards.IndexOf(restrictionCards[Random.Range(0, emotionCards.Count)]);
-
-        return new CardDeck(emotionIndex, actionIndex, restrictionIndex);
-    }
-}
-
-public struct CardDeck
-{
-    public int emotionIndex;
-    public int actionIndex;
-    public int restrictionIndex;
-
-    public CardDeck(int emotionIndex, int actionIndex, int restrictionIndex)
+    private void Start()
     {
-        this.emotionIndex = emotionIndex;
-        this.actionIndex = actionIndex;
-        this.restrictionIndex = restrictionIndex;
+        fillPlayerDecks();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            fillPlayerDecks();
+        }
+    }
+
+    public void fillPlayerDecks() {
+        List<ImprovCard> improvCardsCopy = improvCards.ToList();
+        deckPlayer1 = createDeck(improvCardsCopy);
+        deckPlayer2 = createDeck(improvCardsCopy);
+    }
+
+    public List<int> createDeck(List<ImprovCard> improvCardsCopy) {
+        List<int> deck = new List<int>();
+
+        foreach (ImprovCardType cardType in System.Enum.GetValues(typeof(ImprovCardType))) {
+            List<ImprovCard> cardsOfType = improvCards.Where(improvCard => improvCard.type == cardType).ToList();
+            if(cardType != ImprovCardType.End) {
+                int randomIndex = Random.Range(0, cardsOfType.Count);
+                ImprovCard card = cardsOfType[randomIndex];
+                
+                improvCardsCopy.Remove(card);
+                deck.Add(improvCards.IndexOf(cardsOfType[randomIndex]));
+            }
+        }
+
+        for (int i = 0; i < deck.Count; i++) {
+            int randomIndex = Random.Range(0, deck.Count);
+            int temp = deck[i];
+            deck[i] = deck[randomIndex];
+            deck[randomIndex] = temp;
+        }
+
+        // Add a random end card at zero index
+        List<ImprovCard> endCards = improvCards.Where(improvCard => improvCard.type == ImprovCardType.End).ToList();
+        deck.Insert(0, improvCards.IndexOf(endCards[Random.Range(0, endCards.Count)]));
+
+        return deck;
     }
 }

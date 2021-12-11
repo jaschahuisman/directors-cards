@@ -2386,8 +2386,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   briefings:
   - {fileID: 11400000, guid: 32db1bb84ba831342a20b271733df1a7, type: 2}
-  kaarten:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 32db1bb84ba831342a20b271733df1a7, type: 2}
+  - {fileID: 11400000, guid: 32db1bb84ba831342a20b271733df1a7, type: 2}
+  - {fileID: 11400000, guid: 32db1bb84ba831342a20b271733df1a7, type: 2}
+  - {fileID: 11400000, guid: 32db1bb84ba831342a20b271733df1a7, type: 2}
+  - {fileID: 11400000, guid: 32db1bb84ba831342a20b271733df1a7, type: 2}
+  - {fileID: 11400000, guid: 32db1bb84ba831342a20b271733df1a7, type: 2}
+  - {fileID: 11400000, guid: 32db1bb84ba831342a20b271733df1a7, type: 2}
+  improvCards:
+  - {fileID: 11400000, guid: bc49eeca5188b2342a59bee04f892cd3, type: 2}
+  - {fileID: 11400000, guid: 03bfd738bf23d024588ddb16eb6ff4a5, type: 2}
+  - {fileID: 11400000, guid: 96fb07c4fb84c074f83f7a4159feaede, type: 2}
+  - {fileID: 11400000, guid: a30b4d94bb8a5644bb3699239641cbb0, type: 2}
+  - {fileID: 11400000, guid: 271af71b92213e543a3d2f4234e635ef, type: 2}
+  - {fileID: 11400000, guid: df5f83ad33457d5429544eb8248df711, type: 2}
+  - {fileID: 11400000, guid: 09a5d924ad01ae74e8cac42c9ccdf2c7, type: 2}
+  - {fileID: 11400000, guid: 80eeed9da8f17674eb5e7397da5070db, type: 2}
+  - {fileID: 11400000, guid: fe8007624a2677140965fe370b80a1eb, type: 2}
+  - {fileID: 11400000, guid: 42bcc1fd764a7b442a42eafcd9a538b6, type: 2}
+  - {fileID: 11400000, guid: 160345c74d6b2a5459637f5e48696801, type: 2}
+  - {fileID: 11400000, guid: 543c400e8b7edf24ea3cae52cea4fb74, type: 2}
+  - {fileID: 11400000, guid: 1b569452551f5a3478535e9540f66d80, type: 2}
+  - {fileID: 11400000, guid: 5ce4cdbbb38d824409f08b77d2799c6f, type: 2}
+  - {fileID: 11400000, guid: 654ca071609720d44834c2f82fd1f8c3, type: 2}
+  - {fileID: 11400000, guid: 8daaa37bf021375499ca121bac945b0c, type: 2}
+  - {fileID: 11400000, guid: 3e557b4c6f7c9a8448a0c32840dd30fb, type: 2}
+  - {fileID: 11400000, guid: f3a5fa092298dd84c8f3b016137cbca5, type: 2}
+  - {fileID: 11400000, guid: 5e87d4b3bc8edad47a10f1457995f7c4, type: 2}
+  - {fileID: 11400000, guid: cf6c1b3d972cbd849bed8210230a9f18, type: 2}
+  - {fileID: 11400000, guid: 27ffda91abbd64540b63f0e5e5de3e7d, type: 2}
+  - {fileID: 11400000, guid: d0f6c0ee523480743b3951f25800b2fa, type: 2}
+  - {fileID: 11400000, guid: 798fcf5d375f95142ab518e11d205265, type: 2}
+  - {fileID: 11400000, guid: 5cb7259b272ad094ebb8e1719b0005c9, type: 2}
+  - {fileID: 11400000, guid: 40ff20da58b9def498c755016df2a92a, type: 2}
+  - {fileID: 11400000, guid: 82a7f7a12d63bb8459ac35af4d9ef2c8, type: 2}
+  - {fileID: 11400000, guid: 8119b997086d78947b4a5f4b2b6aad00, type: 2}
+  - {fileID: 11400000, guid: 8339348116e868a48ac0911404e8c44a, type: 2}
+  deckPlayer1: 
+  deckPlayer2: 
 --- !u!1 &1765187209
 GameObject:
   m_ObjectHideFlags: 0

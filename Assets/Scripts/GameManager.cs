@@ -12,8 +12,6 @@ public class GameManager : NetworkBehaviour
     public GameState gameState = GameState.Pending;
     public static event Action<GameState> OnGameStateChanged;
     
-    public CardDeck cardDeck;
-
     public List<NetworkConnection> briefedConnections = new List<NetworkConnection>();
 
     private void Awake()
@@ -30,7 +28,7 @@ public class GameManager : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SendImprovCardToClient(UnityEngine.Random.Range(0, 10), PlayerId.Player1);
+            // SendImprovCardToClient(UnityEngine.Random.Range(0, 10), PlayerId.Player1);
         }
     }
 
@@ -80,8 +78,9 @@ public class GameManager : NetworkBehaviour
     public void StartBriefing()
     {
         briefedConnections.Clear();
+        Database database = Database.Instance;
 
-        int briefingCount = Database.Instance.briefings.Count;
+        int briefingCount = database.briefings.Count;
         int randomBriefingIndex = UnityEngine.Random.Range(0, briefingCount);
 
         foreach (NetworkConnection connection in NetworkManagerExtended.Instance.connections)
@@ -90,8 +89,7 @@ public class GameManager : NetworkBehaviour
             networkPlayer.RpcStartBriefing(randomBriefingIndex);
         }
 
-        cardDeck = Database.Instance.GetImprovCardDeck();
-        Debug.Log(cardDeck);
+        database.fillPlayerDecks();
         UpdateGameState(GameState.Briefing);
     }
 
