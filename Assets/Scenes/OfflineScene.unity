@@ -2385,7 +2385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   briefings:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 32db1bb84ba831342a20b271733df1a7, type: 2}
   kaarten:
   - {fileID: 0}
 --- !u!1 &1765187209

@@ -42,7 +42,7 @@ public class NetworkManagerExtended : NetworkManager
 
         PlayerId spelerId = (connections.Count % 2 == 1) ? PlayerId.Player1 : PlayerId.Player2;
         
-        netwerkSpeler.UpdateSpelerIdentiteit(spelerId);         
+        netwerkSpeler.RpcUpdatePlayerId(spelerId);         
         netwerkSpeler.id = spelerId;                      
     }
 }

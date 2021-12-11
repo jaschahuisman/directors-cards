@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca88e63138691d24a83103471da33d47, type: 3}
-  m_Name: 00_briefing_name
+  m_Name: 01_B_Test
   m_EditorClassIdentifier: 
-  name: 
+  name: Test Briefing
+  timeline: {fileID: 11400000, guid: f823150a6ff041240a725d387bcb2c61, type: 2}
   spelerRol1:
-    name: 
-    briefingTimeline: {fileID: 11400000, guid: c29b97f0f9cfe294da05584d40a5dfbc, type: 2}
+    role: Bakker
+    scenario: Je wordt gevangen gehouden door een vrachtwagenchauffeur.
     characterModel: {fileID: 0}
   spelerRol2:
-    name: 
-    briefingTimeline: {fileID: 0}
+    role: Vrachtwagenchauffeur
+    scenario: Je houdt een bakker gevangen.
     characterModel: {fileID: 0}

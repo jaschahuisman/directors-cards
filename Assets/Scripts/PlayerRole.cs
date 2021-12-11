@@ -6,7 +6,7 @@ using UnityEngine.Playables;
 [System.Serializable]
 public class PlayerRole
 {
-    public string name;
-    public PlayableAsset briefingTimeline;
+    public string role;
+    public string scenario;
     public GameObject characterModel;
 }

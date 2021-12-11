@@ -82,7 +82,7 @@ public class GameManager : NetworkBehaviour
         foreach (NetworkConnection connection in NetworkManagerExtended.Instance.connections)
         {
             NetworkPlayer networkPlayer = connection.identity.GetComponent<NetworkPlayer>();
-            networkPlayer.StartBriefing(randomBriefingIndex);
+            networkPlayer.RpcStartBriefing(randomBriefingIndex);
         }
 
         UpdateGameState(GameState.Briefing);
@@ -102,17 +102,6 @@ public class GameManager : NetworkBehaviour
         {
             UpdateGameState(GameState.Playing);
         }
-    }
-
-    // Debugging functions
-    public void DebugIncompleet()
-    {
-        UpdateGameState(GameState.Pending);
-    }
-
-    public void DebugWachten()
-    {
-        UpdateGameState(GameState.WaitingForHost);
     }
 }
 

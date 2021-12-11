@@ -45,32 +45,37 @@ public class NetworkPlayer : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void StartBriefing(int briefingIndex)
+    public void RpcStartBriefing(int briefingIndex)
     {
         if (isClient && isLocalPlayer)
         {
             Debug.Log(briefingIndex);
 
             Briefing briefing = Database.Instance.briefings[briefingIndex];
-            PlayerRole rol = id == PlayerId.Player1 ? briefing.spelerRol1 : briefing.spelerRol2;
+            PlayerRole rol = id == PlayerId.Player1 ? briefing.playerRole1 : briefing.playerRole2;
+
+            // TODO: 
+            //
+            // Load briefing.timeline in a PlayableDirector component
+            // Update canvas GameComponents with the right role data (including AudioSources)
+            // Generic bind the TrackAssets with the GameComponents to the PlayableDirector (by track name)
+            // Play the timeline
 
             StopAllCoroutines();
-            StartCoroutine(StopBriefingNaTijd(5.0f));
+            StartCoroutine(StopBriefingAfterTimelineFinished((float) briefing.timeline.duration + 1));
         }
     }
 
-    public IEnumerator StopBriefingNaTijd(float vertraging)
+    public IEnumerator StopBriefingAfterTimelineFinished(float delay)
     {
-        // Wacht tot de opgegeven tijd is verstreken en laat
-        // de server weten dat de speler gebrieft is
-        yield return new WaitForSeconds(vertraging);
+        yield return new WaitForSeconds(delay);
         gameManager.CmdFinishBriefing(NetworkServer.localConnection);
     }
 
     [ClientRpc]
-    public void UpdateSpelerIdentiteit(PlayerId id)
+    public void RpcUpdatePlayerId(PlayerId newId)
     {
-        this.id = id;
+        this.id = newId;
     }
 }
 
