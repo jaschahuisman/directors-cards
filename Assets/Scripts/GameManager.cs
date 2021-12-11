@@ -8,9 +8,11 @@ public class GameManager : NetworkBehaviour
 {
     public static GameManager Instance;
 
-    [Header("Spel status")]
+    [Header("Game status")]
     public GameState gameState = GameState.Pending;
     public static event Action<GameState> OnGameStateChanged;
+    
+    public CardDeck cardDeck;
 
     public List<NetworkConnection> briefedConnections = new List<NetworkConnection>();
 
@@ -24,9 +26,12 @@ public class GameManager : NetworkBehaviour
         NetworkManagerExtended.OnConnectionEvent += OnConnectionCountChanged;
     }
 
-    private void OnDisable()
+    private void Update()
     {
-        Debug.Log("Object gets disabled");
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SendImprovCardToClient(UnityEngine.Random.Range(0, 10), PlayerId.Player1);
+        }
     }
 
     [Server]
@@ -85,6 +90,8 @@ public class GameManager : NetworkBehaviour
             networkPlayer.RpcStartBriefing(randomBriefingIndex);
         }
 
+        cardDeck = Database.Instance.GetImprovCardDeck();
+        Debug.Log(cardDeck);
         UpdateGameState(GameState.Briefing);
     }
 
@@ -101,6 +108,19 @@ public class GameManager : NetworkBehaviour
         if (briefedConnections.Count == NetworkManagerExtended.Instance.connections.Count)
         {
             UpdateGameState(GameState.Playing);
+        }
+    }
+
+    [Server]
+    public void SendImprovCardToClient(int cardIndex, PlayerId playerId) {
+        foreach (NetworkConnection connection in NetworkManagerExtended.Instance.connections)
+        {
+            NetworkPlayer networkPlayer = connection.identity.GetComponent<NetworkPlayer>();
+            if(networkPlayer.id == playerId)
+            {
+                Debug.Log(cardIndex + " sent to client with id: " + playerId);
+                networkPlayer.RpcReceiveImprovCard(cardIndex);
+            }
         }
     }
 }

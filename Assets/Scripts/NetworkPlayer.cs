@@ -73,6 +73,12 @@ public class NetworkPlayer : NetworkBehaviour
     }
 
     [ClientRpc]
+    public void RpcReceiveImprovCard(int cardIndex)
+    {
+        Debug.Log(cardIndex + " recieved from host");
+    }
+
+    [ClientRpc]
     public void RpcUpdatePlayerId(PlayerId newId)
     {
         this.id = newId;
