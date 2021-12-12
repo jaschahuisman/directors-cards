@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardsManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class CardsManager : MonoBehaviour
     public GameObject cardPrefab;
     public Transform playerDeckTransform1;
     public Transform playerDeckTransform2;
+    public Transform usedDeckTransform;
 
     public static CardsManager Instance;
 
@@ -35,6 +37,22 @@ public class CardsManager : MonoBehaviour
         {
             fillPlayerDecks();
         }
+    }
+
+    public void UseCard(ImprovCard improvCard)
+    {
+        DrawUsedCard(improvCard);
+
+        if (improvCard.playerId == PlayerId.Player1)
+        {
+            playerDeck1.Remove(improvCard.cardIndex);
+        }
+        else
+        {
+            playerDeck2.Remove(improvCard.cardIndex);
+        }
+
+        DrawUI();
     }
 
     public void fillPlayerDecks()
@@ -96,5 +114,14 @@ public class CardsManager : MonoBehaviour
         bool isTopCard = deck.IndexOf(cardId) == deck.Count - 1;
         cardObject.GetComponent<ImprovCard>().SetData(cardId, playerId, isTopCard);
         cardObject.transform.SetParent(playerId == PlayerId.Player1 ? playerDeckTransform1 : playerDeckTransform2);
+    }
+
+    public void DrawUsedCard(ImprovCard improvCard)
+    {
+        foreach (Transform child in usedDeckTransform) { Destroy(child.gameObject); }
+        GameObject cardObject = improvCard.gameObject;
+        cardObject.transform.SetParent(usedDeckTransform);
+        cardObject.transform.position = usedDeckTransform.position;
+        cardObject.GetComponent<Image>().color = new Color(1,1,1,0.4f);
     }
 }
