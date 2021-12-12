@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca88e63138691d24a83103471da33d47, type: 3}
-  m_Name: 00_briefing_name
+  m_Name: 03_briefing_name
   m_EditorClassIdentifier: 
   name: 
   spelerRol1:
-    rol: clone
-    scenario: Je moet je medespeler proberen te vermoorden
+    rol: Professor
+    scenario: Je ontleedt een mens
     characterModel: {fileID: 0}
   spelerRol2:
-    rol: gabber
-    scenario: blijf je medespeler in de gaten houden
+    rol: Alien proffessor
+    scenario: Je bent boer harms aan het zingen
     characterModel: {fileID: 0}
-  timeline: {fileID: 0}
+  timeline: {fileID: 11400000, guid: 933959ec01516a644aab48283c526d79, type: 2}
