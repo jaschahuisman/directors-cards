@@ -51,7 +51,7 @@ public class NetworkPlayer : NetworkBehaviour
         {
             Debug.Log(briefingIndex);
 
-            Briefing briefing = Database.Instance.briefings[briefingIndex];
+            BriefingScriptable briefing = Database.Instance.briefings[briefingIndex];
             PlayerRole rol = id == PlayerId.Player1 ? briefing.playerRole1 : briefing.playerRole2;
 
             // TODO: 

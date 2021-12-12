@@ -1,21 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
+using UnityEngine.UI;
 
-
-[CreateAssetMenu(fileName = "type_00_kaart_name", menuName = "Theatersport/Kaart")]
-public class ImprovCard : ScriptableObject
+public class ImprovCard : MonoBehaviour
 {
-    public ImprovCardType type;
-    public string text;
-    public AudioClip audio;
-}
+    private ImprovCardScriptable cardData;
+    private PlayerId playerId;
+    public bool isTopCard;
 
-public enum ImprovCardType
-{
-    End,
-    Emotion,
-    Action,
-    Restriction,
+    [SerializeField] private Text cardPlayerText;
+    [SerializeField] private Text cardTypeText;
+    [SerializeField] private Text cardContentText;
+
+
+    public void SetData(int cardIndex, PlayerId newPlayerId, bool isTopCardValue)
+    {
+        playerId = newPlayerId;
+        cardData = Database.Instance.improvCards[cardIndex];
+        isTopCard = isTopCardValue;
+
+        cardPlayerText.text = playerId == PlayerId.Player1 ? "Speler 1" : "Speler 2";
+        cardTypeText.text = cardData.type.ToString();
+        cardContentText.text = cardData.text;
+    }
+
+    public void Use()
+    {
+        Destroy(gameObject);
+    }
 }

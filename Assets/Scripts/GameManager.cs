@@ -79,6 +79,8 @@ public class GameManager : NetworkBehaviour
     {
         briefedConnections.Clear();
         Database database = Database.Instance;
+        CardsManager cardsManager = CardsManager.Instance;
+
 
         int briefingCount = database.briefings.Count;
         int randomBriefingIndex = UnityEngine.Random.Range(0, briefingCount);
@@ -89,7 +91,7 @@ public class GameManager : NetworkBehaviour
             networkPlayer.RpcStartBriefing(randomBriefingIndex);
         }
 
-        database.fillPlayerDecks();
+        cardsManager.fillPlayerDecks();
         UpdateGameState(GameState.Briefing);
     }
 
