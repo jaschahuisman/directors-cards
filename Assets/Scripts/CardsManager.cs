@@ -17,6 +17,7 @@ public class CardsManager : MonoBehaviour
     public Transform playerDeckTransform1;
     public Transform playerDeckTransform2;
     public Transform usedDeckTransform;
+    public Button endGameButton;
 
     public static CardsManager Instance;
 
@@ -28,15 +29,23 @@ public class CardsManager : MonoBehaviour
     private void Start()
     {
         database = Database.Instance;
-        fillPlayerDecks();
+        endGameButton.gameObject.SetActive(false);
+        endGameButton.onClick.AddListener(OnEndGameButtonClick);
+        resetPlayerDecks();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            fillPlayerDecks();
+            resetPlayerDecks();
         }
+    }
+
+    public void OnEndGameButtonClick()
+    {
+        endGameButton.gameObject.SetActive(false);
+        resetPlayerDecks();
     }
 
     public void UseCard(ImprovCard improvCard)
@@ -52,12 +61,20 @@ public class CardsManager : MonoBehaviour
             playerDeck2.Remove(improvCard.cardIndex);
         }
 
+        if (improvCard.cardData.type == ImprovCardType.End)
+        {
+            endGameButton.gameObject.SetActive(true);
+            playerDeck1.Clear();
+            playerDeck2.Clear();
+        }
+
         DrawUI();
     }
 
-    public void fillPlayerDecks()
+    public void resetPlayerDecks()
     {
         List<ImprovCardScriptable> improvCardsCopy = database.improvCards.ToList();
+        foreach (Transform child in usedDeckTransform) { Destroy(child.gameObject); }
         playerDeck1 = createDeck(improvCardsCopy);
         playerDeck2 = createDeck(improvCardsCopy);
         DrawUI();
@@ -121,7 +138,8 @@ public class CardsManager : MonoBehaviour
         foreach (Transform child in usedDeckTransform) { Destroy(child.gameObject); }
         GameObject cardObject = improvCard.gameObject;
         cardObject.transform.SetParent(usedDeckTransform);
-        cardObject.transform.position = usedDeckTransform.position;
-        cardObject.GetComponent<Image>().color = new Color(1,1,1,0.4f);
+
+        improvCard.StartCoroutine(improvCard.MoveCard(improvCard.gameObject.transform.position, usedDeckTransform.position, 0.2f));
+        cardObject.GetComponent<Image>().color = new Color(1,1,1,0.3f);
     }
 }

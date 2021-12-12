@@ -91,7 +91,7 @@ public class GameManager : NetworkBehaviour
             networkPlayer.RpcStartBriefing(randomBriefingIndex);
         }
 
-        cardsManager.fillPlayerDecks();
+        cardsManager.resetPlayerDecks();
         UpdateGameState(GameState.Briefing);
     }
 
