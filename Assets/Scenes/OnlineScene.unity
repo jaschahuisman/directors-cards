@@ -1164,6 +1164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15bdcc5a4b86b3741aaadd17908baf89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  briefings:
+  - {fileID: 11400000, guid: 166d94426196a914da8a17a83e50daac, type: 2}
+  - {fileID: 11400000, guid: f4a402b825b6640478836e3ceeaceb1f, type: 2}
+  - {fileID: 11400000, guid: 35bd762edef944046b25bfeab8c57a13, type: 2}
   scriptableObject: {fileID: 11400000, guid: 35bd762edef944046b25bfeab8c57a13, type: 2}
   rolPlayer1: {fileID: 2000997667}
   rolPlayer2: {fileID: 2090473698}
