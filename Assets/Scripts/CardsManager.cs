@@ -45,6 +45,7 @@ public class CardsManager : MonoBehaviour
     public void OnEndGameButtonClick()
     {
         endGameButton.gameObject.SetActive(false);
+        GameManager.Instance.UpdateGameState(GameState.WaitingForHost);
         resetPlayerDecks();
     }
 
@@ -66,7 +67,15 @@ public class CardsManager : MonoBehaviour
             endGameButton.gameObject.SetActive(true);
             playerDeck1.Clear();
             playerDeck2.Clear();
+
+            GameManager.Instance.SendImprovCardToClient(improvCard.cardIndex, PlayerId.Player1);
+            GameManager.Instance.SendImprovCardToClient(improvCard.cardIndex, PlayerId.Player2);
         }
+        else
+        {
+            GameManager.Instance.SendImprovCardToClient(improvCard.cardIndex, improvCard.playerId);
+        }
+
 
         DrawUI();
     }
