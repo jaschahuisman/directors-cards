@@ -62,6 +62,7 @@ public class NetworkPlayer : NetworkBehaviour
             // Play the timeline
 
             StopAllCoroutines();
+            Debug.Log(briefing.timeline.duration);
             StartCoroutine(StopBriefingAfterTimelineFinished((float) briefing.timeline.duration + 1));
         }
     }

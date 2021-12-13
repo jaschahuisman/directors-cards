@@ -24,14 +24,6 @@ public class GameManager : NetworkBehaviour
         NetworkManagerExtended.OnConnectionEvent += OnConnectionCountChanged;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // SendImprovCardToClient(UnityEngine.Random.Range(0, 10), PlayerId.Player1);
-        }
-    }
-
     [Server]
     public void UpdateGameState(GameState newGameState)
     {
@@ -87,6 +79,7 @@ public class GameManager : NetworkBehaviour
 
         foreach (NetworkConnection connection in NetworkManagerExtended.Instance.connections)
         {
+            Debug.Log(connection.address);
             NetworkPlayer networkPlayer = connection.identity.GetComponent<NetworkPlayer>();
             networkPlayer.RpcStartBriefing(randomBriefingIndex);
         }

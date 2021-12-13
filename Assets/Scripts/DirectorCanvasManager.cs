@@ -58,7 +58,7 @@ public class DirectorCanvasManager : NetworkBehaviour
 
     private void StartButtonOnClick()
     {
-        gameManager.UpdateGameState(GameState.Briefing);
+        gameManager.StartBriefing();
     }
 
 }
