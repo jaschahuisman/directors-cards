@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Audio;
 
 public class OnReceiveCardMock : MonoBehaviour
 {
     private Database database;
+
+    public ImprovCardScriptable _soPlayer;
     private AudioSource buzzer;
+    public GameObject improvCard;
+
+
     //private float index;
     
     void Start()
@@ -27,8 +33,9 @@ public class OnReceiveCardMock : MonoBehaviour
     void OnReceiveCard(int cardId)
     {
         Debug.Log("### Receive Card: " + cardId);
+
         // Find card in database by index
-        //index = database.improvCards[1];
+        _soPlayer = database.improvCards[cardId];
 
         // Play buzzer sound
         buzzer.Play();
@@ -36,6 +43,8 @@ public class OnReceiveCardMock : MonoBehaviour
         // Haptic (trillen) feedback in left controller
 
         // Instantiate card prefab
+        Instantiate(improvCard);
+
         // Fill in card prefab texts with ImrpovCard's data
 
         // Parent card prefab instance to world space UI on users wrist

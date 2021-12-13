@@ -1283,3 +1283,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72976a56f0750a4c9296e79a66bd308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _soPlayer: {fileID: 0}
+  improvCard: {fileID: 284492754000364663, guid: 6836c5a3c00336048bd5241f44085207, type: 3}

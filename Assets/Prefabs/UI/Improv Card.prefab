@@ -170,6 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d158eb03b5a9ae844b4ced843bf50dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardIndex: 0
+  cardData: {fileID: 0}
+  playerId: 0
+  isTopCard: 0
   cardPlayerText: {fileID: 2320210495131480088}
   cardTypeText: {fileID: 8550406765167779532}
   cardContentText: {fileID: 6294896369264357540}
