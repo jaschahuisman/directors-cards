@@ -8,12 +8,9 @@ public class OnReceiveCardMock : MonoBehaviour
 {
     private Database database;
 
-    public ImprovCardScriptable _soPlayer;
     private AudioSource buzzer;
-    public GameObject improvCard;
-
-
-    //private float index;
+    public GameObject improvCardPrefab;
+    public Transform playerWrist;
     
     void Start()
     {
@@ -35,18 +32,25 @@ public class OnReceiveCardMock : MonoBehaviour
         Debug.Log("### Receive Card: " + cardId);
 
         // Find card in database by index
-        _soPlayer = database.improvCards[cardId];
+        ImprovCardScriptable improvCardData = database.improvCards[cardId];
 
         // Play buzzer sound
         buzzer.Play();
 
         // Haptic (trillen) feedback in left controller
 
-        // Instantiate card prefab
-        Instantiate(improvCard);
+        // Remove existing card from users wrist
+        foreach (Transform child in playerWrist) { Destroy(child.gameObject); }
 
-        // Fill in card prefab texts with ImrpovCard's data
+        // Instantiate card prefab
+        GameObject cardObject = Instantiate(improvCardPrefab);
+        PlayerImprovCard improvCard = cardObject.GetComponent<PlayerImprovCard>();
+
+        // Fill in card prefab texts with ImprovCard's data
+
+        //
 
         // Parent card prefab instance to world space UI on users wrist
+        cardObject.gameObject.transform.SetParent(playerWrist, false);
     }
 }
