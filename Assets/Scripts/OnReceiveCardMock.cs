@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class OnReceiveCardMock : MonoBehaviour
 {
     private Database database;
+    private AudioSource buzzer;
+    //private float index;
     
     void Start()
     {
-        database = Database.Instance;  
+        database = Database.Instance;
+        buzzer = GetComponent<AudioSource>();  
     }
 
     void Update()
@@ -24,10 +28,12 @@ public class OnReceiveCardMock : MonoBehaviour
     {
         Debug.Log("### Receive Card: " + cardId);
         // Find card in database by index
+        //index = database.improvCards[1];
 
         // Play buzzer sound
+        buzzer.Play();
 
-        // Haptic feedback in left controller
+        // Haptic (trillen) feedback in left controller
 
         // Instantiate card prefab
         // Fill in card prefab texts with ImrpovCard's data
