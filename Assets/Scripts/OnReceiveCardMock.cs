@@ -8,19 +8,18 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class OnReceiveCardMock : MonoBehaviour
 {
     private Database database;
-    [SerializeField] XRBaseController controller;
-
     private AudioSource buzzer;
+
+    public XRBaseController controller;
     public GameObject improvCardPrefab;
     public Transform playerWrist;
-    public ImprovCardScriptable _soPlayer;
-    private ImprovCard improvCardData;
+    public ImprovCardScriptable improvCardScriptable;
     
+
     void Start()
     {
         database = Database.Instance;
         buzzer = GetComponent<AudioSource>();
-       // improvCardData = GetComponent<ImprovCard>();  
     }
 
     void Update()
@@ -37,7 +36,7 @@ public class OnReceiveCardMock : MonoBehaviour
         Debug.Log("### Receive Card: " + cardId);
 
         // Find card in database by index
-        _soPlayer = database.improvCards[cardId];
+        improvCardScriptable = database.improvCards[cardId];
 
         // Play buzzer sound
         buzzer.Play();
@@ -50,28 +49,19 @@ public class OnReceiveCardMock : MonoBehaviour
 
         // Instantiate card prefab
         GameObject cardObject = Instantiate(improvCardPrefab);
-        PlayerImprovCard improvCard = cardObject.GetComponent<PlayerImprovCard>();
+        PlayerImprovCard playerImprovCard = cardObject.GetComponent<PlayerImprovCard>();
 
 
         // Parent card prefab instance to world space UI on users wrist
         cardObject.gameObject.transform.SetParent(playerWrist, false);
 
-
-
-
-
-
         // Fill in card prefab texts with ImprovCard's data
-
-        //improvCardData.cardTypeText.text = _soPlayer.type.ToString();
-        improvCardData.cardContentText.text = _soPlayer.text;
-        
+        playerImprovCard.SetData(cardId);
     }
 
     void SendHaptics()
     {
         if (controller != null)
-            controller.SendHapticImpulse(0.7f, 0.1f);
+            controller.SendHapticImpulse(0.9f, 0.25f);
     }
-
 }
