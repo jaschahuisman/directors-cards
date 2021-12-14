@@ -29,11 +29,17 @@ public class NetworkPlayer : NetworkBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+        GameManager.OnGameStateChanged += OnGameStateChanged;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.OnGameStateChanged -= OnGameStateChanged;
     }
 
     private void Update()
     {
-        if(!isLocalPlayer && !disabledNonAuthoritatives)
+        if (!isLocalPlayer && !disabledNonAuthoritatives)
         {
             gameObject.GetComponent<XROrigin>().enabled = false;
             gameObject.GetComponent<AudioSource>().enabled = false;
@@ -49,6 +55,14 @@ public class NetworkPlayer : NetworkBehaviour
         }
     }
 
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        if(newGameState == GameState.WaitingForHost)
+        {
+            foreach (Transform child in playerWrist) Destroy(child.gameObject);
+        }
+    }
+
     [ClientRpc]
     public void RpcStartBriefing(int briefingIndex)
     {
@@ -59,7 +73,7 @@ public class NetworkPlayer : NetworkBehaviour
             BriefingManager.Instance.StartBriefing(briefing, this);
 
             StopAllCoroutines();
-            StartCoroutine(StopBriefingAfterTimelineFinished((float) briefing.timeline.duration + 1));
+            StartCoroutine(StopBriefingAfterTimelineFinished((float)briefing.timeline.duration + 1));
         }
     }
 
@@ -72,7 +86,7 @@ public class NetworkPlayer : NetworkBehaviour
     [ClientRpc]
     public void RpcReceiveImprovCard(int cardIndex, PlayerId playerId)
     {
-        if(id == playerId && isLocalPlayer)
+        if (id == playerId && isLocalPlayer)
         {
             // Debug.Log(cardIndex + " recieved from host " + playerId + " " + id);
 

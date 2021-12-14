@@ -47,19 +47,23 @@ public class BriefingManager : MonoBehaviour
 
         foreach (TrackAsset track in timeline.GetOutputTracks())
         {
-            if(track.name == "role_player_1") { playableDirector.SetGenericBinding(track, rolePanel1);  }
+            track.muted = false;
+
+            if (track.name == "role_player_1") { playableDirector.SetGenericBinding(track, rolePanel1);  }
             if (track.name == "scenario_player_1") { playableDirector.SetGenericBinding(track, scenarioPanel1); }
             if (track.name == "role_player_2") { playableDirector.SetGenericBinding(track, rolePanel2); }
             if (track.name == "scenario_player_2") { playableDirector.SetGenericBinding(track, scenarioPanel2); }
 
-            if (track.name == "audio_player_1" && player.id == PlayerId.Player1) 
+            if (track.name == "audio_player_1") 
             {
                 playableDirector.SetGenericBinding(track, player.gameObject.GetComponent<AudioSource>()); 
-            }
+                if (player.id == PlayerId.Player1) track.muted = true;
+            } 
 
-            if (track.name == "audio_player_2" && player.id == PlayerId.Player2) 
+            if (track.name == "audio_player_2") 
             { 
                 playableDirector.SetGenericBinding(track, player.GetComponent<AudioSource>()); 
+                if (player.id == PlayerId.Player2) track.muted = true;
             }
         }
 

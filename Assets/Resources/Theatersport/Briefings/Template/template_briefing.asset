@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c62ed19b973d414db114bffd541d463, type: 3}
   m_Name: template_briefing
   m_EditorClassIdentifier: 
-  name: De geit en de boer
+  name: Hans en grietje
   timeline: {fileID: 11400000, guid: df8cc8e13868114478f998c764dff7bc, type: 2}
   playerRole1:
-    role: Geit
-    scenario: Je wordt voor het eerst gemolken
+    role: Hans
+    scenario: Je bent met grietje aan het wandelen door het bos.
     characterModel: {fileID: 0}
   playerRole2:
-    role: Boer
-    scenario: Je melkt je geit voor het eerst
+    role: Grietje
+    scenario: Je bent met Hans aan het wandelen. Plots vind jij een broodkruimel.
     characterModel: {fileID: 0}
