@@ -11,6 +11,8 @@ public class OnReceiveCardMock : MonoBehaviour
     private AudioSource buzzer;
     public GameObject improvCardPrefab;
     public Transform playerWrist;
+    public ImprovCardScriptable _soPlayer;
+    private ImprovCard improvCardData;
     
     void Start()
     {
@@ -33,7 +35,7 @@ public class OnReceiveCardMock : MonoBehaviour
         Debug.Log("### Receive Card: " + cardId);
 
         // Find card in database by index
-        ImprovCardScriptable improvCardData = database.improvCards[cardId];
+        _soPlayer = database.improvCards[cardId];
 
         // Play buzzer sound
         buzzer.Play();
@@ -46,18 +48,14 @@ public class OnReceiveCardMock : MonoBehaviour
         // Instantiate card prefab
         GameObject cardObject = Instantiate(improvCardPrefab);
         PlayerImprovCard improvCard = cardObject.GetComponent<PlayerImprovCard>();
-<<<<<<< Updated upstream
 
-        // Fill in card prefab texts with ImprovCard's data
-
-        //
-=======
-
-        // Fill in card prefab texts with ImprovCard's data
-        //_soPlayer.type = improvCardData.cardTypeText;
->>>>>>> Stashed changes
 
         // Parent card prefab instance to world space UI on users wrist
         cardObject.gameObject.transform.SetParent(playerWrist, false);
+
+        // Fill in card prefab texts with ImprovCard's data
+
+        //improvCardData.cardTypeText.text = _soPlayer.type.ToString();
+        _soPlayer.text = improvCardData.cardContentText.text;
     }
 }
