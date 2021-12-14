@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SpatialTracking;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.XR.CoreUtils;
+using Unity.Audio;
 using Mirror;
 
 public class NetworkPlayer : NetworkBehaviour
@@ -11,18 +12,22 @@ public class NetworkPlayer : NetworkBehaviour
     [Header("Player identitification")]
     public PlayerId id;
 
-    [Header("Speler trackable objects")]
+    [Header("Player trackable objects")]
     [SerializeField] private GameObject playerCamera;
     [SerializeField] private GameObject leftController;
     [SerializeField] private GameObject rightController;
     [SerializeField] private bool disabledNonAuthoritatives;
 
-    private NetworkManagerExtended netwerk;
+    [Header("Player UI")]
+    [SerializeField] private XRBaseController xrBaseController;
+    [SerializeField] private GameObject improvCardPrefab;
+    [SerializeField] private Transform playerWrist;
+    [SerializeField] private AudioClip buzzerSound;
+
     private GameManager gameManager;
 
     private void Start()
     {
-        netwerk = NetworkManagerExtended.Instance;
         gameManager = GameManager.Instance;
     }
 
@@ -69,7 +74,19 @@ public class NetworkPlayer : NetworkBehaviour
     {
         if(id == playerId && isLocalPlayer)
         {
-            Debug.Log(cardIndex + " recieved from host " + playerId + " " + id);
+            // Debug.Log(cardIndex + " recieved from host " + playerId + " " + id);
+
+            if (xrBaseController != null) xrBaseController.SendHapticImpulse(1f, 0.25f);
+            gameObject.GetComponent<AudioSource>().clip = buzzerSound;
+            gameObject.GetComponent<AudioSource>().Play();
+
+            foreach (Transform child in playerWrist) Destroy(child.gameObject);
+
+            GameObject cardObject = Instantiate(improvCardPrefab);
+            PlayerImprovCard playerImprovCard = cardObject.GetComponent<PlayerImprovCard>();
+
+            playerImprovCard.SetData(cardIndex, playerId);
+            cardObject.gameObject.transform.SetParent(playerWrist, false);
         }
     }
 
