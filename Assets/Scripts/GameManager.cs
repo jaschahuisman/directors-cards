@@ -79,7 +79,6 @@ public class GameManager : NetworkBehaviour
 
         foreach (NetworkConnection connection in NetworkManagerExtended.Instance.connections)
         {
-            Debug.Log(connection.address);
             NetworkPlayer networkPlayer = connection.identity.GetComponent<NetworkPlayer>();
             networkPlayer.RpcStartBriefing(randomBriefingIndex);
         }
@@ -112,7 +111,7 @@ public class GameManager : NetworkBehaviour
             if(networkPlayer.id == playerId)
             {
                 Debug.Log(cardIndex + " sent to client with id: " + playerId);
-                networkPlayer.RpcReceiveImprovCard(cardIndex);
+                networkPlayer.RpcReceiveImprovCard(cardIndex, playerId);
             }
         }
     }

@@ -76,7 +76,6 @@ public class CardsManager : MonoBehaviour
             GameManager.Instance.SendImprovCardToClient(improvCard.cardIndex, improvCard.playerId);
         }
 
-
         DrawUI();
     }
 

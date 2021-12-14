@@ -65,9 +65,12 @@ public class NetworkPlayer : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcReceiveImprovCard(int cardIndex)
+    public void RpcReceiveImprovCard(int cardIndex, PlayerId playerId)
     {
-        Debug.Log(cardIndex + " recieved from host");
+        if(id == playerId && isLocalPlayer)
+        {
+            Debug.Log(cardIndex + " recieved from host " + playerId + " " + id);
+        }
     }
 
     [ClientRpc]
