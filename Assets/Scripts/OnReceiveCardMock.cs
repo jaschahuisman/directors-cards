@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class OnReceiveCardMock : MonoBehaviour
 {
     private Database database;
+    [SerializeField] XRBaseController controller;
 
     private AudioSource buzzer;
     public GameObject improvCardPrefab;
@@ -41,6 +43,7 @@ public class OnReceiveCardMock : MonoBehaviour
         buzzer.Play();
 
         // Haptic (trillen) feedback in left controller
+        SendHaptics();
 
         // Remove existing card from users wrist
         foreach (Transform child in playerWrist) { Destroy(child.gameObject); }
@@ -53,9 +56,22 @@ public class OnReceiveCardMock : MonoBehaviour
         // Parent card prefab instance to world space UI on users wrist
         cardObject.gameObject.transform.SetParent(playerWrist, false);
 
+
+
+
+
+
         // Fill in card prefab texts with ImprovCard's data
 
         //improvCardData.cardTypeText.text = _soPlayer.type.ToString();
-        _soPlayer.text = improvCardData.cardContentText.text;
+        improvCardData.cardContentText.text = _soPlayer.text;
+        
     }
+
+    void SendHaptics()
+    {
+        if (controller != null)
+            controller.SendHapticImpulse(0.7f, 0.1f);
+    }
+
 }
