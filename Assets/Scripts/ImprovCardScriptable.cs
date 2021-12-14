@@ -14,8 +14,8 @@ public class ImprovCardScriptable : ScriptableObject
 
 public enum ImprovCardType
 {
-    End,
-    Emotion,
-    Action,
-    Restriction,
+    Einde,
+    Emotie,
+    Actie,
+    Restrictie,
 }

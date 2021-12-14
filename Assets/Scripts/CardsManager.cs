@@ -62,7 +62,7 @@ public class CardsManager : MonoBehaviour
             playerDeck2.Remove(improvCard.cardIndex);
         }
 
-        if (improvCard.cardData.type == ImprovCardType.End)
+        if (improvCard.cardData.type == ImprovCardType.Einde)
         {
             endGameButton.gameObject.SetActive(true);
             playerDeck1.Clear();
@@ -95,7 +95,7 @@ public class CardsManager : MonoBehaviour
         foreach (ImprovCardType cardType in System.Enum.GetValues(typeof(ImprovCardType)))
         {
             List<ImprovCardScriptable> cardsOfType = database.improvCards.Where(improvCard => improvCard.type == cardType).ToList();
-            if (cardType != ImprovCardType.End)
+            if (cardType != ImprovCardType.Einde)
             {
                 int randomIndex = Random.Range(0, cardsOfType.Count);
                 ImprovCardScriptable card = cardsOfType[randomIndex];
@@ -113,7 +113,7 @@ public class CardsManager : MonoBehaviour
             deck[randomIndex] = temp;
         }
 
-        List<ImprovCardScriptable> endCards = database.improvCards.Where(improvCard => improvCard.type == ImprovCardType.End).ToList();
+        List<ImprovCardScriptable> endCards = database.improvCards.Where(improvCard => improvCard.type == ImprovCardType.Einde).ToList();
         deck.Insert(0, database.improvCards.IndexOf(endCards[Random.Range(0, endCards.Count)]));
 
         return deck;

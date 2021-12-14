@@ -27,7 +27,7 @@ public class ImprovCard : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
         cardPlayerText.text = playerId == PlayerId.Player1 ? "Speler 1" : "Speler 2";
 
-        if(cardData.type == ImprovCardType.End)
+        if(cardData.type == ImprovCardType.Einde)
         {
             cardPlayerText.text = "Beiden spelers";
         }
