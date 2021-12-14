@@ -6,145 +6,121 @@ using Mirror;
 
 public class GameManager : NetworkBehaviour
 {
-    [Header("Spel status")]
-    // De huidige status van het spel
-    public GameStatus gameStatus;
-
-    [SyncVar]
-    public int briefingIndex;
-
-    // Event hook die luistert naar verandering in de gamestatus
-    public static event Action<GameStatus> OnGameStatusChanged;
-
-    public List<NetworkConnection> gebriefteVerbindingen = new List<NetworkConnection>();
-
-    // De static gamemanager instance
     public static GameManager Instance;
+
+    [Header("Game status")]
+    public GameState gameState = GameState.Pending;
+    public static event Action<GameState> OnGameStateChanged;
+    
+    public List<NetworkConnection> briefedConnections = new List<NetworkConnection>();
 
     private void Awake()
     {
-        // Maak de static database instance
         Instance = this;
     }
 
     private void Start()
     {
-        // Luister naar verandering in verbindingen
-        NetwerkManager.OnVerbindingChange += OnAantalSpelersChange;
-
-        // Zet de gamestatus standaard op incompleet
-        if (isServer)
-        {
-            UpdateGameStatus(GameStatus.Incompleet);
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartBriefing();
-        }
+        NetworkManagerExtended.OnConnectionEvent += OnConnectionCountChanged;
     }
 
     [Server]
-    public void UpdateGameStatus(GameStatus nieuweStatus)
+    public void UpdateGameState(GameState newGameState)
     {
         if (isServerOnly)
         {
-            Debug.Log(nieuweStatus);
+            Debug.Log(newGameState);
 
-            // Verander de gamestatus (server)
-            gameStatus = nieuweStatus;
-            OnGameStatusChanged?.Invoke(nieuweStatus);
+            gameState = newGameState;
+            OnGameStateChanged?.Invoke(newGameState);
         }
         if (isServer)
         {
-            // Verander de gamestatus (client)
-            UpdateClientGameStatus(nieuweStatus);
+            RpcUpdateClientGameState(newGameState);
         }
     }
 
     [ClientRpc]
-    private void UpdateClientGameStatus(GameStatus nieuweStatus)
+    private void RpcUpdateClientGameState(GameState newGameState)
     {
         if (isClient)
         {
-            Debug.Log(nieuweStatus);
+            Debug.Log(newGameState);
 
-            // Verander de gamestatus (client)
-            gameStatus = nieuweStatus;
-            OnGameStatusChanged?.Invoke(nieuweStatus);
+            gameState = newGameState;
+            OnGameStateChanged?.Invoke(newGameState);
         }
     }
 
     [Server]
-    private void OnAantalSpelersChange(int aantalSpelers)
+    private void OnConnectionCountChanged(int playerCount)
     {
-        if(aantalSpelers < 2 && gameStatus != GameStatus.Incompleet)
+        if(playerCount < 2 && gameState != GameState.Pending)
         {
-            // Niet genoeg spelers
-            UpdateGameStatus(GameStatus.Incompleet);
+            UpdateGameState(GameState.Pending);
         }
 
-        if(aantalSpelers >= 2 && gameStatus == GameStatus.Incompleet)
+        if(playerCount >= 2 && gameState == GameState.Pending)
         {
-            // Genoeg spelers
-            UpdateGameStatus(GameStatus.Wachten);
+            UpdateGameState(GameState.WaitingForHost);
         }
     }
 
     [Server]
     public void StartBriefing()
     {
-        // Verwijder de status van gebriefte spelers en
-        // en zet de spelstatus op briefing
-        gebriefteVerbindingen.Clear();
+        briefedConnections.Clear();
+        Database database = Database.Instance;
+        CardsManager cardsManager = CardsManager.Instance;
 
-        // Laad een briefing uit de database
-        int aantalBriefings = TheatersportDatabase.Instance.briefings.Count;
-        int randomBriefingIndex = UnityEngine.Random.Range(0, aantalBriefings);
 
-        briefingIndex = randomBriefingIndex;
+        int briefingCount = database.briefings.Count;
+        int randomBriefingIndex = UnityEngine.Random.Range(0, briefingCount);
 
-        foreach (NetworkConnection verbinding in NetwerkManager.Instance.verbindingen)
+        foreach (NetworkConnection connection in NetworkManagerExtended.Instance.connections)
         {
-            NetwerkSpeler netwerkSpeler = verbinding.identity.GetComponent<NetwerkSpeler>();
-            netwerkSpeler.StartBriefing(randomBriefingIndex);
+            NetworkPlayer networkPlayer = connection.identity.GetComponent<NetworkPlayer>();
+            networkPlayer.RpcStartBriefing(randomBriefingIndex);
         }
 
-        UpdateGameStatus(GameStatus.Briefing);
+        cardsManager.resetPlayerDecks();
+        UpdateGameState(GameState.Briefing);
     }
 
     [Command(requiresAuthority = false)]
-    public void SpelerBriefingAfgelopen(NetworkConnectionToClient verbinding)
+    public void CmdFinishBriefing(NetworkConnectionToClient connection)
     {
-        // Voeg speler toe aan gebriefte spelers
-        gebriefteVerbindingen.Add(verbinding);
-
-        if(gebriefteVerbindingen.Count == NetwerkManager.Instance.verbindingen.Count)
+        if (gameState != GameState.Briefing)
         {
-            // Als alle spelers gebrieft zijn
-            UpdateGameStatus(GameStatus.Spelen);
+            return;
+        }
+
+        briefedConnections.Add(connection);
+
+        if (briefedConnections.Count == NetworkManagerExtended.Instance.connections.Count)
+        {
+            UpdateGameState(GameState.Playing);
         }
     }
 
-    // Debugging functions
-    public void DebugIncompleet()
-    {
-        UpdateGameStatus(GameStatus.Incompleet);
-    }
-
-    public void DebugWachten()
-    {
-        UpdateGameStatus(GameStatus.Wachten);
+    [Server]
+    public void SendImprovCardToClient(int cardIndex, PlayerId playerId) {
+        foreach (NetworkConnection connection in NetworkManagerExtended.Instance.connections)
+        {
+            NetworkPlayer networkPlayer = connection.identity.GetComponent<NetworkPlayer>();
+            if(networkPlayer.id == playerId)
+            {
+                Debug.Log(cardIndex + " sent to client with id: " + playerId);
+                networkPlayer.RpcReceiveImprovCard(cardIndex, playerId);
+            }
+        }
     }
 }
 
-public enum GameStatus
+public enum GameState
 {
-    Incompleet,     // Niet genoeg spelers om het spel te starten
-    Wachten,        // Wachten tot de host het spel start
-    Briefing,       // Briefing van de spelers
-    Spelen,         // Spelen!
+    Pending,            // Niet genoeg spelers om het spel te starten
+    WaitingForHost,     // Wachten tot de host het spel start
+    Briefing,           // Briefing van de spelers
+    Playing,            // Spelen!
 }

@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.65080994, g: 0.666729, b: 0.7075472, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.05
@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 26257654}
   - component: {fileID: 26257653}
   m_Layer: 5
-  m_Name: Speler Verbind Knop
+  m_Name: Connect Player Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -872,7 +872,7 @@ GameObject:
   - component: {fileID: 407193712}
   - component: {fileID: 407193711}
   m_Layer: 5
-  m_Name: Regisseur Start Server Knop Tekst
+  m_Name: Connect Director Button Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -952,7 +952,7 @@ GameObject:
   - component: {fileID: 435599164}
   - component: {fileID: 435599163}
   m_Layer: 0
-  m_Name: Vloer
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1078,11 +1078,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ff1d74c8bb86043a4abc8de073a39b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spelersCamera: {fileID: 1687258581}
-  regisseurCamera: {fileID: 948126066}
-  spelerVerbindKnop: {fileID: 26257653}
-  regisseurStartServerKnop: {fileID: 591924662}
-  netwerk: {fileID: 676955542}
+  playerCamera: {fileID: 1687258581}
+  directorCamera: {fileID: 948126066}
+  connectPlayerButton: {fileID: 26257653}
+  connectDirectorButton: {fileID: 591924662}
+  network: {fileID: 676955542}
   discovery: {fileID: 676955543}
 --- !u!1 &563594856
 GameObject:
@@ -1127,7 +1127,7 @@ GameObject:
   - component: {fileID: 591924663}
   - component: {fileID: 591924662}
   m_Layer: 5
-  m_Name: Regisseur Start Server Knop
+  m_Name: Connect Director Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1471,7 +1471,7 @@ GameObject:
   - component: {fileID: 948126069}
   - component: {fileID: 948126067}
   m_Layer: 0
-  m_Name: Regisseurscamera
+  m_Name: Director Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1561,7 +1561,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948126066}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.6, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1609,7 +1609,7 @@ GameObject:
   - component: {fileID: 1257390861}
   - component: {fileID: 1257390860}
   m_Layer: 5
-  m_Name: Regisseur Start Server Knop Tekst
+  m_Name: Connect Player Button Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2069,7 +2069,7 @@ GameObject:
   - component: {fileID: 1522080649}
   - component: {fileID: 1522080648}
   m_Layer: 5
-  m_Name: Lobby Canvas (Speler)
+  m_Name: Lobby Canvas (player)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2172,7 +2172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.21}
+  m_AnchoredPosition: {x: 0, y: 1.7}
   m_SizeDelta: {x: 1000, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1687258581
@@ -2189,7 +2189,7 @@ GameObject:
   - component: {fileID: 1687258586}
   - component: {fileID: 1687258583}
   m_Layer: 0
-  m_Name: Spelerscamera
+  m_Name: Player Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2381,17 +2381,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 1734171336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2b14da902f7c3c499c7d4245426ac0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 147dd3687d5e52a4a89564b796b515e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   briefings:
-  - {fileID: 11400000, guid: 9af3ce5a11927054e8900077a227c6b7, type: 2}
-  - {fileID: 11400000, guid: 9af3ce5a11927054e8900077a227c6b7, type: 2}
-  - {fileID: 11400000, guid: 9af3ce5a11927054e8900077a227c6b7, type: 2}
-  - {fileID: 11400000, guid: 9af3ce5a11927054e8900077a227c6b7, type: 2}
-  - {fileID: 11400000, guid: 9af3ce5a11927054e8900077a227c6b7, type: 2}
-  kaarten:
-  - {fileID: 11400000, guid: ec235e2c4975e584baab6a1e5e0b21c3, type: 2}
+  - {fileID: 11400000, guid: 8cb97204f122e524c8d1e8b4fb982dd5, type: 2}
+  improvCards:
+  - {fileID: 11400000, guid: d5eec6be6b1a3d94d8c0e616d643aa30, type: 2}
+  - {fileID: 11400000, guid: 39d94da0b62f3ed4d92a3ef9c0ee6e3d, type: 2}
+  - {fileID: 11400000, guid: 6c444d60d0224db438729b3e72c7ada4, type: 2}
+  - {fileID: 11400000, guid: 64322cbadf5455b4fbce7bce53b6db6f, type: 2}
+  - {fileID: 11400000, guid: 51dc13d20dc21984ebef5f76f8825227, type: 2}
+  - {fileID: 11400000, guid: 68d4d88dff9b4f04099035aa40684746, type: 2}
+  - {fileID: 11400000, guid: e82fba0db2a9e404fad5d323696edeb3, type: 2}
+  - {fileID: 11400000, guid: 53226ccce8600f848aa2d38bbb4c9c05, type: 2}
+  - {fileID: 11400000, guid: f7cc3357bd912584f976d4939dc2f552, type: 2}
+  - {fileID: 11400000, guid: f389b5f441a62404393bc0cf7e777755, type: 2}
+  - {fileID: 11400000, guid: 6f7427cde291b5440897998654769392, type: 2}
+  - {fileID: 11400000, guid: ac775e881a0dbb84b83f4a9b5623e5a8, type: 2}
+  - {fileID: 11400000, guid: b423980ccf257db4dafe585438d03c61, type: 2}
+  - {fileID: 11400000, guid: b38e8691cfaf10e40816219885cf0aa4, type: 2}
+  - {fileID: 11400000, guid: 7431c2aa69995a34e8b8432208990a93, type: 2}
+  - {fileID: 11400000, guid: 2420bb4631212c8428787983717786c1, type: 2}
+  - {fileID: 11400000, guid: 51a11b588c004a946a24105f8f56a207, type: 2}
+  - {fileID: 11400000, guid: facf5198365f08e4481ada9ea4c0c5eb, type: 2}
+  - {fileID: 11400000, guid: 1ef9548753a7c9f4286716fd3b248eeb, type: 2}
+  - {fileID: 11400000, guid: 18b63997ac646af4d8aa13f2c2794f9b, type: 2}
+  - {fileID: 11400000, guid: 1dd6928b6b742b94a8b40e522bae17b0, type: 2}
+  - {fileID: 11400000, guid: b74a4b83c85e5f34088f490b8bf569d8, type: 2}
+  - {fileID: 11400000, guid: 9a301457956e59d4a88841ac6fc27e54, type: 2}
+  - {fileID: 11400000, guid: 4f628266c7bfea14f9351e8ad090c6b0, type: 2}
+  - {fileID: 11400000, guid: ea8a5ee46d733bb43a2bbdc1bcd904fb, type: 2}
+  - {fileID: 11400000, guid: c57d9a3bfb044b049ae82e46f4d3b7b0, type: 2}
+  - {fileID: 11400000, guid: fbe86b4155abdae4cb01ab65b48b5be9, type: 2}
+  - {fileID: 11400000, guid: 6b3d485625eeb084a965dece7f27e182, type: 2}
+  - {fileID: 11400000, guid: a84e10e9f5a190f468f9c58231288a2b, type: 2}
+  - {fileID: 11400000, guid: fc44d741e8bccc74fa9d3d8c8d138d4d, type: 2}
+  - {fileID: 11400000, guid: 61747819d60aab944b294203d78a90e7, type: 2}
+  - {fileID: 11400000, guid: ac406d332e4af534ebfa81282f364e06, type: 2}
+  - {fileID: 11400000, guid: 7093101ef35e3f0478e50b76142cab2c, type: 2}
+  - {fileID: 11400000, guid: 6cba9163c2b18624cb570e5ac786a723, type: 2}
+  - {fileID: 11400000, guid: 3498c5579ac66de43b6d8cd679ce5799, type: 2}
+  - {fileID: 11400000, guid: 48dd5d757f3f4e54cb024c25e6aaaeb8, type: 2}
+  - {fileID: 11400000, guid: 88a5c39b4488e8c4497197e71534b654, type: 2}
 --- !u!1 &1765187209
 GameObject:
   m_ObjectHideFlags: 0
@@ -2435,7 +2467,7 @@ GameObject:
   - component: {fileID: 1864859846}
   - component: {fileID: 1864859845}
   m_Layer: 5
-  m_Name: Lobby Canvas (Regisseur)
+  m_Name: Lobby Canvas (director)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
