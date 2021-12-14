@@ -2385,7 +2385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   briefings:
-  - {fileID: 11400000, guid: 151f4d25a73106a4281b6bf50e02fc3d, type: 2}
+  - {fileID: 11400000, guid: 8cb97204f122e524c8d1e8b4fb982dd5, type: 2}
   improvCards:
   - {fileID: 11400000, guid: c847e985c3729b744a9e2f0e77d0d543, type: 2}
   - {fileID: 11400000, guid: 966c1e4c1c464504489b4a5df1828ffc, type: 2}

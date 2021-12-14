@@ -49,20 +49,11 @@ public class NetworkPlayer : NetworkBehaviour
     {
         if (isClient && isLocalPlayer)
         {
-            Debug.Log(briefingIndex);
-
             BriefingScriptable briefing = Database.Instance.briefings[briefingIndex];
-            PlayerRole rol = id == PlayerId.Player1 ? briefing.playerRole1 : briefing.playerRole2;
 
-            // TODO: 
-            //
-            // Load briefing.timeline in a PlayableDirector component
-            // Update canvas GameComponents with the right role data (including AudioSources)
-            // Generic bind the TrackAssets with the GameComponents to the PlayableDirector (by track name)
-            // Play the timeline
+            BriefingManager.Instance.StartBriefing(briefing, this);
 
             StopAllCoroutines();
-            Debug.Log(briefing.timeline.duration);
             StartCoroutine(StopBriefingAfterTimelineFinished((float) briefing.timeline.duration + 1));
         }
     }
