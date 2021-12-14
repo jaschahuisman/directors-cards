@@ -15,7 +15,8 @@ public class OnReceiveCardMock : MonoBehaviour
     void Start()
     {
         database = Database.Instance;
-        buzzer = GetComponent<AudioSource>();  
+        buzzer = GetComponent<AudioSource>();
+       // improvCardData = GetComponent<ImprovCard>();  
     }
 
     void Update()
@@ -45,10 +46,16 @@ public class OnReceiveCardMock : MonoBehaviour
         // Instantiate card prefab
         GameObject cardObject = Instantiate(improvCardPrefab);
         PlayerImprovCard improvCard = cardObject.GetComponent<PlayerImprovCard>();
+<<<<<<< Updated upstream
 
         // Fill in card prefab texts with ImprovCard's data
 
         //
+=======
+
+        // Fill in card prefab texts with ImprovCard's data
+        //_soPlayer.type = improvCardData.cardTypeText;
+>>>>>>> Stashed changes
 
         // Parent card prefab instance to world space UI on users wrist
         cardObject.gameObject.transform.SetParent(playerWrist, false);

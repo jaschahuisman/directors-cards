@@ -11,9 +11,9 @@ public class ImprovCard : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     public PlayerId playerId;
     public bool isTopCard;
 
-    [SerializeField] private Text cardPlayerText;
-    [SerializeField] private Text cardTypeText;
-    [SerializeField] private Text cardContentText;
+    [SerializeField] public Text cardPlayerText;
+    [SerializeField] public Text cardTypeText;
+    [SerializeField] public Text cardContentText;
 
     private Vector2 pointerDragOffset;
     private Vector2 defaultPosition;
