@@ -13,7 +13,14 @@ public class OnReceiveCardMock : MonoBehaviour
     public XRBaseController controller;
     public GameObject improvCardPrefab;
     public Transform playerWrist;
+    public GameObject wrist;
+
     public ImprovCardScriptable improvCardScriptable;
+    
+
+    public Camera headset;
+    RaycastHit hit;
+    public float distanceToSee = 0.3f;
     
 
     void Start()
@@ -27,8 +34,28 @@ public class OnReceiveCardMock : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // Random card gets send from database to client (mock)
-            OnReceiveCard(Random.Range(0, database.improvCards.Count)); 
+            OnReceiveCard(Random.Range(0, database.improvCards.Count));
         }
+
+        Debug.DrawRay(headset.transform.position, headset.transform.forward * distanceToSee, Color.red);
+
+        if (Physics.Raycast(headset.transform.position, headset.transform.forward, out hit, distanceToSee))
+        {
+
+
+            if (hit.collider.gameObject.name == "LeftHand Controller")
+            {
+                Debug.Log("Hand Hit");
+                StartCoroutine(ShowCard());
+            }
+   
+        }
+        else
+        {
+            wrist.SetActive(false);
+            Debug.Log("Nothing");
+        }
+
     }
 
     void OnReceiveCard(int cardId)
@@ -54,14 +81,24 @@ public class OnReceiveCardMock : MonoBehaviour
 
         // Parent card prefab instance to world space UI on users wrist
         cardObject.gameObject.transform.SetParent(playerWrist, false);
+        cardObject.SetActive(true);
 
         // Fill in card prefab texts with ImprovCard's data
         playerImprovCard.SetData(cardId);
+
+        
     }
 
     void SendHaptics()
     {
         if (controller != null)
             controller.SendHapticImpulse(1f, 0.5f);
+    }
+
+    IEnumerator ShowCard() 
+    {
+        yield return new WaitForSeconds(1);
+        wrist.SetActive(true);
+       
     }
 }
