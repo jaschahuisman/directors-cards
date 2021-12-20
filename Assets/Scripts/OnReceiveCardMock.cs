@@ -62,6 +62,6 @@ public class OnReceiveCardMock : MonoBehaviour
     void SendHaptics()
     {
         if (controller != null)
-            controller.SendHapticImpulse(0.9f, 0.25f);
+            controller.SendHapticImpulse(1f, 0.5f);
     }
 }

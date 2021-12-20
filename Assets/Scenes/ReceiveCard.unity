@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -660,7 +660,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1c8c5e3638b922f43bbd6012cb053088, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2b65346cf7b6a874bb37b923e791639c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.513
   m_Pitch: 1
@@ -1887,7 +1887,7 @@ MonoBehaviour:
   controller: {fileID: 3443430684829179637}
   improvCardPrefab: {fileID: 284492754000364663, guid: a9e2432f9f6d2f040af53d8d8001967d, type: 3}
   playerWrist: {fileID: 962483902}
-  _soPlayer: {fileID: 0}
+  improvCardScriptable: {fileID: 0}
 --- !u!224 &9002326856910993268
 RectTransform:
   m_ObjectHideFlags: 0
