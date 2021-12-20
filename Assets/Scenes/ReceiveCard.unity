@@ -1884,6 +1884,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72976a56f0750a4c9296e79a66bd308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  database: {fileID: 0}
+  buzzer: {fileID: 0}
   controller: {fileID: 3443430684829179637}
   improvCardPrefab: {fileID: 284492754000364663, guid: a9e2432f9f6d2f040af53d8d8001967d, type: 3}
   playerWrist: {fileID: 962483902}
