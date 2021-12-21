@@ -20,7 +20,7 @@ public class OnReceiveCardMock : MonoBehaviour
 
     public Camera headset;
     RaycastHit hit;
-    public float distanceToSee = 0.3f;
+    public float distanceToSee = 0.2f;
     
 
     void Start()

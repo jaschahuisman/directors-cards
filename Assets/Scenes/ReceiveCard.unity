@@ -1789,8 +1789,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.15
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.13432997
+  m_Center: {x: -0.010000005, y: -0.019999994, z: -0.02432996}
 --- !u!4 &7711058768840182794
 Transform:
   m_ObjectHideFlags: 0
@@ -1921,6 +1921,7 @@ GameObject:
   - component: {fileID: 7711058768840182806}
   - component: {fileID: 7711058768840182795}
   - component: {fileID: 7711058768840182792}
+  - component: {fileID: 7711058768840182798}
   m_Layer: 0
   m_Name: LeftHand Controller
   m_TagString: Untagged
@@ -1928,6 +1929,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!135 &7711058768840182798
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7711058768840182797}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.13432997
+  m_Center: {x: -0.010000005, y: -0.019999994, z: -0.02432996}
 --- !u!114 &7711058768840182806
 MonoBehaviour:
   m_ObjectHideFlags: 0
