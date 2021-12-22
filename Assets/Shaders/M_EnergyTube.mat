@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_CableEnergy
+  m_Name: M_EnergyTube
   m_Shader: {fileID: -6465566751694194690, guid: a159b928ffd80fe49971942050b56f1a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -35,8 +35,6 @@ Material:
     - Vector1_c098fcd9a578475380b88c98d2618f55: 3
     - Vector1_eb5b2514f2294b738a9fcab05a1809e7: 2
     m_Colors:
-    - Color_c0be308050904543bd7795ed32be0a72: {r: 0.91594803, g: 1, b: 0.24705881, a: 0}
-    - Color_cedc3953cd8643708cbb09f66f212195: {r: 0, g: 0.6784314, b: 0.5125352, a: 0}
-    - Vector2_75f3a9f633654d4abc6da249d8518fa3: {r: 3, g: 0, b: 0, a: 0}
-    - Vector2_f5fd68912cdc4dc1acff7778be28b287: {r: 2, g: 0, b: 0, a: 0}
+    - Color_c0be308050904543bd7795ed32be0a72: {r: 2.1159735, g: 0.58175445, b: 0.47243413, a: 0}
+    - Color_cedc3953cd8643708cbb09f66f212195: {r: 1, g: 0.54839194, b: 0.2588235, a: 0}
   m_BuildTextureStacks: []
