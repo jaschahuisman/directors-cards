@@ -5,27 +5,17 @@ using UnityEngine;
 public class MeshHidder : MonoBehaviour
 {
 
-private MeshRenderer[] meshes;
+public GameObject hand;
 
-    private void Awake()
-    {
-        meshes = GetComponentsInChildren<MeshRenderer>();
-    }
 
     public void Show()
     {
-        foreach (var mesh in meshes)
-        {
-            mesh.enabled = true;
-        }
+        hand.SetActive(true);
     }
 
     public void Hide() 
     {
-        foreach(var mesh in meshes) 
-        {
-            mesh.enabled = false;
-        }
+        hand.SetActive(false);
     }
 
 }

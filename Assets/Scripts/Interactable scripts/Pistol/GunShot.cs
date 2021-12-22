@@ -21,22 +21,26 @@ public class GunShot : MonoBehaviour
     [SerializeField] protected float shootingForce;
     [SerializeField] private float recoilForce;
     [SerializeField] protected Transform barrelLocation;
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Projectile bulletPrefab;
 
     private Rigidbody rigidBody;
     private XRGrabInteractable interactableWeapon;
+
+    public AudioSource blasterSound;
 
     protected virtual void Awake()
     {
         interactableWeapon = GetComponent<XRGrabInteractable>();
         rigidBody = GetComponent<Rigidbody>();
+        blasterSound = GetComponent<AudioSource>();
+
         SetupInteractableWeaponEvents();
     }
 
     private void SetupInteractableWeaponEvents()
     {
-        interactableWeapon.onSelectEnter.AddListener(PickUpWeapon);
-        interactableWeapon.onSelectExit.AddListener(DropWeapon);
+        interactableWeapon.onSelectEntered.AddListener(PickUpWeapon);
+        interactableWeapon.onSelectExited.AddListener(DropWeapon);
         interactableWeapon.onActivate.AddListener(StartShooting);
         interactableWeapon.onDeactivate.AddListener(StopShooting);
     }
@@ -64,7 +68,10 @@ public class GunShot : MonoBehaviour
     protected virtual void Shoot()
     {
         ApplyRecoil();
-        GameObject beamInstance = Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation);
+        Projectile beamInstance = Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation);
+        beamInstance.Init(this);
+        beamInstance.Launch();
+        blasterSound.Play();
     }
 
     private void ApplyRecoil()
@@ -72,10 +79,10 @@ public class GunShot : MonoBehaviour
         rigidBody.AddRelativeForce(Vector3.back * recoilForce, ForceMode.Impulse);
     }
 
-    // public float GetShootingForce() 
-    // {
-    //     return shootingForce;
-    // }
+    public float GetShootingForce() 
+    {
+        return shootingForce;
+    }
 
 
 
