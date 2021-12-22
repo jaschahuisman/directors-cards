@@ -18,7 +18,7 @@ public float thumbMoveSpeed;
 private Animator animator;
 private InputDevice inputDevice;
 
-private float indexValue, thumbValue, threeFingersValue;
+public float indexValue, thumbValue, threeFingersValue;
 
 
     // Start is called before the first frame update
