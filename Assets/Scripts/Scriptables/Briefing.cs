@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
 
-[CreateAssetMenu(fileName = "00_briefing_name", menuName = "Theatersport/Briefing")]
-public class BriefingScriptable : ScriptableObject
+[CreateAssetMenu(fileName = "b_name", menuName = "Theatersport/Briefing")]
+public class Briefing : ScriptableObject
 {
     public new string name;
     public TimelineAsset timeline;

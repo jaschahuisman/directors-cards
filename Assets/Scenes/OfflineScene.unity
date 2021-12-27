@@ -1393,6 +1393,8 @@ MonoBehaviour:
   gameplayScene: Assets/Scenes/GameplayScene.unity
   NetworkPlayers: []
   NetworkSpectators: []
+  GamePlayers: []
+  BriefedPlayers: []
 --- !u!114 &676955543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2299,6 +2301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 147dd3687d5e52a4a89564b796b515e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  briefings:
+  - {fileID: 11400000, guid: d1b3083ed24f3894aadc27ecfc0074f8, type: 2}
 --- !u!1 &1744459380
 GameObject:
   m_ObjectHideFlags: 0

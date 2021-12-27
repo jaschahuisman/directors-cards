@@ -64,6 +64,11 @@ public class NetworkPlayer : NetworkBehaviour
     public override void OnStopServer()
     {
         Network.NetworkPlayers.Remove(this);
+
+        if (Network.GamePlayers.Contains(this))
+        {
+            Network.GamePlayers.Remove(this);
+        }
     }
 
     [Command]
@@ -76,7 +81,28 @@ public class NetworkPlayer : NetworkBehaviour
     public void CmdSetReadyState(bool value)
     {
         IsReady = value;
-        Network.NotifyReadyState();
+        Network.NotifyReadyToLoadGameplay();
+    }
+
+    [Command]
+    public void CmdReadyInGameplayScene()
+    {
+        Network.GamePlayers.Add(this);
+        Network.NotifyReadyToStartBriefing();
+    }
+
+    [ClientRpc]
+    public void RpcStartBriefing(int briefingIndex)
+    {
+        Debug.Log(Database.Instance.briefings[briefingIndex].name);
+        // Start briefing here
+    }
+
+    [Command]
+    public void CmdFinishBriefing()
+    {
+        Network.BriefedPlayers.Add(this);
+        Network.NotifyFinishedBriefing();
     }
 
     public void HandleReadyStatusChanged(bool oldVlaue, bool newValue)

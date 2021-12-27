@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Database : MonoBehaviour
 {
-    
+    public List<Briefing> briefings = new List<Briefing>();
 
     public static Database Instance;
 

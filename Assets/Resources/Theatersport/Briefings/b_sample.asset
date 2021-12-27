@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c62ed19b973d414db114bffd541d463, type: 3}
-  m_Name: mock.briefing
+  m_Name: b_sample
   m_EditorClassIdentifier: 
-  name: Test
-  timeline: {fileID: 11400000, guid: f823150a6ff041240a725d387bcb2c61, type: 2}
+  name: Sample
+  timeline: {fileID: 0}
   playerRole1:
-    role: Test 1
-    scenario: 
+    role: Sample R1
+    scenario: Sample S1
     characterModel: {fileID: 0}
   playerRole2:
-    role: Test 2
-    scenario: 
+    role: Sample R2
+    scenario: Sample S2
     characterModel: {fileID: 0}

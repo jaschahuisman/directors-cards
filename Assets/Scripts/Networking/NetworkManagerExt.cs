@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using Mirror.Discovery;
+using UnityEngine.SceneManagement;
 
 
 public class NetworkManagerExt : NetworkManager
@@ -17,7 +18,11 @@ public class NetworkManagerExt : NetworkManager
     public List<NetworkPlayer> NetworkPlayers = new List<NetworkPlayer>();
     public List<NetworkSpectator> NetworkSpectators = new List<NetworkSpectator>();
 
-    public static event Action<bool> ReadyStateEvent;
+    public List<NetworkPlayer> GamePlayers = new List<NetworkPlayer>();
+    public List<NetworkPlayer> BriefedPlayers = new List<NetworkPlayer>();
+
+
+    public static event Action<bool> GameplayReadyEvent;
     public static event Action ConnectionEvent;
 
     #region Server
@@ -41,7 +46,7 @@ public class NetworkManagerExt : NetworkManager
         {
             var player = conn.identity.GetComponent<NetworkPlayer>();
             NetworkPlayers.Remove(player);
-            NotifyReadyState();
+            NotifyReadyToLoadGameplay();
             Destroy(player.gameObject);
         }
 
@@ -54,7 +59,12 @@ public class NetworkManagerExt : NetworkManager
 
         ConnectionEvent?.Invoke();
 
-        // ServerChangeScene(lobbyScene);
+        Scene activeScene = SceneManager.GetActiveScene();
+
+        if (!onlineScene.Contains(activeScene.name))
+        {
+            ServerChangeScene(onlineScene);
+        }
 
         base.OnServerConnect(conn);
     }
@@ -71,13 +81,51 @@ public class NetworkManagerExt : NetworkManager
     }
     #endregion
 
-    public void NotifyReadyState()
+    #region Client
+    public override void OnClientSceneChanged(NetworkConnection conn)
     {
-        ReadyStateEvent?.Invoke(IsReadyToStart());
-        Debug.LogWarning("Ready State changed somewhere");
+        base.OnClientSceneChanged(conn);
+
+        if(!conn.identity) { return; }
+
+        Scene activeScene = SceneManager.GetActiveScene();
+        NetworkPlayer player = conn.identity.GetComponent<NetworkPlayer>();
+
+        if (!player) { return; }
+
+
+        if (gameplayScene.Contains(activeScene.name))
+        {
+            player.CmdReadyInGameplayScene(); 
+        }
+    }
+    #endregion
+
+    #region State management
+    public void NotifyReadyToLoadGameplay()
+    {
+        GameplayReadyEvent?.Invoke(IsReadyToLoadGameplay());
+        Debug.LogWarning("Game is ready to start!");
     }
 
-    public bool IsReadyToStart()
+    public void NotifyReadyToStartBriefing()
+    {
+        if (IsReadyToStartBriefing())
+        {
+            Debug.LogWarning("Briefing is ready to start!");
+            StartBriefing();
+        }
+    }
+
+    public void NotifyFinishedBriefing()
+    {
+        if (IsFinishedBriefing())
+        {
+            
+        }
+    }
+
+    public bool IsReadyToLoadGameplay()
     {
         bool team1Ready = false;
         bool team2Ready = false;
@@ -91,18 +139,41 @@ public class NetworkManagerExt : NetworkManager
         return team1Ready && team2Ready;
     }
 
-    public void StartGame()
+    public bool IsReadyToStartBriefing()
     {
+        Scene activeScene = SceneManager.GetActiveScene();
+        return gameplayScene.Contains(activeScene.name) && GamePlayers.Count == NetworkPlayers.Count;
+    }
+
+    public bool IsFinishedBriefing()
+    {
+        Scene activeScene = SceneManager.GetActiveScene();
+        return gameplayScene.Contains(activeScene.name) && BriefedPlayers.Count == NetworkPlayers.Count;
+    }
+    #endregion
+
+    public void StartGameplay()
+    {
+        GamePlayers.Clear();
         ServerChangeScene(gameplayScene);
+    }
+
+    public void StartBriefing()
+    {
+        BriefedPlayers.Clear();
+        int briefingIndex = UnityEngine.Random.Range(0, Database.Instance.briefings.Count);
+
+        foreach(var player in GamePlayers)
+        {
+            player.RpcStartBriefing(briefingIndex);
+        }
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.LogWarning("Starting the game");
-            NetworkPlayers[0].Team = PlayerTeam.P2;
-            ServerChangeScene(gameplayScene);
+            StartGameplay();
         }
     }
 }
