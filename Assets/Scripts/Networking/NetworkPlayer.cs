@@ -50,7 +50,18 @@ public class NetworkPlayer : NetworkBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public override void OnStartServer()
+    {
+        Network.NetworkPlayers.Add(this);
+        DontDestroyOnLoad(gameObject);
+    }
+
     public override void OnStopClient()
+    {
+        Network.NetworkPlayers.Remove(this);
+    }
+
+    public override void OnStopServer()
     {
         Network.NetworkPlayers.Remove(this);
     }

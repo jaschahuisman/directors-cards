@@ -8,8 +8,7 @@ using Mirror.Discovery;
 
 public class NetworkManagerExt : NetworkManager
 {
-    [Header("Lobby")]
-    [Scene] [SerializeField] private string lobbyScene = string.Empty;
+    [Header("Prefabs")]
     [SerializeField] private GameObject spectatorPrefab;
 
     [Header("Gameplay")]
@@ -90,6 +89,21 @@ public class NetworkManagerExt : NetworkManager
         }
 
         return team1Ready && team2Ready;
+    }
+
+    public void StartGame()
+    {
+        ServerChangeScene(gameplayScene);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.LogWarning("Starting the game");
+            NetworkPlayers[0].Team = PlayerTeam.P2;
+            ServerChangeScene(gameplayScene);
+        }
     }
 }
 

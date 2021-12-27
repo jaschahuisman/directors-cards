@@ -1389,9 +1389,8 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 1293560509951765629, guid: 0757dca8460986243b0a4e5c2f3ace04, type: 3}
-  lobbyScene: 
   spectatorPrefab: {fileID: 1293560509951765629, guid: 0757dca8460986243b0a4e5c2f3ace04, type: 3}
-  gameplayScene: 
+  gameplayScene: Assets/Scenes/GameplayScene.unity
   NetworkPlayers: []
   NetworkSpectators: []
 --- !u!114 &676955543
