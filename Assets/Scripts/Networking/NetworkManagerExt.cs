@@ -21,8 +21,10 @@ public class NetworkManagerExt : NetworkManager
     public List<NetworkPlayer> GamePlayers = new List<NetworkPlayer>();
     public List<NetworkPlayer> BriefedPlayers = new List<NetworkPlayer>();
 
+    public bool gameplayStarted = false;
 
     public static event Action<bool> GameplayReadyEvent;
+    public static event Action<bool> GameplayStartedEvent;
     public static event Action ConnectionEvent;
 
     #region Server
@@ -105,7 +107,7 @@ public class NetworkManagerExt : NetworkManager
     public void NotifyReadyToLoadGameplay()
     {
         GameplayReadyEvent?.Invoke(IsReadyToLoadGameplay());
-        Debug.LogWarning("Game is ready to start!");
+        Debug.LogWarning("Gameplay is ready to be loaded!");
     }
 
     public void NotifyReadyToStartBriefing()
@@ -121,7 +123,7 @@ public class NetworkManagerExt : NetworkManager
     {
         if (IsFinishedBriefing())
         {
-            
+            StartGameplay();
         }
     }
 
@@ -152,7 +154,7 @@ public class NetworkManagerExt : NetworkManager
     }
     #endregion
 
-    public void StartGameplay()
+    public void LoadGameplayScene()
     {
         GamePlayers.Clear();
         ServerChangeScene(gameplayScene);
@@ -161,7 +163,7 @@ public class NetworkManagerExt : NetworkManager
     public void StartBriefing()
     {
         BriefedPlayers.Clear();
-        int briefingIndex = UnityEngine.Random.Range(0, Database.Instance.briefings.Count);
+        int briefingIndex = UnityEngine.Random.Range(0, Database.Instance.briefings.Count - 1);
 
         foreach(var player in GamePlayers)
         {
@@ -169,11 +171,23 @@ public class NetworkManagerExt : NetworkManager
         }
     }
 
+    public void StartGameplay()
+    {
+        GameplayStartedEvent?.Invoke(true);
+        gameplayStarted = true;
+    }
+
+    public void StopGameplay()
+    {
+        GameplayStartedEvent?.Invoke(false);
+        gameplayStarted = false;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartGameplay();
+            LoadGameplayScene();
         }
     }
 }

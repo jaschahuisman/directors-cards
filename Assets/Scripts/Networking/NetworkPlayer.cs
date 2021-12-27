@@ -94,8 +94,10 @@ public class NetworkPlayer : NetworkBehaviour
     [ClientRpc]
     public void RpcStartBriefing(int briefingIndex)
     {
-        Debug.Log(Database.Instance.briefings[briefingIndex].name);
-        // Start briefing here
+        Briefing briefing = Database.Instance.briefings[briefingIndex];
+        Debug.Log(briefing.name);
+        Debug.Log(briefing.playerRole1);
+        BriefingManager.Instance.StartBriefing(briefing, this);
     }
 
     [Command]

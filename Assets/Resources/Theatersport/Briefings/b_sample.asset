@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: b_sample
   m_EditorClassIdentifier: 
   name: Sample
-  timeline: {fileID: 0}
+  timeline: {fileID: 11400000, guid: 67ca036339f1447419f9214e2ae4b66b, type: 2}
   playerRole1:
     role: Sample R1
     scenario: Sample S1
