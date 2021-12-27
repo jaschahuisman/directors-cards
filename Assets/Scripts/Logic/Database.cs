@@ -6,6 +6,8 @@ using UnityEngine;
 public class Database : MonoBehaviour
 {
     public List<Briefing> briefings = new List<Briefing>();
+    public List<Card> cards = new List<Card>();
+
 
     public static Database Instance;
 

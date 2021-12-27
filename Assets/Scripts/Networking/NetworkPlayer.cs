@@ -16,6 +16,9 @@ public class NetworkPlayer : NetworkBehaviour
     [SerializeField] private XRController leftController;
     [SerializeField] private XRController rightController;
 
+    [Header("Game components")]
+    [SerializeField] private GameObject playerCardPrefab;
+
     [Header("Status")]
     [SyncVar]
     public PlayerTeam Team;

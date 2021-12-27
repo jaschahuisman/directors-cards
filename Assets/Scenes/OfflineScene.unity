@@ -958,6 +958,7 @@ MonoBehaviour:
   NetworkSpectators: []
   GamePlayers: []
   BriefedPlayers: []
+  gameplayStarted: 0
 --- !u!114 &676955543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1746,6 +1747,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   briefings:
   - {fileID: 11400000, guid: d1b3083ed24f3894aadc27ecfc0074f8, type: 2}
+  cards:
+  - {fileID: 11400000, guid: c198edf881fe20e4994c1ad482612c9b, type: 2}
+  - {fileID: 11400000, guid: 0d1f5df2f25153b4a859b7842db85e0c, type: 2}
 --- !u!1 &1765187209
 GameObject:
   m_ObjectHideFlags: 0

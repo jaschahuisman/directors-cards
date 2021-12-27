@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4296636904779091936}
   - component: {fileID: 1089682022549481639}
   m_Layer: 0
-  m_Name: RightHand Controller
+  m_Name: Right Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -448,6 +448,7 @@ MonoBehaviour:
   audioListener: {fileID: 3150549229314141802}
   leftController: {fileID: 4994630966461834032}
   rightController: {fileID: 4740008768184048776}
+  playerCardPrefab: {fileID: 4349522872955694931, guid: 6acbe01b05ffac54ebecb4bea30c5cd7, type: 3}
   Team: 0
   IsReady: 0
 --- !u!1 &2938119852816866394
@@ -633,7 +634,7 @@ GameObject:
   - component: {fileID: 4207142073778173747}
   - component: {fileID: 7282291471690188640}
   m_Layer: 0
-  m_Name: LeftHand Controller
+  m_Name: Left Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

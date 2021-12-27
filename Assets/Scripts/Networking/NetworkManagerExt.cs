@@ -21,8 +21,6 @@ public class NetworkManagerExt : NetworkManager
     public List<NetworkPlayer> GamePlayers = new List<NetworkPlayer>();
     public List<NetworkPlayer> BriefedPlayers = new List<NetworkPlayer>();
 
-    public bool gameplayStarted = false;
-
     public static event Action<bool> GameplayReadyEvent;
     public static event Action<bool> GameplayStartedEvent;
     public static event Action ConnectionEvent;
@@ -156,7 +154,6 @@ public class NetworkManagerExt : NetworkManager
 
     public void LoadGameplayScene()
     {
-        GamePlayers.Clear();
         ServerChangeScene(gameplayScene);
     }
 
@@ -174,13 +171,22 @@ public class NetworkManagerExt : NetworkManager
     public void StartGameplay()
     {
         GameplayStartedEvent?.Invoke(true);
-        gameplayStarted = true;
+
+        Debug.LogWarning("Gameplay Started after briefing all players");
     }
 
     public void StopGameplay()
     {
         GameplayStartedEvent?.Invoke(false);
-        gameplayStarted = false;
+
+        GamePlayers.Clear();
+
+        foreach(var player in NetworkPlayers)
+        {
+            player.IsReady = false;
+        }
+
+        ServerChangeScene(onlineScene);
     }
 
     private void Update()
@@ -188,6 +194,11 @@ public class NetworkManagerExt : NetworkManager
         if (Input.GetKeyDown(KeyCode.Space))
         {
             LoadGameplayScene();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            StopGameplay();
         }
     }
 }
