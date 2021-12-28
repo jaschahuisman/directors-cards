@@ -135,7 +135,7 @@ public class DirectorCardCanvas : MonoBehaviour
 
         bool isTopCard = deck.IndexOf(cardIndex) == deck.Count - 1;
         
-        cardObject.GetComponent<DirectorCard>().SetData(card, team, isTopCard);
+        cardObject.GetComponent<DirectorCard>().SetData(card, team, isTopCard, this);
         cardObject.transform.SetParent(team == PlayerTeam.P1 ? deckTransform1 : deckTransform2);
     }
 
