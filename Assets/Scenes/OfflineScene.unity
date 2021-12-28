@@ -958,7 +958,6 @@ MonoBehaviour:
   NetworkSpectators: []
   GamePlayers: []
   BriefedPlayers: []
-  gameplayStarted: 0
 --- !u!114 &676955543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1750,6 +1749,24 @@ MonoBehaviour:
   cards:
   - {fileID: 11400000, guid: c198edf881fe20e4994c1ad482612c9b, type: 2}
   - {fileID: 11400000, guid: 0d1f5df2f25153b4a859b7842db85e0c, type: 2}
+  - {fileID: 11400000, guid: 335b498aabc8cca4ebce2d4cdca77328, type: 2}
+  - {fileID: 11400000, guid: 5a7720cd95ce640438b1ce395b2ecbdd, type: 2}
+  - {fileID: 11400000, guid: f43fa55961f1db649b91abeb4d3f38e0, type: 2}
+  - {fileID: 11400000, guid: d29fc0bf868420d4aa0b14e342bb5191, type: 2}
+  - {fileID: 11400000, guid: 105f68f88f562c449be14e444f7ceb5d, type: 2}
+  - {fileID: 11400000, guid: 930d89a982282314296f7c4e16265642, type: 2}
+  - {fileID: 11400000, guid: ef61c861570687046a45c0384079e99b, type: 2}
+  - {fileID: 11400000, guid: 1ab51821030be0e42a881504e3206b62, type: 2}
+  - {fileID: 11400000, guid: 0520b3936d193fe498e698ea23dc0ed3, type: 2}
+  - {fileID: 11400000, guid: 781dd202a9c533c4c8918fd906a19ac1, type: 2}
+  - {fileID: 11400000, guid: 823d2941cc282dc49bb372b61ba25f6e, type: 2}
+  - {fileID: 11400000, guid: 185cb8118e0a02e498634a65555fcf6e, type: 2}
+  - {fileID: 11400000, guid: d308686dd5ce01d49a44e0662bacdf58, type: 2}
+  - {fileID: 11400000, guid: 78ec5f146a5c7194288d30b817705b12, type: 2}
+  - {fileID: 11400000, guid: f4de9dc09546505418718e6d1382c437, type: 2}
+  - {fileID: 11400000, guid: 3f977cac2864bed49afeaba669794fb0, type: 2}
+  - {fileID: 11400000, guid: 0b3562b39e159e648804d2e81276344a, type: 2}
+  - {fileID: 11400000, guid: 94b278510cee32144a05c0cd6d4e2819, type: 2}
 --- !u!1 &1765187209
 GameObject:
   m_ObjectHideFlags: 0

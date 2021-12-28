@@ -37,6 +37,11 @@ public class DirectorCardCanvas : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        ResetDecks();
+    }
+
     public void ResetDecks()
     {
         List<Card> cardsCopy = Database.cards.ToList();
@@ -82,6 +87,8 @@ public class DirectorCardCanvas : MonoBehaviour
             deck.Add(Database.cards.IndexOf(card));
         }
 
+        Shuffle(deck);
+
         // End card
         {
             List<Card> cards = cardsCopy.Where(card => card.type == CardType.Einde).ToList();
@@ -90,10 +97,25 @@ public class DirectorCardCanvas : MonoBehaviour
             Card card = cards[randomIndex];
 
             cardsCopy.Remove(card);
-            deck.Add(Database.cards.IndexOf(card));
+            deck.Insert(0, Database.cards.IndexOf(card));
         }
 
         return deck;
+    }
+
+    private static System.Random rng = new System.Random();
+
+    private void Shuffle(List<int> list)
+    {
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            int value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
     }
 
     public void DrawUI()

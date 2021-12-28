@@ -38,7 +38,7 @@ public class DirectorCard : MonoBehaviour
         
         IsTopCard = isTopCard;
 
-        teamText.text = team.ToString();
+        teamText.text = team == PlayerTeam.P1 ? "Speler 1" : "Speler 2";
         typeText.text = type.ToString();
         contentText.text = content;
     }
