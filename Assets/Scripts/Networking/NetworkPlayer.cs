@@ -29,6 +29,8 @@ public class NetworkPlayer : NetworkBehaviour
     [SyncVar(hook = nameof(HandleReadyStatusChanged))]
     public bool IsReady = false;
 
+    public event System.Action<bool> OnReadyChanged; 
+
     private NetworkManagerExt network;
     private NetworkManagerExt Network
     {
@@ -105,8 +107,8 @@ public class NetworkPlayer : NetworkBehaviour
         Debug.Log(briefing.playerRole1);
         BriefingManager.Instance.StartBriefing(briefing, this);
 
-        ToggleXRRayInteractors(false);
-        CmdToggleRayInteractors(false);
+        // ToggleXRRayInteractors(false);
+        // CmdToggleRayInteractors(false);
     }
 
     [Command]
@@ -150,14 +152,16 @@ public class NetworkPlayer : NetworkBehaviour
 
     public void HandleReadyStatusChanged(bool oldVlaue, bool newValue)
     {
+        OnReadyChanged?.Invoke(newValue);
+
         if (!newValue)
         {
             foreach (Transform child in playerWrist) { Destroy(child.gameObject); }
         }
         else
         {
-            ToggleXRRayInteractors(true);
-            CmdToggleRayInteractors(true);
+            // ToggleXRRayInteractors(true);
+            // CmdToggleRayInteractors(true);
         }
     }
 

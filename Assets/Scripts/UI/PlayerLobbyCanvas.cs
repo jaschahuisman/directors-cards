@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-public class PlayerLobbyCanvas : MonoBehaviour
+public class PlayerLobbyCanvas : NetworkBehaviour
 {
     [SerializeField] private Button readyButton;
     [SerializeField] private Button cancelButton;
@@ -22,22 +23,33 @@ public class PlayerLobbyCanvas : MonoBehaviour
     private void Start()
     {
         readyButton.onClick.AddListener(OnPlayerReady);
-        NetworkManagerExt.GameplayReadyEvent += OnGameplayReadyEvent;
-
-        cancelButton.gameObject.SetActive(false);
         cancelButton.onClick.AddListener(OnPlayerUnready);
+        
+        cancelButton.gameObject.SetActive(false);
+
+        foreach (var player in Network.NetworkPlayers)
+        {
+            if (player.isLocalPlayer)
+            {
+                player.OnReadyChanged += OnGameplayReadyEvent;
+            }
+        }
     }
 
-    private void OnGameplayReadyEvent(bool readyForGameplay)
+    private void OnDestroy()
     {
         foreach (var player in Network.NetworkPlayers)
         {
             if (player.isLocalPlayer)
             {
-                readyButton.interactable = !player.IsReady;
-                cancelButton.gameObject.SetActive(player.IsReady);
+                player.OnReadyChanged -= OnGameplayReadyEvent;
             }
         }
+    }
+
+    private void OnGameplayReadyEvent(bool readyForGameplay) {
+        readyButton.interactable = !readyForGameplay;
+        cancelButton.gameObject.SetActive(readyForGameplay);
     }
 
     private void OnPlayerReady()

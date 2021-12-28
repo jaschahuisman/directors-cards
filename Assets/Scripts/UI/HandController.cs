@@ -31,19 +31,23 @@ public class HandController : MonoBehaviour
     {
         InputDeviceCharacteristics controllerCharacteristic = InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Controller;
 
-        if (handType == HandType.Left)
-        {
-            controllerCharacteristic = controllerCharacteristic | InputDeviceCharacteristics.Left;
-        }
-        else
-        {
-            controllerCharacteristic = controllerCharacteristic | InputDeviceCharacteristics.Right;
-        }
+        controllerCharacteristic = controllerCharacteristic | (
+            handType == HandType.Left 
+                ? InputDeviceCharacteristics.Left 
+                : InputDeviceCharacteristics.Right
+        );
 
         List<InputDevice> inputDevices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(controllerCharacteristic, inputDevices);
 
-        return inputDevices[0];
+        if (inputDevices.Count > 0)
+        {
+            return inputDevices[0];
+        } 
+        else
+        {
+            return new InputDevice();
+        }
     }
 
     void AnimateHand()
