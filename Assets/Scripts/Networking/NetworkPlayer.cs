@@ -19,6 +19,7 @@ public class NetworkPlayer : NetworkBehaviour
     [SerializeField] private AudioSource buzzerSound;
     [SerializeField] private GameObject playerCardPrefab;
     [SerializeField] private Transform playerWrist;
+    [SerializeField] private Animator notificationAnimator;
 
 
     [Header("Status")]
@@ -117,10 +118,13 @@ public class NetworkPlayer : NetworkBehaviour
     {
         Card card = Database.Instance.cards[cardIndex];
 
+        // User feedback
         SendHaptics();
         buzzerSound.Play();
+        notificationAnimator.SetTrigger("PlayAnimation");
 
-        foreach(Transform child in playerWrist) { Destroy(child.gameObject); }
+        // User card interface update
+        foreach (Transform child in playerWrist) { Destroy(child.gameObject); }
 
         GameObject playerCardObject = Instantiate(playerCardPrefab);
         PlayerCard playerCard = playerCardObject.GetComponent<PlayerCard>();
@@ -129,7 +133,6 @@ public class NetworkPlayer : NetworkBehaviour
 
         playerCardObject.transform.SetParent(playerWrist, false);
         playerCardObject.SetActive(true);
-
 
         Debug.LogWarning("Received card with index " + cardIndex);
     }
@@ -146,6 +149,11 @@ public class NetworkPlayer : NetworkBehaviour
     {
         ToggleXRRayInteractors(newValue);
         CmdToggleRayInteractors(newValue);
+
+        if (!newValue)
+        {
+            foreach (Transform child in playerWrist) { Destroy(child.gameObject); }
+        }
     }
 
     private void ToggleXRRayInteractors(bool value)
