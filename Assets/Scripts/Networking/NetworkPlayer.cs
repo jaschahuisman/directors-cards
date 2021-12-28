@@ -104,6 +104,9 @@ public class NetworkPlayer : NetworkBehaviour
         Debug.Log(briefing.name);
         Debug.Log(briefing.playerRole1);
         BriefingManager.Instance.StartBriefing(briefing, this);
+
+        ToggleXRRayInteractors(false);
+        CmdToggleRayInteractors(false);
     }
 
     [Command]
@@ -147,12 +150,14 @@ public class NetworkPlayer : NetworkBehaviour
 
     public void HandleReadyStatusChanged(bool oldVlaue, bool newValue)
     {
-        ToggleXRRayInteractors(newValue);
-        CmdToggleRayInteractors(newValue);
-
         if (!newValue)
         {
             foreach (Transform child in playerWrist) { Destroy(child.gameObject); }
+        }
+        else
+        {
+            ToggleXRRayInteractors(true);
+            CmdToggleRayInteractors(true);
         }
     }
 
