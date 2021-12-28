@@ -13,6 +13,11 @@ public class DirectorMenu : MonoBehaviour
         OnGamePlayStarted(false);
     }
 
+    private void OnDestroy()
+    {
+        NetworkManagerExt.GameplayStartedEvent -= OnGamePlayStarted;
+    }
+
     private void OnGamePlayStarted(bool isStarted)
     {
         waitingOnBriefingCanvas.SetActive(!isStarted);

@@ -98,6 +98,11 @@ public class NetworkManagerExt : NetworkManager
         {
             player.CmdReadyInGameplayScene(); 
         }
+
+        if (onlineScene.Contains(activeScene.name))
+        {
+            player.ToggleXRRayInteractors(true);
+        }
     }
     #endregion
 

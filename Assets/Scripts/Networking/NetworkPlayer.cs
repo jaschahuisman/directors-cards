@@ -14,6 +14,8 @@ public class NetworkPlayer : NetworkBehaviour
     [SerializeField] private AudioListener audioListener;
     [SerializeField] private XRController leftController;
     [SerializeField] private XRController rightController;
+    [SerializeField] private GameObject leftLineInteractor;
+    [SerializeField] private GameObject rightLineInteractor;
 
     [Header("Game components")]
     [SerializeField] private AudioSource buzzerSound;
@@ -48,6 +50,8 @@ public class NetworkPlayer : NetworkBehaviour
         audioListener.enabled = true;
         leftController.enabled = true;
         rightController.enabled = true;
+        leftLineInteractor.SetActive(true);
+        rightLineInteractor.SetActive(true);
 
         base.OnStartAuthority();
     }
@@ -107,8 +111,7 @@ public class NetworkPlayer : NetworkBehaviour
         Debug.Log(briefing.playerRole1);
         BriefingManager.Instance.StartBriefing(briefing, this);
 
-        // ToggleXRRayInteractors(false);
-        // CmdToggleRayInteractors(false);
+        ToggleXRRayInteractors(false);
     }
 
     [Command]
@@ -158,29 +161,12 @@ public class NetworkPlayer : NetworkBehaviour
         {
             foreach (Transform child in playerWrist) { Destroy(child.gameObject); }
         }
-        else
-        {
-            // ToggleXRRayInteractors(true);
-            // CmdToggleRayInteractors(true);
-        }
     }
 
-    private void ToggleXRRayInteractors(bool value)
+    public void ToggleXRRayInteractors(bool value)
     {
-        leftController.GetComponent<LineRenderer>().enabled = !value;
-        rightController.GetComponent<LineRenderer>().enabled = !value;
-
-        leftController.GetComponent<XRRayInteractor>().enabled = !value;
-        rightController.GetComponent<XRRayInteractor>().enabled = !value;
-
-        leftController.GetComponent<XRInteractorLineVisual>().enabled = !value;
-        rightController.GetComponent<XRInteractorLineVisual>().enabled = !value;
-    }
-
-    [Command]
-    private void CmdToggleRayInteractors(bool value)
-    {
-        ToggleXRRayInteractors(value);
+        leftLineInteractor.SetActive(value);
+        rightLineInteractor.SetActive(value);
     }
 
     private void Update()
