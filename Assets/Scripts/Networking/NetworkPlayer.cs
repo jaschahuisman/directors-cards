@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SpatialTracking;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.XR.CoreUtils;
-using Unity.Audio;
 using Mirror;
 
 public class NetworkPlayer : NetworkBehaviour
@@ -17,7 +16,10 @@ public class NetworkPlayer : NetworkBehaviour
     [SerializeField] private XRController rightController;
 
     [Header("Game components")]
+    [SerializeField] private AudioSource buzzerSound;
     [SerializeField] private GameObject playerCardPrefab;
+    [SerializeField] private Transform playerWrist;
+
 
     [Header("Status")]
     [SyncVar]
@@ -113,7 +115,31 @@ public class NetworkPlayer : NetworkBehaviour
     [ClientRpc]
     public void RpcReceiveCard(int cardIndex)
     {
+        Card card = Database.Instance.cards[cardIndex];
+
+        SendHaptics();
+        buzzerSound.Play();
+
+        foreach(Transform child in playerWrist) { Destroy(child.gameObject); }
+
+        GameObject playerCardObject = Instantiate(playerCardPrefab);
+        PlayerCard playerCard = playerCardObject.GetComponent<PlayerCard>();
+
+        playerCard.SetData(card, Team);
+
+        playerCardObject.transform.SetParent(playerWrist, false);
+        playerCardObject.SetActive(true);
+
+
         Debug.LogWarning("Received card with index " + cardIndex);
+    }
+
+    private void SendHaptics()
+    {
+        if (leftController != null)
+        {
+            leftController.SendHapticImpulse(1f, 0.6f);
+        }
     }
 
     public void HandleReadyStatusChanged(bool oldVlaue, bool newValue)
