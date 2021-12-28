@@ -160,7 +160,7 @@ public class NetworkManagerExt : NetworkManager
     public void StartBriefing()
     {
         BriefedPlayers.Clear();
-        int briefingIndex = UnityEngine.Random.Range(0, Database.Instance.briefings.Count - 1);
+        int briefingIndex = UnityEngine.Random.Range(0, Database.Instance.briefings.Count);
 
         foreach(var player in GamePlayers)
         {
@@ -187,6 +187,14 @@ public class NetworkManagerExt : NetworkManager
         }
 
         ServerChangeScene(onlineScene);
+    }
+
+    public void SendCardToClient(int cardIndex, PlayerTeam team)
+    {
+        foreach (var player in NetworkPlayers)
+        {
+            if (player.Team == team) player.RpcReceiveCard(cardIndex);
+        }
     }
 
     private void Update()

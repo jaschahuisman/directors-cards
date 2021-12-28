@@ -1,18 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DirectorCard : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private TextMeshProUGUI teamText;
+    [SerializeField] private TextMeshProUGUI typeText;
+    [SerializeField] private TextMeshProUGUI contentText;
+
+    public PlayerTeam team;
+    public CardType type;
+    private string content;
+
+    public bool IsTopCard;
+    public bool IsUsed = false;
+    public int index;
+
+    private Database database;
+    private Database Database
     {
-        
+        get
+        {
+            if (database != null) { return database; }
+            return database = Database.Instance;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void SetData(Card card, PlayerTeam cardTeam, bool isTopCard)
     {
+        index = Database.cards.IndexOf(card);
+
+        team = cardTeam;
+        type = card.type;
+        content = card.content;
         
+        IsTopCard = isTopCard;
+
+        teamText.text = team.ToString();
+        typeText.text = type.ToString();
+        contentText.text = content;
     }
 }

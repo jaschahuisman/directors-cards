@@ -110,6 +110,12 @@ public class NetworkPlayer : NetworkBehaviour
         Network.NotifyFinishedBriefing();
     }
 
+    [ClientRpc]
+    public void RpcReceiveCard(int cardIndex)
+    {
+        Debug.LogWarning("Received card with index " + cardIndex);
+    }
+
     public void HandleReadyStatusChanged(bool oldVlaue, bool newValue)
     {
         ToggleXRRayInteractors(newValue);
