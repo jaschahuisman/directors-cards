@@ -37,13 +37,13 @@ public class NetworkSpectator : NetworkBehaviour
             if (player.Team == PlayerTeam.P1)
             {
                 team1Count++;
-                positionsTeam1 += player.gameObject.transform.position;
+                positionsTeam1 += player.bodyTransform.position;
             }
 
             if (player.Team == PlayerTeam.P2)
             {
                 team2Count++;
-                positionsTeam2 += player.gameObject.transform.position;
+                positionsTeam2 += player.bodyTransform.position;
             }
         }
 
@@ -55,11 +55,17 @@ public class NetworkSpectator : NetworkBehaviour
 
         Vector3 cameraDestination = midpoint - gameObject.transform.forward * distance * zoomFactor;
 
-        gameObject.transform.position = Vector3.Slerp(
-            gameObject.transform.position, 
-            cameraDestination, 
-            followTimeDelta
-        );
+        if (team1Count + team2Count >= 2)
+        {
+            Debug.Log(gameObject.transform.position);
+            Debug.Log(cameraDestination);
+            Debug.Log(followTimeDelta);
+            // gameObject.transform.position = Vector3.Slerp(
+            //     gameObject.transform.position, 
+            //     cameraDestination, 
+            //     followTimeDelta
+            // );
+        }
 
         if ((cameraDestination - gameObject.transform.position).magnitude <= 0.05f)
         {

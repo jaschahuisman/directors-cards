@@ -16,18 +16,28 @@ public class HandController : NetworkBehaviour
 
     void Start()
     { 
-        inputDevice = GetInputDevice();
+        if (isLocalPlayer && hasAuthority)
+        {
+            GetInputDevice(out inputDevice);
+        }
     }
 
     void Update()
     {
-        if (isLocalPlayer)
+        if (isLocalPlayer && hasAuthority)
         {
-            AnimateHand();
+            if (inputDevice != null)
+            {
+                AnimateHand();   
+            }
+            else
+            {
+                GetInputDevice(out inputDevice);
+            }
         }
     }
 
-    InputDevice GetInputDevice()
+    private bool GetInputDevice(out InputDevice device)
     {
         InputDeviceCharacteristics controllerCharacteristic = InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Controller;
 
@@ -40,8 +50,14 @@ public class HandController : NetworkBehaviour
         List<InputDevice> inputDevices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(controllerCharacteristic, inputDevices);
 
-        if (inputDevices.Count > 0) { return inputDevices[0]; } 
-        else { return new InputDevice(); }
+        if (inputDevices.Count > 0) { 
+            device = inputDevices[0];
+            return true;
+        } 
+        else {
+            device = new InputDevice();
+            return false;
+        }
     }
 
     void AnimateHand()

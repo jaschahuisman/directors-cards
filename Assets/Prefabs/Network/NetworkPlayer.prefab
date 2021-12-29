@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7512845637803906185
 Transform:
   m_ObjectHideFlags: 0
@@ -507,6 +507,7 @@ MonoBehaviour:
   playerCardPrefab: {fileID: 2277983187774625493, guid: 6acbe01b05ffac54ebecb4bea30c5cd7, type: 3}
   playerWrist: {fileID: 7593713919966392400}
   notificationAnimator: {fileID: 3538136285742840556}
+  bodyTransform: {fileID: 4115823799590808964}
   Team: 0
   IsReady: 0
 --- !u!82 &4099638500197138747
@@ -995,7 +996,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3450866932897310676
 Transform:
   m_ObjectHideFlags: 0
@@ -1681,8 +1682,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Left Hand
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7402834558243779645, guid: 8ab9f1bd2310d2a46ac95398d6709665, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ab9f1bd2310d2a46ac95398d6709665, type: 3}
 --- !u!95 &9122515124848404063 stripped
 Animator:
@@ -1753,8 +1753,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Right Hand
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7402834558243779645, guid: aee6485046b588b4a87f1f2776ccb7fb, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aee6485046b588b4a87f1f2776ccb7fb, type: 3}
 --- !u!4 &5013186954815925309 stripped
 Transform:

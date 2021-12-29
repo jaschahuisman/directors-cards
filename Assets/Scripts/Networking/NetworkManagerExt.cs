@@ -73,6 +73,8 @@ public class NetworkManagerExt : NetworkManager
     {
         bool isVrUser = PlayerPrefs.GetString("device") == PlayerDevice.VR.ToString();
 
+        Debug.Log(isVrUser ? "Adding vr user" : "Adding spectator");
+
         GameObject prefab = isVrUser ? playerPrefab : spectatorPrefab.gameObject;
         GameObject player = Instantiate(prefab);
         NetworkServer.AddPlayerForConnection(conn, player);

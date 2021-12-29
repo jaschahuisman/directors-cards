@@ -945,7 +945,7 @@ MonoBehaviour:
   onlineScene: Assets/Scenes/OnlineScene.unity
   transport: {fileID: 676955541}
   networkAddress: localhost
-  maxConnections: 100
+  maxConnections: 5
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 1293560509951765629, guid: b2f2d3ff04e4a5a48b5aee52d49697eb, type: 3}
   autoCreatePlayer: 1
