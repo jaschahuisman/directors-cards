@@ -2,29 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using Mirror;
 
-public class HandController : MonoBehaviour
+public class HandController : NetworkBehaviour
 {
-
-    public HandType handType;
-    public float thumbMoveSpeed;
-    private Animator animator;
+    [SerializeField] private HandType handType;
+    [SerializeField] private Animator animator;
+    
     private InputDevice inputDevice;
 
-    public float indexValue, thumbValue, threeFingersValue;
+    private float thumbMoveSpeed;
+    private float indexValue, thumbValue, threeFingersValue;
 
-
-    // Start is called before the first frame update
     void Start()
-    {
-        animator = GetComponent<Animator>();
+    { 
         inputDevice = GetInputDevice();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        AnimateHand();
+        if (isLocalPlayer)
+        {
+            AnimateHand();
+        }
     }
 
     InputDevice GetInputDevice()
@@ -40,14 +40,8 @@ public class HandController : MonoBehaviour
         List<InputDevice> inputDevices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(controllerCharacteristic, inputDevices);
 
-        if (inputDevices.Count > 0)
-        {
-            return inputDevices[0];
-        } 
-        else
-        {
-            return new InputDevice();
-        }
+        if (inputDevices.Count > 0) { return inputDevices[0]; } 
+        else { return new InputDevice(); }
     }
 
     void AnimateHand()
@@ -58,20 +52,23 @@ public class HandController : MonoBehaviour
         inputDevice.TryGetFeatureValue(CommonUsages.primaryTouch, out bool primaryTouched);
         inputDevice.TryGetFeatureValue(CommonUsages.secondaryTouch, out bool secondaryTouched);
 
-        if (primaryTouched || secondaryTouched)
-        {
-            thumbValue += thumbMoveSpeed;
-        }
-        else
-        {
-            thumbValue -= thumbMoveSpeed;
-        }
+        if (primaryTouched || secondaryTouched) { thumbValue += thumbMoveSpeed; }
+        else { thumbValue -= thumbMoveSpeed; }
 
         thumbValue = Mathf.Clamp(thumbValue, 0, 1);
 
         animator.SetFloat("Index", indexValue);
         animator.SetFloat("ThreeFingers", threeFingersValue);
         animator.SetFloat("Thumb", thumbValue);
+
+        CmdAnimateHand(indexValue, threeFingersValue);
+    }
+
+    [Command]
+    void CmdAnimateHand(float indexValue, float threeFingersValue)
+    {
+        animator.SetFloat("Index", indexValue);
+        animator.SetFloat("ThreeFingers", threeFingersValue);
     }
 }
 

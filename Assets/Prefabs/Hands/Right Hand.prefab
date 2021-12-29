@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3845913818663162418}
   - component: {fileID: 7187402290348384952}
   - component: {fileID: 7402834558243779645}
+  - component: {fileID: 2689970444912532701}
   m_Layer: 0
   m_Name: Right Hand
   m_TagString: Untagged
@@ -64,11 +65,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fed4966ee218eb46b2b9296a4f6bccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   handType: 1
-  thumbMoveSpeed: 0.1
-  indexValue: 0
-  thumbValue: 0
-  threeFingersValue: 0
+  animator: {fileID: 7187402290348384952}
+--- !u!114 &2689970444912532701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860793705286078801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: aee6485046b588b4a87f1f2776ccb7fb
+  hasSpawned: 0
 --- !u!1001 &3677161704856064477
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -903,7 +903,15 @@ PrefabInstance:
       value: Briefing Canvasses
       objectReference: {fileID: 0}
     - target: {fileID: 6707866205864402278, guid: 25902dd42b9f3a9498132c0e18d41d0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707866205864402278, guid: 25902dd42b9f3a9498132c0e18d41d0a, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707866205932578620, guid: 25902dd42b9f3a9498132c0e18d41d0a, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6707866205932578620, guid: 25902dd42b9f3a9498132c0e18d41d0a, type: 3}
