@@ -200,7 +200,9 @@ public class NetworkManagerExt : NetworkManager
     {
         foreach (var player in NetworkPlayers)
         {
-            if (player.Team == team) player.RpcReceiveCard(cardIndex);
+            if (player.Team == team) {
+                player.RpcReceiveCard(cardIndex);
+            };
         }
     }
 

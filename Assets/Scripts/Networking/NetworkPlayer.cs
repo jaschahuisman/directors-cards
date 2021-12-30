@@ -16,6 +16,8 @@ public class NetworkPlayer : NetworkBehaviour
     [SerializeField] private XRController rightController;
     [SerializeField] private GameObject leftLineInteractor;
     [SerializeField] private GameObject rightLineInteractor;
+    [SerializeField] private HandController leftHandController;
+    [SerializeField] private HandController rightHandController;
 
     [Header("Game components")]
     [SerializeField] private AudioSource buzzerSound;
@@ -55,6 +57,8 @@ public class NetworkPlayer : NetworkBehaviour
         rightController.enabled = true;
         leftLineInteractor.SetActive(true);
         rightLineInteractor.SetActive(true);
+        leftHandController.enabled = true;
+        rightHandController.enabled = true;
 
         base.OnStartAuthority();
     }
@@ -127,25 +131,26 @@ public class NetworkPlayer : NetworkBehaviour
     [ClientRpc]
     public void RpcReceiveCard(int cardIndex)
     {
-        Card card = Database.Instance.cards[cardIndex];
+        if (isLocalPlayer)
+        {
+            Card card = Database.Instance.cards[cardIndex];
 
-        // User feedback
-        SendHaptics();
-        buzzerSound.Play();
-        notificationAnimator.SetTrigger("PlayAnimation");
+            SendHaptics();
+            buzzerSound.Play();
+            notificationAnimator.SetTrigger("PlayAnimation");
 
-        // User card interface update
-        foreach (Transform child in playerWrist) { Destroy(child.gameObject); }
+            foreach (Transform child in playerWrist) { Destroy(child.gameObject); }
 
-        GameObject playerCardObject = Instantiate(playerCardPrefab);
-        PlayerCard playerCard = playerCardObject.GetComponent<PlayerCard>();
+            GameObject playerCardObject = Instantiate(playerCardPrefab);
+            PlayerCard playerCard = playerCardObject.GetComponent<PlayerCard>();
 
-        playerCard.SetData(card, Team);
+            playerCard.SetData(card, Team);
 
-        playerCardObject.transform.SetParent(playerWrist, false);
-        playerCardObject.SetActive(true);
+            playerCardObject.transform.SetParent(playerWrist, false);
+            playerCardObject.SetActive(true);
 
-        Debug.LogWarning("Received card with index " + cardIndex);
+            Debug.LogWarning("Received card with index " + cardIndex);
+        }
     }
 
     private void SendHaptics()

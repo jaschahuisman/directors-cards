@@ -57,9 +57,9 @@ public class NetworkSpectator : NetworkBehaviour
 
         if (team1Count + team2Count >= 2)
         {
-            Debug.Log(gameObject.transform.position);
-            Debug.Log(cameraDestination);
-            Debug.Log(followTimeDelta);
+            // Debug.Log(gameObject.transform.position);
+            // Debug.Log(cameraDestination);
+            // Debug.Log(followTimeDelta);
             // gameObject.transform.position = Vector3.Slerp(
             //     gameObject.transform.position, 
             //     cameraDestination, 

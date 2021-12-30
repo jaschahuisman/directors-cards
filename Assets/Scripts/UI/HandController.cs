@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.XR;
 using Mirror;
 
-public class HandController : NetworkBehaviour
+public class HandController : MonoBehaviour
 {
     [SerializeField] private HandType handType;
-    [SerializeField] private Animator animator;
+    [SerializeField] private HandsController handsController;
     
     private InputDevice inputDevice;
 
@@ -16,25 +16,13 @@ public class HandController : NetworkBehaviour
 
     void Start()
     { 
-        if (isLocalPlayer && hasAuthority)
-        {
-            GetInputDevice(out inputDevice);
-        }
+        GetInputDevice(out inputDevice);  
     }
 
     void Update()
     {
-        if (isLocalPlayer && hasAuthority)
-        {
-            if (inputDevice != null)
-            {
-                AnimateHand();   
-            }
-            else
-            {
-                GetInputDevice(out inputDevice);
-            }
-        }
+        if (inputDevice != null) AnimateHand();
+        else GetInputDevice(out inputDevice);
     }
 
     private bool GetInputDevice(out InputDevice device)
@@ -60,7 +48,7 @@ public class HandController : NetworkBehaviour
         }
     }
 
-    void AnimateHand()
+    private void AnimateHand()
     {
         inputDevice.TryGetFeatureValue(CommonUsages.trigger, out indexValue);
         inputDevice.TryGetFeatureValue(CommonUsages.grip, out threeFingersValue);
@@ -73,19 +61,8 @@ public class HandController : NetworkBehaviour
 
         thumbValue = Mathf.Clamp(thumbValue, 0, 1);
 
-        animator.SetFloat("Index", indexValue);
-        animator.SetFloat("ThreeFingers", threeFingersValue);
-        animator.SetFloat("Thumb", thumbValue);
-
-        CmdAnimateHand(indexValue, threeFingersValue);
-    }
-
-    [Command]
-    void CmdAnimateHand(float indexValue, float threeFingersValue)
-    {
-        animator.SetFloat("Index", indexValue);
-        animator.SetFloat("ThreeFingers", threeFingersValue);
+        handsController.HandleHandAnimation(handType, indexValue, threeFingersValue, thumbValue);
     }
 }
 
-public enum HandType { Left, Right }
+public enum HandType { Left, Right };
