@@ -21,8 +21,11 @@ public class HandController : MonoBehaviour
 
     void Update()
     {
-        if (inputDevice != null) AnimateHand();
-        else GetInputDevice(out inputDevice);
+        if (NetworkClient.ready)
+        {
+            if (inputDevice != null) AnimateHand();
+            else GetInputDevice(out inputDevice);
+        }
     }
 
     private bool GetInputDevice(out InputDevice device)
