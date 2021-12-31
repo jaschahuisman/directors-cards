@@ -6,10 +6,15 @@ using UnityEngine.UI;
 
 public class DirectorCardCanvas : MonoBehaviour
 {
+    [Header("Director menu")]
+    [SerializeField] private DirectorMenu directorMenu;
+
+    [Header("Deck config")]
     public int deckSize = 4;
     public List<int> deck1 = new List<int>();
     public List<int> deck2 = new List<int>();
     public List<DirectorCard> usedDeck = new List<DirectorCard>();
+
 
     [Header("UI")]
     [SerializeField] private GameObject directorCardPrefab;
@@ -160,6 +165,9 @@ public class DirectorCardCanvas : MonoBehaviour
         {
             Network.SendCardToClient(card.index, PlayerTeam.P1);
             Network.SendCardToClient(card.index, PlayerTeam.P2);
+            directorMenu.OnGameEndCard();
+            deck1.Clear();
+            deck2.Clear();
         }
         else
         {
