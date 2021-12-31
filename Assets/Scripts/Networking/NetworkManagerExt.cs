@@ -172,6 +172,7 @@ public class NetworkManagerExt : NetworkManager
         foreach(var player in GamePlayers)
         {
             player.RpcStartBriefing(briefingIndex);
+            player.SpawnHead(briefingIndex);
         }
     }
 

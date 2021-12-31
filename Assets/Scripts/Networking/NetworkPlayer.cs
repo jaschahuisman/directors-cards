@@ -28,6 +28,8 @@ public class NetworkPlayer : NetworkBehaviour
     [Header("Values for spectator")]
     public Transform bodyTransform;
 
+    [Header("Values for the head")]
+    public Transform headTransform;
 
     [Header("Status")]
     [SyncVar]
@@ -128,6 +130,35 @@ public class NetworkPlayer : NetworkBehaviour
         Network.NotifyFinishedBriefing();
     }
 
+    [Server]
+    public void SpawnHead(int briefingIndex)
+    {
+        Debug.LogWarning("Spawning a head for player: " + Team + " " + briefingIndex);
+
+
+        Briefing briefing = Database.Instance.briefings[briefingIndex];
+        GameObject headObject = Team == PlayerTeam.P1
+            ? briefing.playerRole1.characterModel
+            : briefing.playerRole2.characterModel;
+
+        GameObject head = Instantiate(headObject);
+        NetworkServer.Spawn(head, gameObject);
+
+        foreach(Transform child in headTransform) { Destroy(child.gameObject); }
+        head.transform.SetParent(headTransform);
+        head.transform.position = headTransform.position;
+
+        RpcSpawnHead(head);
+    }
+
+    [ClientRpc]
+    public void RpcSpawnHead(GameObject head)
+    {
+        foreach (Transform child in headTransform) { Destroy(child.gameObject); }
+        head.transform.SetParent(headTransform);
+        head.transform.position = headTransform.position;
+    }
+
     [ClientRpc]
     public void RpcReceiveCard(int cardIndex)
     {
@@ -155,10 +186,7 @@ public class NetworkPlayer : NetworkBehaviour
 
     private void SendHaptics()
     {
-        if (leftController != null)
-        {
-            leftController.SendHapticImpulse(1f, 0.6f);
-        }
+        if (leftController != null) { leftController.SendHapticImpulse(1f, 0.6f); }
     }
 
     public void HandleReadyStatusChanged(bool oldVlaue, bool newValue)

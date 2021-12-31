@@ -35,7 +35,6 @@ public class BriefingManager : MonoBehaviour
 
         foreach (TrackAsset track in timeline.GetOutputTracks())
         {
-            Debug.Log(track.name);
             track.muted = false;
 
             switch (track.name)
