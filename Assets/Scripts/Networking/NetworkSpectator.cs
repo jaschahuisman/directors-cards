@@ -7,7 +7,10 @@ using Mirror;
 public class NetworkSpectator : NetworkBehaviour
 {
     [SerializeField] private float zoomFactor = 1.5f;
-    [SerializeField] private float followTimeDelta = 0.8f;
+    [SerializeField] private float smoothTime = 0.8f;
+    private Vector3 velocity = Vector3.zero;
+    private Vector3 defaultPosition = new Vector3(0, 0, 0);
+
 
     private NetworkManagerExt network;
     private NetworkManagerExt Network
@@ -19,6 +22,11 @@ public class NetworkSpectator : NetworkBehaviour
         }
     }
 
+    private void Start()
+    {
+        defaultPosition = transform.position;
+    }
+
     private void Update()
     {
         UpdatePosition();
@@ -26,50 +34,62 @@ public class NetworkSpectator : NetworkBehaviour
 
     private void UpdatePosition()
     {
-        Vector3 positionsTeam1 = new Vector3();
-        Vector3 positionsTeam2 = new Vector3();
+        if (HasEnoughPLayers())
+        {
+            float xAxis = GetAveragePosition().x;
+            float yAxis = GetAveragePosition().y;
+            float zAxis = CalculateDistance() * zoomFactor * -1;
 
-        int team1Count = 0;
-        int team2Count = 0;
+            Vector3 newPosition = new Vector3(xAxis, yAxis, zAxis) + defaultPosition;
+
+            transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
+        }
+        else 
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, defaultPosition, ref velocity, smoothTime);
+        }
+    }
+
+    private bool HasEnoughPLayers()
+    {
+        if (Network.NetworkPlayers.Count > 1)
+            return true;
+        else
+            return false;
+    }
+
+   private Vector3 GetAveragePosition()
+   {
+        Vector3 average = Vector3.zero;
 
         foreach (var player in Network.NetworkPlayers)
         {
-            if (player.Team == PlayerTeam.P1)
-            {
-                team1Count++;
-                positionsTeam1 += player.bodyTransform.position;
-            }
-
-            if (player.Team == PlayerTeam.P2)
-            {
-                team2Count++;
-                positionsTeam2 += player.bodyTransform.position;
-            }
+            average += player.bodyTransform.position;
         }
 
-        Vector3 midpointTeam1 = positionsTeam1 / team1Count;
-        Vector3 midpointTeam2 = positionsTeam2 / team2Count;
-        
-        Vector3 midpoint = (midpointTeam1 + midpointTeam2) / 2f;
-        float distance = (midpointTeam1 - midpointTeam2).magnitude;
+        average /= Network.NetworkPlayers.Count;
+        return average;
+   }
 
-        Vector3 cameraDestination = midpoint - gameObject.transform.forward * distance * zoomFactor;
+   private float CalculateDistance()
+   {
+        float distance = 0;
+        float largestX = 0;
+        float smallestX = 0;
 
-        if (team1Count + team2Count >= 2)
+        foreach (var player in Network.NetworkPlayers)
         {
-            // Debug.Log(gameObject.transform.position);
-            // Debug.Log(cameraDestination);
-            // Debug.Log(followTimeDelta);
-            // gameObject.transform.position = Vector3.Slerp(
-            //     gameObject.transform.position, 
-            //     cameraDestination, 
-            //     followTimeDelta
-            // );
+            if (player.bodyTransform.position.x > largestX)
+            {
+                largestX = player.transform.position.x;
+            }
+            if (player.bodyTransform.position.x < smallestX)
+            {
+                smallestX = player.transform.position.x;
+            }
         }
 
-        if ((cameraDestination - gameObject.transform.position).magnitude <= 0.05f)
-        {
-            gameObject.transform.position = cameraDestination;
-        }
-    }
+        distance = largestX - smallestX;
+        return distance;
+   }
 }
