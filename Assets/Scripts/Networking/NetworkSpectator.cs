@@ -8,6 +8,7 @@ public class NetworkSpectator : NetworkBehaviour
 {
     [SerializeField] private float zoomFactor = 1.5f;
     [SerializeField] private float smoothTime = 0.8f;
+    [SerializeField] private float yOffset = 0.8f;
     private Vector3 velocity = Vector3.zero;
     private Vector3 defaultPosition = new Vector3(0, 0, 0);
 
@@ -37,7 +38,7 @@ public class NetworkSpectator : NetworkBehaviour
         if (HasEnoughPLayers())
         {
             float xAxis = GetAveragePosition().x;
-            float yAxis = GetAveragePosition().y;
+            float yAxis = GetAveragePosition().y + yOffset;
             float zAxis = CalculateDistance() * zoomFactor * -1;
 
             Vector3 newPosition = new Vector3(xAxis, yAxis, zAxis) + defaultPosition;
@@ -52,7 +53,7 @@ public class NetworkSpectator : NetworkBehaviour
 
     private bool HasEnoughPLayers()
     {
-        if (Network.NetworkPlayers.Count > 1)
+        if (Network.NetworkPlayers.Count > 0)
             return true;
         else
             return false;

@@ -65,9 +65,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   zoomFactor: 1.5
-  followTimeDelta: 0.8
-  p1: {fileID: 0}
-  p2: {fileID: 0}
+  smoothTime: 0.8
+  yOffset: -1
 --- !u!1 &8973027143595907362
 GameObject:
   m_ObjectHideFlags: 0
