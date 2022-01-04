@@ -281,6 +281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Right Hand Alien
       objectReference: {fileID: 0}
+    - target: {fileID: 211551142765402719, guid: 1cdc16f3760552d42a6570db6a70c4ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cdc16f3760552d42a6570db6a70c4ff, type: 3}
 --- !u!81 &796510152689947238
@@ -824,6 +828,10 @@ PrefabInstance:
     - target: {fileID: 5855614898864302138, guid: 28bcd215ef5436e4e905c7511a20b39b, type: 3}
       propertyPath: m_Name
       value: Left Hand Alien
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855614898864302138, guid: 28bcd215ef5436e4e905c7511a20b39b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6487578292063498880, guid: 28bcd215ef5436e4e905c7511a20b39b, type: 3}
       propertyPath: m_RootOrder
