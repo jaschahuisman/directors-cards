@@ -9,7 +9,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 82a33b7ea0b2ceb4f9481046548ae4b6, type: 2}
+    m_Motion: {fileID: 7400000, guid: 964f3913c3f930e43820eae02fad84ba, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -17,7 +17,7 @@ BlendTree:
     m_DirectBlendParameter: Index
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: f32a160f22916f844bc933f2a6a3dd2a, type: 2}
+    m_Motion: {fileID: 7400000, guid: 1c5d0efcd0e2e7b4fb5ca48977bf25fe, type: 2}
     m_Threshold: 0.5
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -25,7 +25,7 @@ BlendTree:
     m_DirectBlendParameter: ThreeFingers
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 8fe3f55f946cd5b409db4bfaef72e187, type: 2}
+    m_Motion: {fileID: 7400000, guid: 653d873fa14b3f14cb3de858d7389dc7, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -71,7 +71,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Handcontroller
+  m_Name: CartoonHandcontroller
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Index
@@ -116,7 +116,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -1850320108237952953}
-    m_Position: {x: 300, y: 110, z: 0}
+    m_Position: {x: 280, y: 120, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
