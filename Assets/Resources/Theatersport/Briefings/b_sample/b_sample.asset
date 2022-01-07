@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c62ed19b973d414db114bffd541d463, type: 3}
+  m_Name: b_sample
+  m_EditorClassIdentifier: 
+  name: Sample
+  timeline: {fileID: 11400000, guid: 67ca036339f1447419f9214e2ae4b66b, type: 2}
+  playerRole1:
+    role: Sample R1
+    scenario: Sample S1
+    characterModel: {fileID: 4442051084141833200, guid: a2f176c85906c8a48b6267535e730319, type: 3}
+  playerRole2:
+    role: Sample R2
+    scenario: Sample S2
+    characterModel: {fileID: 4442051084141833200, guid: e9e3551c97d291d4e9a9f02e1f6dfbf2, type: 3}
