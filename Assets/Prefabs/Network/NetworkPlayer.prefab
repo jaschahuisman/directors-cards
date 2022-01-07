@@ -509,8 +509,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4784933960957630334}
-  - component: {fileID: 5267522338456907464}
   - component: {fileID: 3274132018137260325}
+  - component: {fileID: 5267522338456907464}
   - component: {fileID: 3716530148712518094}
   m_Layer: 0
   m_Name: Right Controller
@@ -535,19 +535,6 @@ Transform:
   m_Father: {fileID: 1439886099251094420}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5267522338456907464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 871094374272748905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd7388d0956e50545ae39eb3e216ea77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handMesh: {fileID: 5695797902716392067}
 --- !u!114 &3274132018137260325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,6 +566,20 @@ MonoBehaviour:
   m_MoveObjectIn: 14
   m_MoveObjectOut: 15
   m_PoseProvider: {fileID: 0}
+--- !u!114 &5267522338456907464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871094374272748905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd7388d0956e50545ae39eb3e216ea77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handsController: {fileID: 8110702287656372906}
+  handType: 1
 --- !u!135 &3716530148712518094
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1002,6 +1003,8 @@ MonoBehaviour:
   syncInterval: 0.1
   leftHandAnimator: {fileID: 9122515124848404063}
   rightHandAnimator: {fileID: 1401688801352916151}
+  leftHandMesh: {fileID: 2513546967820036203}
+  rightHandMesh: {fileID: 5695797902716392067}
 --- !u!1 &1306114387421796508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3002274820023661265}
   m_Layer: 0
-  m_Name: Hand Mesh
+  m_Name: Left Hand Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2737,7 +2740,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4918030502186911801}
   m_Layer: 0
-  m_Name: Hand Mesh
+  m_Name: Right Hand Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2867,8 +2870,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8769811456772607537}
-  - component: {fileID: 8048314182386645159}
   - component: {fileID: 4994630966461834032}
+  - component: {fileID: 8048314182386645159}
   - component: {fileID: 4718442191701102356}
   m_Layer: 0
   m_Name: Left Controller
@@ -2895,19 +2898,6 @@ Transform:
   m_Father: {fileID: 1439886099251094420}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8048314182386645159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5937004448209341199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd7388d0956e50545ae39eb3e216ea77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handMesh: {fileID: 2513546967820036203}
 --- !u!114 &4994630966461834032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2939,6 +2929,20 @@ MonoBehaviour:
   m_MoveObjectIn: 14
   m_MoveObjectOut: 15
   m_PoseProvider: {fileID: 0}
+--- !u!114 &8048314182386645159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937004448209341199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd7388d0956e50545ae39eb3e216ea77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handsController: {fileID: 8110702287656372906}
+  handType: 0
 --- !u!135 &4718442191701102356
 SphereCollider:
   m_ObjectHideFlags: 0

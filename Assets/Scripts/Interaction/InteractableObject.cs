@@ -7,9 +7,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 [RequireComponent(typeof(XRGrabInteractable))]
 public class InteractableObject : MonoBehaviour
 {
-    private XRGrabInteractable interactableObject;
+    [HideInInspector]
+    public XRGrabInteractable interactableObject;
 
-    private void Start()
+    public virtual void Start()
     {
         interactableObject.selectEntered.AddListener(PickupItem);
         interactableObject.selectExited.AddListener(DropItem);

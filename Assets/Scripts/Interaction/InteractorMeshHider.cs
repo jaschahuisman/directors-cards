@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class InteractorMeshHider : MonoBehaviour
 {
-    public GameObject handMesh;
+    public HandsController handsController;
+    public HandType handType;
 
     public void HideMesh()
     {
-        handMesh.SetActive(false);
+        handsController.ToggleHand(false, handType);
     }
 
     public void ShowMesh()
     {
-        handMesh.SetActive(true);
+        handsController.ToggleHand(true, handType);
     }
 }
