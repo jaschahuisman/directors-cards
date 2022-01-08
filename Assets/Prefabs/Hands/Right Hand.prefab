@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3845913818663162418}
   - component: {fileID: 7187402290348384952}
+  - component: {fileID: -3695098365012611662}
   m_Layer: 0
   m_Name: Right Hand
   m_TagString: Untagged
@@ -51,6 +52,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-3695098365012611662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860793705286078801}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fed4966ee218eb46b2b9296a4f6bccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handType: 1
+  handsController: {fileID: 0}
 --- !u!1001 &3677161704856064477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -144,7 +159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a32b8fb8572695d43b3ae06b473ef085, type: 3}
       propertyPath: m_Name
-      value: Hand
+      value: Right hand Mesh
       objectReference: {fileID: 0}
     - target: {fileID: 1392595203298398570, guid: a32b8fb8572695d43b3ae06b473ef085, type: 3}
       propertyPath: m_LocalPosition.x

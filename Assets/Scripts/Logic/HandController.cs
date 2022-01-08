@@ -8,10 +8,10 @@ public class HandController : MonoBehaviour
 {
     [SerializeField] private HandType handType;
     [SerializeField] private HandsController handsController;
+    [SerializeField] private float thumbMoveSpeed = 0.01f;
     
     private InputDevice inputDevice;
 
-    private float thumbMoveSpeed;
     private float indexValue, thumbValue, threeFingersValue;
 
     void Start()
