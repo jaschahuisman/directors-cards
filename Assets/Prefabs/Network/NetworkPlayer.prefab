@@ -523,7 +523,7 @@ MonoBehaviour:
   playerCardPrefab: {fileID: 2277983187774625493, guid: 6acbe01b05ffac54ebecb4bea30c5cd7, type: 3}
   playerWrist: {fileID: 7593713919966392400}
   notificationAnimator: {fileID: 3538136285742840556}
-  bodyTransform: {fileID: 4115823799590808964}
+  handsController: {fileID: 8110702287656372906}
   headTransform: {fileID: 4626586193025801721}
   Team: 0
   IsReady: 0
@@ -1818,6 +1818,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3267415471998027364, guid: 745e85a75582de541b8fe9927f40860a, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3267415471998027364, guid: 745e85a75582de541b8fe9927f40860a, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 42da0432a2cad224495c66bf5a240a5b, type: 2}
     - target: {fileID: 6659901012819644457, guid: 745e85a75582de541b8fe9927f40860a, type: 3}
       propertyPath: m_Enabled
       value: 0

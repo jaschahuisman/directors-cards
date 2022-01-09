@@ -59,12 +59,16 @@ public class HandsController : NetworkBehaviour
     public void CmdToggleHand(bool value, HandType handType)
     {
         RpcReceiveToggleHand(value, handType);
+        ToggleHand(value, handType);
     }
 
     [ClientRpc]
     public void RpcReceiveToggleHand(bool value, HandType handType)
     {
-        ToggleHand(value, handType);
+        if (!isLocalPlayer)
+        {
+            ToggleHand(value, handType);
+        }
     }
 
     public void ToggleHand(bool value, HandType handType)
@@ -95,21 +99,26 @@ public class HandsController : NetworkBehaviour
     public void CmdSetHandColor(float r, float g, float b)
     {
         RpcSetHandColor(r, g, b);
+        SetHandColor(r, g, b);
+
     }
 
     [ClientRpc]
     public void RpcSetHandColor(float r, float g, float b)
     {
-        SetHandColor(r, g, b);
+        if (!isLocalPlayer)
+        {
+            SetHandColor(r, g, b);
+        }
     }
 
     public void SetHandColor(float r, float g, float b)
     {
         Renderer leftHandRenderer = leftHandMesh.GetComponent<Renderer>();
-        Renderer rightHandRenderer = leftHandMesh.GetComponent<Renderer>();
+        Renderer rightHandRenderer = rightHandMesh.GetComponent<Renderer>();
 
         Material newMaterial = new Material(leftHandRenderer.material);
-        newMaterial.SetColor("_Color", new Color(r, g, b));
+        newMaterial.color = new Color(r, g, b);
 
         leftHandRenderer.material = newMaterial;
         rightHandRenderer.material = newMaterial;

@@ -173,6 +173,7 @@ public class NetworkManagerExt : NetworkManager
         {
             player.RpcStartBriefing(briefingIndex);
             player.SpawnHead(briefingIndex);
+            player.ChangeHandMaterials(briefingIndex);
         }
     }
 

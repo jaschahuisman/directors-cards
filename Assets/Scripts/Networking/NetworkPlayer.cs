@@ -24,6 +24,7 @@ public class NetworkPlayer : NetworkBehaviour
     [SerializeField] private GameObject playerCardPrefab;
     [SerializeField] private Transform playerWrist;
     [SerializeField] private Animator notificationAnimator;
+    [SerializeField] private HandsController handsController;
 
     [Header("Values for the head")]
     public Transform headTransform;
@@ -157,15 +158,22 @@ public class NetworkPlayer : NetworkBehaviour
     }
 
     [Server]
-    public void ChangeHandMaterials()
+    public void ChangeHandMaterials(int briefingIndex)
     {
+        Debug.LogWarning("Collecting hand material information");
+        Briefing briefing = Database.Instance.briefings[briefingIndex];
+        Color handsColor = Team == PlayerTeam.P1
+           ? briefing.playerRole1.handsColor
+           : briefing.playerRole2.handsColor;
 
+        RpcChangeHandMaterials(handsColor.r, handsColor.g, handsColor.b);
+        Debug.LogWarning("Sending hand material information to networkplayer");
     }
 
     [ClientRpc]
-    public void RpcChangeHandMaterials()
+    public void RpcChangeHandMaterials(float r, float g, float b)
     {
-
+        handsController.HandleSetHandColor(r, g, b);
     }
 
     [ClientRpc]
