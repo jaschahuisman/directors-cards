@@ -1,11 +1,38 @@
 fileFormatVersion: 2
-guid: a32b8fb8572695d43b3ae06b473ef085
+guid: 48b75df2bc5bd8d4db5bab8c776dfe74
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: 1827226128182048838
-    second: Take 001
+      74: -3719875611843908643
+    second: ThreeFingers
+  - first:
+      74: -510926863223067141
+    second: Thumb
+  - first:
+      74: 6613418502799730267
+    second: Index
+  - first:
+      74: 1605031118741421825
+    second: Hand Animation|Action
+  - first:
+      74: -2384597086609822038
+    second: Hand Animation|Action.001
+  - first:
+      74: 5928188228262763379
+    second: Hand Animation|ArmatureAction.001
+  - first:
+      74: 4667284934137776701
+    second: Hand Animation|Armature|CINEMA_4D_Main|Layer0
+  - first:
+      74: 2851806427337552508
+    second: Hand Animation|Index
+  - first:
+      74: 1161725493812633173
+    second: Hand Animation|ThreeFingers
+  - first:
+      74: -7978034469816227469
+    second: Hand Animation|Thumb
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -76,7 +103,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []
