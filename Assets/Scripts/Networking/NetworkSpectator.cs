@@ -65,7 +65,7 @@ public class NetworkSpectator : NetworkBehaviour
 
         foreach (var player in Network.NetworkPlayers)
         {
-            average += player.bodyTransform.position;
+            average += player.headTransform.position;
         }
 
         average /= Network.NetworkPlayers.Count;
@@ -80,11 +80,11 @@ public class NetworkSpectator : NetworkBehaviour
 
         foreach (var player in Network.NetworkPlayers)
         {
-            if (player.bodyTransform.position.x > largestX)
+            if (player.headTransform.position.x > largestX)
             {
                 largestX = player.transform.position.x;
             }
-            if (player.bodyTransform.position.x < smallestX)
+            if (player.headTransform.position.x < smallestX)
             {
                 smallestX = player.transform.position.x;
             }

@@ -25,9 +25,6 @@ public class NetworkPlayer : NetworkBehaviour
     [SerializeField] private Transform playerWrist;
     [SerializeField] private Animator notificationAnimator;
 
-    [Header("Values for spectator")]
-    public Transform bodyTransform;
-
     [Header("Values for the head")]
     public Transform headTransform;
 
@@ -157,6 +154,18 @@ public class NetworkPlayer : NetworkBehaviour
         foreach (Transform child in headTransform) { Destroy(child.gameObject); }
         head.transform.SetParent(headTransform);
         head.transform.position = headTransform.position;
+    }
+
+    [Server]
+    public void ChangeHandMaterials()
+    {
+
+    }
+
+    [ClientRpc]
+    public void RpcChangeHandMaterials()
+    {
+
     }
 
     [ClientRpc]

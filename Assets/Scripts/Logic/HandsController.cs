@@ -80,5 +80,40 @@ public class HandsController : NetworkBehaviour
         }
     }
     #endregion
+
+    #region Hand colors
+    public void HandleSetHandColor(float r, float g, float b)
+    {
+        if (isLocalPlayer)
+        {
+            CmdSetHandColor(r, g, b);
+            SetHandColor(r, g, b);
+        }
+    }
+
+    [Command]
+    public void CmdSetHandColor(float r, float g, float b)
+    {
+        RpcSetHandColor(r, g, b);
+    }
+
+    [ClientRpc]
+    public void RpcSetHandColor(float r, float g, float b)
+    {
+        SetHandColor(r, g, b);
+    }
+
+    public void SetHandColor(float r, float g, float b)
+    {
+        Renderer leftHandRenderer = leftHandMesh.GetComponent<Renderer>();
+        Renderer rightHandRenderer = leftHandMesh.GetComponent<Renderer>();
+
+        Material newMaterial = new Material(leftHandRenderer.material);
+        newMaterial.SetColor("_Color", new Color(r, g, b));
+
+        leftHandRenderer.material = newMaterial;
+        rightHandRenderer.material = newMaterial;
+    }
+    #endregion
 }
 
