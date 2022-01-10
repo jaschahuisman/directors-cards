@@ -43,7 +43,10 @@ GameObject:
   - component: {fileID: 3910616280744570153}
   - component: {fileID: 3262207816064830690}
   - component: {fileID: 3262207816064830691}
+  - component: {fileID: 5359160520271596399}
   - component: {fileID: 3262207816064830689}
+  - component: {fileID: 6978564034479058772}
+  - component: {fileID: 2242830896975252044}
   m_Layer: 0
   m_Name: PortableLamp
   m_TagString: Untagged
@@ -246,6 +249,21 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
+--- !u!114 &5359160520271596399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3262207816064830716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9af193192c5937d4c80399d138512d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  interactableObject: {fileID: 0}
 --- !u!65 &3262207816064830689
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -259,3 +277,49 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2797984, y: 0.54172397, z: 0.2781385}
   m_Center: {x: -0.0010670274, y: -0.250862, z: -0.0002503097}
+--- !u!114 &6978564034479058772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3262207816064830716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  sendInterval: 0.05
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 0
+  bufferTimeMultiplier: 1
+  bufferSizeLimit: 64
+  catchupThreshold: 4
+  catchupMultiplier: 0.1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+--- !u!114 &2242830896975252044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3262207816064830716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 7f25980fd7c6ef44fa219149ac2989a5
+  hasSpawned: 0
