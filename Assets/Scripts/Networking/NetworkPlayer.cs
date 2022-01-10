@@ -8,232 +8,86 @@ using Mirror;
 
 public class NetworkPlayer : NetworkBehaviour
 {
-    [Header("Authority-only components")]
-    [SerializeField] private Camera playerCamera;
-    [SerializeField] private TrackedPoseDriver trackedPoseDriver;
-    [SerializeField] private AudioListener audioListener;
-    [SerializeField] private XRController leftController;
-    [SerializeField] private XRController rightController;
-    [SerializeField] private GameObject leftLineInteractor;
-    [SerializeField] private GameObject rightLineInteractor;
-    [SerializeField] private HandController leftHandController;
-    [SerializeField] private HandController rightHandController;
+    [Header("Player identitification")]
+    public PlayerId id;
 
-    [Header("Game components")]
-    [SerializeField] private AudioSource buzzerSound;
-    [SerializeField] private GameObject playerCardPrefab;
-    [SerializeField] private Transform playerWrist;
-    [SerializeField] private Animator notificationAnimator;
-    [SerializeField] private HandsController handsController;
+    [Header("Speler trackable objects")]
+    [SerializeField] private GameObject playerCamera;
+    [SerializeField] private GameObject leftController;
+    [SerializeField] private GameObject rightController;
+    [SerializeField] private bool disabledNonAuthoritatives;
 
-    [Header("Values for the head")]
-    public Transform headTransform;
+    private NetworkManagerExtended netwerk;
+    private GameManager gameManager;
 
-    [Header("Status")]
-    [SyncVar]
-    public PlayerTeam Team;
-
-    [SyncVar(hook = nameof(HandleReadyStatusChanged))]
-    public bool IsReady = false;
-
-    public event System.Action<bool> OnReadyChanged; 
-
-    private NetworkManagerExt network;
-    private NetworkManagerExt Network
+    private void Start()
     {
-        get
+        netwerk = NetworkManagerExtended.Instance;
+        gameManager = GameManager.Instance;
+    }
+
+    private void Update()
+    {
+        if(!isLocalPlayer && !disabledNonAuthoritatives)
         {
-            if (network != null) { return network; }
-            return network = NetworkManagerExt.singleton as NetworkManagerExt;
+            gameObject.GetComponent<XROrigin>().enabled = false;
+            gameObject.GetComponent<AudioSource>().enabled = false;
+
+            playerCamera.GetComponent<Camera>().enabled = false;
+            playerCamera.GetComponent<AudioListener>().enabled = false;
+            playerCamera.GetComponent<TrackedPoseDriver>().enabled = false;
+
+            leftController.GetComponent<XRController>().enabled = false;
+            rightController.GetComponent<XRController>().enabled = false;
+
+            disabledNonAuthoritatives = true;
         }
-    }
-
-    public override void OnStartAuthority()
-    {
-        playerCamera.enabled = true;
-        trackedPoseDriver.enabled = true;
-        audioListener.enabled = true;
-        leftController.enabled = true;
-        rightController.enabled = true;
-        leftLineInteractor.SetActive(true);
-        rightLineInteractor.SetActive(true);
-        leftHandController.enabled = true;
-        rightHandController.enabled = true;
-
-        base.OnStartAuthority();
-    }
-
-    public override void OnStartClient()
-    {
-        Network.NetworkPlayers.Add(this);
-        DontDestroyOnLoad(gameObject);
-    }
-
-    public override void OnStartServer()
-    {
-        Network.NetworkPlayers.Add(this);
-        DontDestroyOnLoad(gameObject);
-    }
-
-    public override void OnStopClient()
-    {
-        Network.NetworkPlayers.Remove(this);
-    }
-
-    public override void OnStopServer()
-    {
-        Network.NetworkPlayers.Remove(this);
-
-        if (Network.GamePlayers.Contains(this))
-        {
-            Network.GamePlayers.Remove(this);
-        }
-    }
-
-    [Command]
-    public void CmdSetPlayerTeam(PlayerTeam team)
-    {
-        Team = team;
-    }
-
-    [Command]
-    public void CmdSetReadyState(bool value)
-    {
-        IsReady = value;
-        Network.NotifyReadyToLoadGameplay();
-    }
-
-    [Command]
-    public void CmdReadyInGameplayScene()
-    {
-        Network.GamePlayers.Add(this);
-        Network.NotifyReadyToStartBriefing();
     }
 
     [ClientRpc]
     public void RpcStartBriefing(int briefingIndex)
     {
-        Briefing briefing = Database.Instance.briefings[briefingIndex];
-        Debug.Log(briefing.name);
-        Debug.Log(briefing.playerRole1);
-        BriefingManager.Instance.StartBriefing(briefing, this);
-
-        ToggleXRRayInteractors(false);
-    }
-
-    [Command]
-    public void CmdFinishBriefing()
-    {
-        Network.BriefedPlayers.Add(this);
-        Network.NotifyFinishedBriefing();
-    }
-
-    [Server]
-    public void SpawnHead(int briefingIndex)
-    {
-        Debug.LogWarning("Spawning a head for player: " + Team + " " + briefingIndex);
-
-
-        Briefing briefing = Database.Instance.briefings[briefingIndex];
-        GameObject headObject = Team == PlayerTeam.P1
-            ? briefing.playerRole1.characterModel
-            : briefing.playerRole2.characterModel;
-
-        GameObject head = Instantiate(headObject);
-        NetworkServer.Spawn(head, gameObject);
-
-        foreach(Transform child in headTransform) { Destroy(child.gameObject); }
-        head.transform.SetParent(headTransform);
-        head.transform.position = headTransform.position;
-
-        RpcSpawnHead(head);
-    }
-
-    [ClientRpc]
-    public void RpcSpawnHead(GameObject head)
-    {
-        foreach (Transform child in headTransform) { Destroy(child.gameObject); }
-        head.transform.SetParent(headTransform);
-        head.transform.position = headTransform.position;
-    }
-
-    [Server]
-    public void ChangeHandMaterials(int briefingIndex)
-    {
-        Debug.LogWarning("Collecting hand material information");
-        Briefing briefing = Database.Instance.briefings[briefingIndex];
-        Color handsColor = Team == PlayerTeam.P1
-           ? briefing.playerRole1.handsColor
-           : briefing.playerRole2.handsColor;
-
-        RpcChangeHandMaterials(handsColor.r, handsColor.g, handsColor.b);
-        Debug.LogWarning("Sending hand material information to networkplayer");
-    }
-
-    [ClientRpc]
-    public void RpcChangeHandMaterials(float r, float g, float b)
-    {
-        handsController.HandleSetHandColor(r, g, b);
-    }
-
-    [ClientRpc]
-    public void RpcReceiveCard(int cardIndex)
-    {
-        if (isLocalPlayer)
+        if (isClient && isLocalPlayer)
         {
-            Card card = Database.Instance.cards[cardIndex];
+            Debug.Log(briefingIndex);
 
-            SendHaptics();
-            buzzerSound.Play();
-            notificationAnimator.SetTrigger("PlayAnimation");
+            BriefingScriptable briefing = Database.Instance.briefings[briefingIndex];
+            PlayerRole rol = id == PlayerId.Player1 ? briefing.playerRole1 : briefing.playerRole2;
 
-            foreach (Transform child in playerWrist) { Destroy(child.gameObject); }
+            // TODO: 
+            //
+            // Load briefing.timeline in a PlayableDirector component
+            // Update canvas GameComponents with the right role data (including AudioSources)
+            // Generic bind the TrackAssets with the GameComponents to the PlayableDirector (by track name)
+            // Play the timeline
 
-            GameObject playerCardObject = Instantiate(playerCardPrefab);
-            PlayerCard playerCard = playerCardObject.GetComponent<PlayerCard>();
-
-            playerCard.SetData(card, Team);
-
-            playerCardObject.transform.SetParent(playerWrist, false);
-            playerCardObject.SetActive(true);
-
-            Debug.LogWarning("Received card with index " + cardIndex);
+            StopAllCoroutines();
+            Debug.Log(briefing.timeline.duration);
+            StartCoroutine(StopBriefingAfterTimelineFinished((float) briefing.timeline.duration + 1));
         }
     }
 
-    private void SendHaptics()
+    public IEnumerator StopBriefingAfterTimelineFinished(float delay)
     {
-        if (leftController != null) { leftController.SendHapticImpulse(1f, 0.6f); }
+        yield return new WaitForSeconds(delay);
+        gameManager.CmdFinishBriefing(NetworkServer.localConnection);
     }
 
-    public void HandleReadyStatusChanged(bool oldVlaue, bool newValue)
+    [ClientRpc]
+    public void RpcReceiveImprovCard(int cardIndex)
     {
-        OnReadyChanged?.Invoke(newValue);
-
-        if (!newValue)
-        {
-            foreach (Transform child in playerWrist) { Destroy(child.gameObject); }
-        }
+        Debug.Log(cardIndex + " recieved from host");
     }
 
-    public void ToggleXRRayInteractors(bool value)
+    [ClientRpc]
+    public void RpcUpdatePlayerId(PlayerId newId)
     {
-        leftLineInteractor.SetActive(value);
-        rightLineInteractor.SetActive(value);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Debug.LogWarning("Readying Up");
-            CmdSetReadyState(true);
-        }
+        this.id = newId;
     }
 }
 
-public enum PlayerTeam
+public enum PlayerId
 {
-    P1,
-    P2
+    Player1,
+    Player2
 }
