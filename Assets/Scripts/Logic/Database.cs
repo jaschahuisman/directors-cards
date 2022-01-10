@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class Database : MonoBehaviour
 {
-    public List<Briefing> briefings = new List<Briefing>();
-    public List<Card> cards = new List<Card>();
-
+    public List<BriefingScriptable> briefings = new List<BriefingScriptable>();
+    public List<ImprovCardScriptable> improvCards = new List<ImprovCardScriptable>();
 
     public static Database Instance;
 

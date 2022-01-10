@@ -9,5 +9,4 @@ public class PlayerRole
     public string role;
     public string scenario;
     public GameObject characterModel;
-    public Color handsColor = new Color(1, 1, 1);
 }
