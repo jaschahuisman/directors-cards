@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4198295098245348861}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Whiteboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3533222931823667015}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.36, y: 1.804, z: 1.687}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 3617343877479943333}
   - component: {fileID: 1937757625026508271}
   - component: {fileID: 3153072149298762107}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
