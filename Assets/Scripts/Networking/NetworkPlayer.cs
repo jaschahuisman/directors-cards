@@ -192,7 +192,7 @@ public class NetworkPlayer : NetworkBehaviour
             GameObject playerCardObject = Instantiate(playerCardPrefab);
             PlayerCard playerCard = playerCardObject.GetComponent<PlayerCard>();
 
-            playerCard.SetData(card, Team);
+            playerCard.SetData(card);
 
             playerCardObject.transform.SetParent(playerWrist, false);
             playerCardObject.SetActive(true);
