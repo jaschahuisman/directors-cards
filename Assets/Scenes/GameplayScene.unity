@@ -887,6 +887,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1679755792}
     m_Modifications:
+    - target: {fileID: 173371647536761995, guid: fdcf761fa3a690445bca6a71a4c26512, type: 3}
+      propertyPath: sceneId
+      value: 4222204248
+      objectReference: {fileID: 0}
     - target: {fileID: 8406337328711364620, guid: fdcf761fa3a690445bca6a71a4c26512, type: 3}
       propertyPath: m_Name
       value: SciFiBomb
@@ -1375,7 +1379,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1394,13 +1398,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1219650050}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.15}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 1.6, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1219650055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1472,6 +1476,10 @@ PrefabInstance:
     - target: {fileID: 2990730443104624954, guid: 8ae100cf6d6601d43a3c67c3d321ee1f, type: 3}
       propertyPath: m_Name
       value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 4745919394163978056, guid: 8ae100cf6d6601d43a3c67c3d321ee1f, type: 3}
+      propertyPath: sceneId
+      value: 3259587650
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ae100cf6d6601d43a3c67c3d321ee1f, type: 3}
