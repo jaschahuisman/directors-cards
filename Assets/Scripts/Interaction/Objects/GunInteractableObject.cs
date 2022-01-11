@@ -15,10 +15,20 @@ public class GunInteractableObject : InteractableObject
 
     private Rigidbody rigidBody;
 
-    public override void Start()
+    public override void OnStartClient()
     {
-        base.Start();
+        base.OnStartClient();
+        Setup();
+    }
 
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        Setup();
+    }
+
+    private void Setup()
+    {
         interactableObject.activated.AddListener(Shoot);
     }
 
