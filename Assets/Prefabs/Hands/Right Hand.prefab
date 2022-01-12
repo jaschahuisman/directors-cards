@@ -661,7 +661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 1
   handsController: {fileID: 0}
-  thumbMoveSpeed: 0.01
+  thumbMoveSpeed: 0.35
 --- !u!1 &8621983217467210167
 GameObject:
   m_ObjectHideFlags: 0

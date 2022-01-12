@@ -151,7 +151,6 @@ public class DirectorCardCanvas : MonoBehaviour
         GameObject cardObject = card.gameObject;
         
         cardObject.transform.SetParent(usedDeckTransform);
-        cardObject.GetComponent<Image>().color = new Color(1, 1, 1, 0.3f);
     }
 
     public void UseCard(DirectorCard card)

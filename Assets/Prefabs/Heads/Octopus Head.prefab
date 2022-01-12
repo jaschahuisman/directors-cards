@@ -374,6 +374,38 @@ Transform:
   m_Father: {fileID: 7242160698674454988}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3928863952150355273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8268339753954390560}
+  m_Layer: 0
+  m_Name: Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8268339753954390560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3928863952150355273}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: -0.09, z: -0.257}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1617139232322973589}
+  - {fileID: 4656024577989908532}
+  m_Father: {fileID: 6554244688512846674}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &4320719029983517663
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,8 +531,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6516447, y: 0.6516447, z: 0.6516447}
   m_Children:
-  - {fileID: 1617139232322973589}
-  - {fileID: 4656024577989908532}
+  - {fileID: 8268339753954390560}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -871,14 +902,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6502393420518439633}
-  m_LocalRotation: {x: 0.40757415, y: 0.57782644, z: 0.5778262, w: 0.4075743}
-  m_LocalPosition: {x: 0.0016187943, y: 0.00024474424, z: -0.0021779449}
+  m_LocalRotation: {x: 0.41061902, y: 0.5756666, z: 0.5756666, w: 0.41061902}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8873326984047059716}
   m_Father: {fileID: 4656024577989908532}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -19, y: 90, z: 90}
 --- !u!1 &7154300136534121206
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4656024577989908532}
   m_Layer: 0
-  m_Name: Octopus
+  m_Name: Bones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -902,14 +933,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7154300136534121206}
-  m_LocalRotation: {x: -0.00000013767878, y: 0.7071068, z: -0.7071067, w: 0.00000013767877}
-  m_LocalPosition: {x: 0.1631, y: -0.1553, z: -0.122}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.13032897, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 6231348200471861271}
-  m_Father: {fileID: 6554244688512846674}
+  m_Father: {fileID: 8268339753954390560}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &7425474670494558670
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,7 +1013,7 @@ GameObject:
   - component: {fileID: 1617139232322973589}
   - component: {fileID: 1870648679635750289}
   m_Layer: 0
-  m_Name: Ocotopussieeee
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -995,11 +1026,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9128216710074903817}
-  m_LocalRotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00574691, y: 0.12127173, z: 0.008705944}
+  m_LocalRotation: {x: 0.000000081460335, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.13032897, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
-  m_Father: {fileID: 6554244688512846674}
+  m_Father: {fileID: 8268339753954390560}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &1870648679635750289
@@ -1069,7 +1100,7 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 6231348200471861271}
   m_AABB:
-    m_Center: {x: 0.0004469984, y: 0.0014135533, z: 0.00040482718}
+    m_Center: {x: 0, y: 0.0015, z: 0}
     m_Extent: {x: 0.0029100864, y: 0.003103899, z: 0.0028805127}
   m_DirtyAABB: 0
 --- !u!1 &9152751736666915578

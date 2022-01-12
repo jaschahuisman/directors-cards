@@ -27,6 +27,7 @@ public class InteractableObject : NetworkBehaviour
 
     private void Setup()
     {
+        CmdDetachAuthority();
         interactableObject = gameObject.GetComponent<XRGrabInteractable>();
         networkIdentity = gameObject.GetComponent<NetworkIdentity>();
         interactableObject.onSelectEntered.AddListener(PickupItem);
@@ -38,6 +39,7 @@ public class InteractableObject : NetworkBehaviour
         Debug.Log(interactor);
 
         CmdAssignAuthority();
+
         if (interactor != null)
         {
             interactor.GetComponent<InteractorMeshHider>().HideMesh();
@@ -50,8 +52,16 @@ public class InteractableObject : NetworkBehaviour
         networkIdentity.AssignClientAuthority(conn);
     }
 
+    [Command(requiresAuthority = false)]
+    private void CmdDetachAuthority(NetworkConnectionToClient conn = null)
+    {
+        networkIdentity.RemoveClientAuthority();
+    }
+
     private void DropItem(XRBaseInteractor interactor)
     {
+        CmdDetachAuthority();
+
         if (interactor != null)
         {
             interactor.GetComponent<InteractorMeshHider>().ShowMesh();

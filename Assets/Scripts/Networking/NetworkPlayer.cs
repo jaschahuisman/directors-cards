@@ -145,6 +145,7 @@ public class NetworkPlayer : NetworkBehaviour
         foreach(Transform child in headTransform) { Destroy(child.gameObject); }
         head.transform.SetParent(headTransform);
         head.transform.position = headTransform.position;
+        head.transform.rotation = headTransform.rotation;
 
         RpcSpawnHead(head);
     }
