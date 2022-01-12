@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: c_restrictie 3
   m_EditorClassIdentifier: 
   type: 2
-  content: Restrictie
+  content: Begin elke zin met het laatste woord van je tegenspeler
