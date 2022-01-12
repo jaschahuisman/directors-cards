@@ -1049,6 +1049,7 @@ MonoBehaviour:
   - {fileID: 4442051084141833200, guid: e9e3551c97d291d4e9a9f02e1f6dfbf2, type: 3}
   - {fileID: 5890297636006449640, guid: 3668d8bb1615a464f929fdcfe99e7787, type: 3}
   - {fileID: 2545473301988964460, guid: 6fa56c576b4bfd44aa32ae5f5871fc96, type: 3}
+  - {fileID: 5375857959477460084, guid: e436d4876de0d2546a9c25281fda634f, type: 3}
   spectatorPrefab: {fileID: 1293560509951765629, guid: 0757dca8460986243b0a4e5c2f3ace04, type: 3}
   gameplayScene: Assets/Scenes/GameplayScene.unity
   NetworkPlayers: []

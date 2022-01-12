@@ -17,8 +17,8 @@ MonoBehaviour:
   playerRole1:
     role: Inktvis arts
     scenario: Je bent een inktvis arts en je behandelt je eerste client van de dag
-    characterModel: {fileID: 2545473301988964460, guid: 6fa56c576b4bfd44aa32ae5f5871fc96, type: 3}
-    handsColor: {r: 0.3537736, g: 1, b: 0.40706894, a: 0}
+    characterModel: {fileID: 5375857959477460084, guid: e436d4876de0d2546a9c25281fda634f, type: 3}
+    handsColor: {r: 0.77647066, g: 0.54901963, b: 0.74509805, a: 0}
   playerRole2:
     role: Diepzee inktvis
     scenario: Je bent op je jaarlijkse controle bij je inktvis arts
