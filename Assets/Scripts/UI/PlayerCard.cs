@@ -5,22 +5,21 @@ using TMPro;
 
 public class PlayerCard : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI teamText;
-    [SerializeField] private TextMeshProUGUI typeText;
+    [SerializeField] private TextMeshProUGUI typeText1;
+    [SerializeField] private TextMeshProUGUI typeText2;
     [SerializeField] private TextMeshProUGUI contentText;
 
     public PlayerTeam team;
     public CardType type;
     private string content;
 
-    public void SetData(Card card, PlayerTeam cardTeam)
+    public void SetData(Card card)
     {
-        team = cardTeam;
         type = card.type;
         content = card.content;
 
-        teamText.text = team == PlayerTeam.P1 ? "Speler 1" : "Speler 2";
-        typeText.text = type.ToString();
+        typeText1.text = type.ToString();
+        typeText2.text = type.ToString();
         contentText.text = content;
     }
 }

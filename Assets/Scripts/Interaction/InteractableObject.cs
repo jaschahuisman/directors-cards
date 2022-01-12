@@ -12,20 +12,49 @@ public class InteractableObject : NetworkBehaviour
     [HideInInspector]
     public XRGrabInteractable interactableObject;
 
-    public virtual void Start()
+    [HideInInspector]
+    public NetworkIdentity networkIdentity;
+
+    public override void OnStartServer()
     {
-        interactableObject = gameObject.GetComponent<XRGrabInteractable>();
-        interactableObject.selectEntered.AddListener(PickupItem);
-        interactableObject.selectExited.AddListener(DropItem);
-    }
-   
-    private void PickupItem(SelectEnterEventArgs args)
-    {
-        args.interactorObject.transform.gameObject.GetComponent<InteractorMeshHider>().HideMesh();
+        Setup();
     }
 
-    private void DropItem(SelectExitEventArgs args)
+    public override void OnStartClient()
     {
-        args.interactorObject.transform.gameObject.GetComponent<InteractorMeshHider>().ShowMesh();
+        Setup();
+    }
+
+    private void Setup()
+    {
+        interactableObject = gameObject.GetComponent<XRGrabInteractable>();
+        networkIdentity = gameObject.GetComponent<NetworkIdentity>();
+        interactableObject.onSelectEntered.AddListener(PickupItem);
+        interactableObject.onSelectExited.AddListener(DropItem);
+    }
+
+    private void PickupItem(XRBaseInteractor interactor)
+    {
+        Debug.Log(interactor);
+
+        CmdAssignAuthority();
+        if (interactor != null)
+        {
+            interactor.GetComponent<InteractorMeshHider>().HideMesh();
+        }
+    }
+
+    [Command(requiresAuthority = false)]
+    private void CmdAssignAuthority(NetworkConnectionToClient conn = null)
+    {
+        networkIdentity.AssignClientAuthority(conn);
+    }
+
+    private void DropItem(XRBaseInteractor interactor)
+    {
+        if (interactor != null)
+        {
+            interactor.GetComponent<InteractorMeshHider>().ShowMesh();
+        }
     }
 }
