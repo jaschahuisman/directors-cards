@@ -1,0 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Timeline;
+
+public class Briefing : ScriptableObject
+{
+    public string title;
+    public TimelineAsset timeline;
+    public Role playerRole1;
+    public Role playerRole2;
+}

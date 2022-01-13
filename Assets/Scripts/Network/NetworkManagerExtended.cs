@@ -16,6 +16,10 @@ public class NetworkManagerExtended : NetworkManager
     public List<NetworkPlayer> briefedPlayers = new List<NetworkPlayer>();
     public List<NetworkPlayer> playingPlayers = new List<NetworkPlayer>();
 
+    public static event Action ConnectionEvent;
+    public static event Action<bool> GameplayReadyEvent;
+    public static event Action<bool> GameplayStartedEvent;
+
     public override void OnStartServer()
     {
         GetComponent<NetworkDiscovery>().AdvertiseServer();
@@ -35,6 +39,81 @@ public class NetworkManagerExtended : NetworkManager
     {
         GameObject player = Instantiate(playerPrefab);
         NetworkServer.AddPlayerForConnection(conn, player);
+        ConnectionEvent?.Invoke();
+    }
+
+    public void StartBriefing()
+    {
+        briefedPlayers.Clear();
+        int briefingIndex = UnityEngine.Random.Range(0, Database.Instance.briefings.Count);
+        
+        LoopTroughPlayers((NetworkPlayer player) => {
+            player.RpcStartBriefing(briefingIndex);
+            player.UpdateCharacter(briefingIndex);
+        });
+    }
+
+    public void StartGameplay()
+    {
+        GameplayStartedEvent?.Invoke(true);
+        Debug.LogWarning("NetworkManager: Gameplay Started after briefing all players");
+    }
+
+    public void StopGameplay()
+    {
+        GameplayStartedEvent?.Invoke(false);
+        playingPlayers.Clear();
+
+        LoopTroughPlayers((NetworkPlayer player) => {
+            player.isReady = false;
+        });
+
+        ServerChangeScene(onlineScene);
+    }
+
+    public void HandlePlayerReadyStateChange()
+    {
+        Debug.LogWarning("NetworkManager: Player ready state change is handled");
+        GameplayReadyEvent?.Invoke(IsReadyToLoadGameplay());
+    }
+
+    public void HandlePlayerGameplaySceneLoaded()
+    {
+        Debug.LogWarning("NetworkManager: Scene loaded on player");
+        if (IsReadyToStartBriefing())
+            StartBriefing();
+    }
+
+    public void HandlePlayerBriefingFinished()
+    {
+        Debug.LogWarning("NetworkManager: Scene loaded on player");
+        if (IsReadyToStartBriefing())
+            StartGameplay();
+    }
+
+    public bool IsReadyToLoadGameplay()
+    {
+        bool team1Ready = false;
+        bool team2Ready = false;
+
+        LoopTroughPlayers((NetworkPlayer player) => {
+            if (player.isReady && player.team == PlayerType.Player1) { team1Ready = true; }
+            if (player.isReady && player.team == PlayerType.Player2) { team2Ready = true; }
+        });
+
+        return team1Ready && team2Ready;
+    }
+
+    public bool IsReadyToStartBriefing()
+    {
+        Scene activeScene = SceneManager.GetActiveScene();
+        return gameplayScene.Contains(activeScene.name) && playingPlayers.Count == networkPlayers.Count;
+    }
+
+    public bool IsFinishedBriefing()
+    {
+        Scene activeScene = SceneManager.GetActiveScene();
+        return gameplayScene.Contains(activeScene.name) && briefedPlayers.Count == networkPlayers.Count;
     }
 
     public void LoopTroughPlayers(Action<NetworkPlayer> function, List<NetworkPlayer> playerList = null)

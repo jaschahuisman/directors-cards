@@ -8,8 +8,8 @@ public enum PlayerType { Player1, Player2 }
 public class NetworkPlayer : NetworkBehaviour
 {
     [Header("Authority (make sure to disable on player)")]
-    [SerializeField] private List<Behaviour> authoratativeBehaviours = new List<Behaviour>();
-    [SerializeField] private List<GameObject> authoratativeGameObjects = new List<GameObject>();
+    [SerializeField] private List<Behaviour> authoritativeBehaviours = new List<Behaviour>();
+    [SerializeField] private List<GameObject> authoritativeGameObjects = new List<GameObject>();
 
     [Header("Card related components")]
     [SerializeField] private PlayerGameplayManager playerGameplayManager;
@@ -35,10 +35,10 @@ public class NetworkPlayer : NetworkBehaviour
 
     public override void OnStartAuthority()
     {
-        foreach (Behaviour behaviour in authoratativeBehaviours)
+        foreach (Behaviour behaviour in authoritativeBehaviours)
             behaviour.enabled = true;
         
-        foreach (GameObject gameObject in authoratativeGameObjects)
+        foreach (GameObject gameObject in authoritativeGameObjects)
             gameObject.SetActive(true);
 
         base.OnStartAuthority();
@@ -62,19 +62,6 @@ public class NetworkPlayer : NetworkBehaviour
         Network.playingPlayers.Remove(this);
     }
 
-    [Command]
-    public void CmdSetPlayerTeam(PlayerType newTeam)
-    {
-        team = newTeam;
-    }
-
-    [Command]
-    public void CmdSetReadyState(bool newReadyState)
-    {
-        isReady = newReadyState;
-        // Network.NotifyReadyToLoadGameplay();
-    }
-
     public void HandleReadyStateChanged(bool oldVlaue, bool newReadyState)
     {
         OnReadyStateChanged?.Invoke(newReadyState);
@@ -84,11 +71,33 @@ public class NetworkPlayer : NetworkBehaviour
     }
 
     [Command]
+    public void CmdSetPlayerTeam(PlayerType newTeam) { team = newTeam; }
+
+    [Command]
+    public void CmdSetReadyState(bool newReadyState)
+    {
+        isReady = newReadyState;
+        Network.HandlePlayerReadyStateChange();
+    }
+
+    [Command]
     public void CmdReadyInGameplayScene()
     {
         Network.playingPlayers.Add(this);
-        // Network.NotifyReadyToStartBriefing();
+        Network.HandlePlayerGameplaySceneLoaded();
     }
 
+    [ClientRpc]
+    public void RpcStartBriefing(int briefingIndex)
+    {
+        var briefing = Database.Instance.briefings[briefingIndex];
+        // BriefingManager.Instance.StartBriefing(briefing, this);
+    }
+
+    [Server]
+    public void UpdateCharacter(int briefingIndex)
+    {
+        playerGameplayManager.UpdateCharacter(briefingIndex);
+    }
 }
 

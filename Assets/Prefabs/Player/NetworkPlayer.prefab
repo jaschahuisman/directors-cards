@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 1108729205187082574}
   - component: {fileID: 6907291901144105151}
   - component: {fileID: 7618366053334654554}
+  - component: {fileID: 9169406511811117348}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Untagged
@@ -362,16 +363,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.6
-  authoratativeBehaviours:
-  - {fileID: 8292672317834010125}
-  - {fileID: 5534796990796422381}
-  - {fileID: 356782570015959870}
-  - {fileID: 5876415152500851959}
-  - {fileID: 1447041327433273409}
-  - {fileID: 7858940134168304162}
-  - {fileID: 2818199361928632946}
-  authoratativeGameObjects:
-  - {fileID: 196601997880769956}
+  authoritativeBehaviours: []
+  authoritativeGameObjects: []
   playerGameplayManager: {fileID: 7618366053334654554}
   team: 0
   isReady: 0
@@ -387,12 +380,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b32dd371457b34b9fd0e675b91d790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  networkPlayer: {fileID: 6907291901144105151}
+  playerHandsController: {fileID: 9169406511811117348}
   playerCardPrefab: {fileID: 0}
   playerWristTransform: {fileID: 0}
   leftController: {fileID: 5876415152500851959}
   notificationAnimator: {fileID: 0}
   buzzerSound: {fileID: 1108729205187082574}
   playerHeadTransform: {fileID: 8456323172050853002}
+--- !u!114 &9169406511811117348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2328162234810218690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad39fb7d634898f4e97e0c6c69136ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2618647511868597111
 GameObject:
   m_ObjectHideFlags: 0
