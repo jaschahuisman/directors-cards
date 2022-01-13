@@ -12,6 +12,11 @@ public class HandController : MonoBehaviour
     [SerializeField] private PlayerHandsController playerHandsController;
     [SerializeField] private float thumbMoveSpeed = 0.45f;
 
+    [Header("Offline rig animator components")]
+    [SerializeField] private bool offline = false;
+    [SerializeField] private Animator offlineAnimator;
+
+
     private InputDevice inputDevice;
 
     private float indexValue, thumbValue, threeFingersValue;
@@ -23,7 +28,7 @@ public class HandController : MonoBehaviour
 
     void Update()
     {
-        if (NetworkClient.ready)
+        if (NetworkClient.ready || offline == true)
         {
             if (inputDevice != null) AnimateHand();
             else GetInputDevice(out inputDevice);
@@ -68,6 +73,17 @@ public class HandController : MonoBehaviour
 
         thumbValue = Mathf.Clamp(thumbValue, 0, 1);
 
-        playerHandsController.HandleHandAnimation(handType, indexValue, threeFingersValue, thumbValue);
+        if (offline == false && playerHandsController != null)
+        {
+            playerHandsController.HandleHandAnimation(handType, indexValue, threeFingersValue, thumbValue);
+        }
+        else
+        {
+            if (offlineAnimator == null) return;
+
+            offlineAnimator.SetFloat("Index", indexValue);
+            offlineAnimator.SetFloat("ThreeFingers", threeFingersValue);
+            offlineAnimator.SetFloat("Thumb", thumbValue);
+        }
     }
 }

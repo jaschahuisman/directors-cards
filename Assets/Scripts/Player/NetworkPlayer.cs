@@ -36,18 +36,29 @@ public class NetworkPlayer : NetworkBehaviour
     public override void OnStartAuthority()
     {
         foreach (Behaviour behaviour in authoritativeBehaviours)
+        {
             behaviour.enabled = true;
-        
+        }
+
         foreach (GameObject gameObject in authoritativeGameObjects)
             gameObject.SetActive(true);
 
         base.OnStartAuthority();
     }
 
-    public override void OnStartClient() => SetupPlayerInNetwork();
-    public override void OnStartServer() => SetupPlayerInNetwork();
-    public override void OnStopClient() => RemovePlayerFromNetwork();
-    public override void OnStopServer() => RemovePlayerFromNetwork();
+    public override void OnStartClient() { 
+        SetupPlayerInNetwork(); 
+    }
+    public override void OnStartServer() { 
+        if(isServerOnly) 
+            SetupPlayerInNetwork(); 
+    }
+
+    public override void OnStopClient() { RemovePlayerFromNetwork(); }
+    public override void OnStopServer() { 
+        if (isServerOnly)
+            RemovePlayerFromNetwork();
+    }
 
     private void SetupPlayerInNetwork()
     {
@@ -91,7 +102,14 @@ public class NetworkPlayer : NetworkBehaviour
     public void RpcStartBriefing(int briefingIndex)
     {
         var briefing = Database.Instance.briefings[briefingIndex];
-        // BriefingManager.Instance.StartBriefing(briefing, this);
+        BriefingManager.Instance.StartBriefing(briefing, this);
+    }
+
+    [Command]
+    public void CmdFinishPlayerBriefing()
+    {
+        Network.briefedPlayers.Add(this);
+        Network.HandlePlayerBriefingFinished();
     }
 
     [Server]

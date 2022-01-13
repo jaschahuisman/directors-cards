@@ -42,6 +42,28 @@ public class NetworkManagerExtended : NetworkManager
         ConnectionEvent?.Invoke();
     }
 
+    public override void OnClientSceneChanged(NetworkConnection conn)
+    {
+        base.OnClientSceneChanged(conn);
+
+        if (!conn.identity) { return; }
+
+        Scene activeScene = SceneManager.GetActiveScene();
+        NetworkPlayer player = conn.identity.GetComponent<NetworkPlayer>();
+
+        if (!player) { return; }
+
+        if (gameplayScene.Contains(activeScene.name))
+        {
+            player.CmdReadyInGameplayScene();
+        }
+    }
+
+    public void LoadGameplayScene()
+    {
+        ServerChangeScene(gameplayScene);
+    }
+
     public void StartBriefing()
     {
         briefedPlayers.Clear();
@@ -130,5 +152,18 @@ public class NetworkManagerExtended : NetworkManager
         LoopTroughPlayers(
            (NetworkPlayer player) => { if (player.isLocalPlayer) function(); }
         );
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            LoadGameplayScene();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            StopGameplay();
+        }
     }
 }

@@ -6,9 +6,12 @@ public class Database : MonoBehaviour
 {
     public List<Briefing> briefings = new List<Briefing>();
     public List<Card> cards = new List<Card>();
+    
+    public List<Card> deckPlayer1 = new List<Card>();
+    public List<Card> deckPlayer2 = new List<Card>();
 
     public static Database Instance;
-
+    
     private void Awake()
     {
         if (Instance == null)

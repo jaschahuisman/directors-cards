@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
 
+[CreateAssetMenu(fileName = "b_title", menuName = "Theatersport/Briefing")]
 public class Briefing : ScriptableObject
 {
     public string title;

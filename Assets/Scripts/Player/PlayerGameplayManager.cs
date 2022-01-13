@@ -48,15 +48,18 @@ public class PlayerGameplayManager : NetworkBehaviour
                 ? briefing.playerRole1.headPrefab
                 : briefing.playerRole2.headPrefab;
 
-        GameObject head = Instantiate(headObject);
+        if (headObject != null)
+        {
+            GameObject head = Instantiate(headObject);
 
-        head.transform.SetParent(playerHeadTransform);
+            head.transform.SetParent(playerHeadTransform, false);
 
-        head.transform.position = playerHeadTransform.position;
-        head.transform.rotation = playerHeadTransform.rotation;
-        head.transform.localScale = playerHeadTransform.localScale;
+            head.transform.position = playerHeadTransform.position;
+            head.transform.rotation = playerHeadTransform.rotation;
+            head.transform.localScale = playerHeadTransform.localScale;
 
-        NetworkServer.Spawn(head, gameObject);
+            NetworkServer.Spawn(head, gameObject);
+        }
     }
 
     [Server]
@@ -73,8 +76,32 @@ public class PlayerGameplayManager : NetworkBehaviour
 
 
     [ClientRpc]
-    public void RpcReceiveCard()
+    public void RpcReceiveCard(int cardIndex)
     {
+        if (isLocalPlayer)
+        {
+            Card card = Database.Instance.cards[cardIndex];
 
+            SendHaptics();
+            buzzerSound.Play();
+            notificationAnimator.SetTrigger("PlayAnimation");
+
+            foreach (Transform child in playerWristTransform) { Destroy(child.gameObject); }
+
+            GameObject playerCardObject = Instantiate(playerCardPrefab);
+            PlayerCard playerCard = playerCardObject.GetComponent<PlayerCard>();
+
+            playerCard.SetData(card);
+
+            playerCardObject.transform.SetParent(playerWristTransform, false);
+            playerCardObject.SetActive(true);
+
+            Debug.LogWarning("Received card with index " + cardIndex);
+        }
+    }
+
+    private void SendHaptics()
+    {
+        if (leftController != null) { leftController.SendHapticImpulse(1f, 0.6f); }
     }
 }
