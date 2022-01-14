@@ -10,11 +10,12 @@ public class DirectorCard : MonoBehaviour, IPointerClickHandler
     [SerializeField] private TextMeshProUGUI typeText2;
     [SerializeField] private TextMeshProUGUI contentText;
 
-    public Card card;
-    public CardType type;
-    public PlayerType team;
-    private string content;
-    public DirectorGameplayManager directorGameplayManager;
+    [HideInInspector] public Card card;
+    [HideInInspector] public CardType type;
+    [HideInInspector] public PlayerType team;
+
+
+    [HideInInspector] public DirectorGameplayManager directorGameplayManager;
     public bool isUsed = false;
     public bool isEndCard = false;
 
@@ -27,11 +28,10 @@ public class DirectorCard : MonoBehaviour, IPointerClickHandler
         isEndCard = _isEndCard;
 
         type = card.type;
-        content = card.content;
 
         typeText1.text = type.ToString();
         typeText2.text = type.ToString();
-        contentText.text = content;
+        contentText.text = card.content;
     }
 
     public void OnPointerClick(PointerEventData eventData)
