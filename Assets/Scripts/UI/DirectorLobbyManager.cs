@@ -15,6 +15,9 @@ public class DirectorLobbyManager : MonoBehaviour
     [SerializeField] private Transform deckSelectionTransformPlayer1;
     [SerializeField] private Transform deckSelectionTransformPlayer2;
 
+    [SerializeField] private TextMeshProUGUI playerReadyTextPlayer1;
+    [SerializeField] private TextMeshProUGUI playerReadyTextPlayer2;
+
     public List<Card> deckPlayer1 = new List<Card>();
     public List<Card> deckPlayer2 = new List<Card>();
 
@@ -88,6 +91,15 @@ public class DirectorLobbyManager : MonoBehaviour
             startButtonText.text = (enoughPlayers == true)
                 ? "Laat de show beginnen!"
                 : "Wachten tot de spelers er ook klaar voor zijn...";
+
+        Network.LoopTroughPlayers((NetworkPlayer player) => {
+            string readyText = (player.isReady)
+                ? "*is er helemaal klaar voor*"
+                : "*krekel geluid*";
+
+            if (player.team == PlayerType.Player1) playerReadyTextPlayer1.text = readyText;
+            if (player.team == PlayerType.Player2) playerReadyTextPlayer2.text = readyText;
+        });
     }
 
     public void HandleCardToggle(DirectorLobbyCard card)

@@ -130,5 +130,13 @@ public class NetworkPlayer : NetworkBehaviour
     {
         playerGameplayManager.UpdateCharacter(briefingIndex);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            CmdSetReadyState(true);
+        }
+    }
 }
 
