@@ -488,7 +488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7272505998439382996, guid: 4194f9ffbe822a44a90be61771a0f7db, type: 3}
       propertyPath: m_Name
-      value: Briefing Manager
+      value: Theatre Scene Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4194f9ffbe822a44a90be61771a0f7db, type: 3}
@@ -648,6 +648,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5684377772894655209
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5684377772982386672, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
+      propertyPath: m_Name
+      value: Network Spectator
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684377772982386674, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684377772982386674, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684377772982386674, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684377772982386674, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684377772982386674, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684377772982386674, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684377772982386674, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684377772982386674, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684377772982386674, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684377772982386674, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684377772982386674, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684377772982386675, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
+      propertyPath: sceneId
+      value: 1301297828
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
 --- !u!1001 &8019440168344438253
 PrefabInstance:
   m_ObjectHideFlags: 0

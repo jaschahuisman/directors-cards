@@ -19,11 +19,12 @@ public class DirectorCard : MonoBehaviour, IPointerClickHandler
     public bool isEndCard = false;
 
 
-    public void SetData(Card _card, PlayerType _team, DirectorGameplayManager gameplayManager)
+    public void SetData(Card _card, PlayerType _team, DirectorGameplayManager gameplayManager, bool _isEndCard = false)
     {
         card = _card;
         team = _team;
         directorGameplayManager = gameplayManager;
+        isEndCard = _isEndCard;
 
         type = card.type;
         content = card.content;
@@ -37,7 +38,7 @@ public class DirectorCard : MonoBehaviour, IPointerClickHandler
     {
         if (isUsed == false)
         {
-            directorGameplayManager.UseCard(this, team);
+            directorGameplayManager.UseCard(this);
             isUsed = true;
         }
     }

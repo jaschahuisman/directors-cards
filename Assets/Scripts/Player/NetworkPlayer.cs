@@ -12,7 +12,7 @@ public class NetworkPlayer : NetworkBehaviour
     [SerializeField] private List<GameObject> authoritativeGameObjects = new List<GameObject>();
 
     [Header("Card related components")]
-    [SerializeField] private PlayerGameplayManager playerGameplayManager;
+    [SerializeField] public PlayerGameplayManager playerGameplayManager;
 
     [Header("Network Player Status")]
     [SyncVar]
@@ -102,7 +102,7 @@ public class NetworkPlayer : NetworkBehaviour
     public void RpcStartBriefing(int briefingIndex)
     {
         var briefing = Database.Instance.briefings[briefingIndex];
-        BriefingManager.Instance.StartBriefing(briefing, this);
+        TheatreSceneManager.Instance.StartBriefing(briefing, this);
     }
 
     [Command]
@@ -110,6 +110,19 @@ public class NetworkPlayer : NetworkBehaviour
     {
         Network.briefedPlayers.Add(this);
         Network.HandlePlayerBriefingFinished();
+    }
+
+    [ClientRpc]
+    public void RpcFinishScene()
+    {
+        TheatreSceneManager.Instance.FinishScene(this);
+    }
+
+    [Command]
+    public void CmdFinishPlayerSceneDone()
+    {
+        Network.finishedPlayers.Add(this);
+        Network.HandlePlayerFinishedScene();
     }
 
     [Server]

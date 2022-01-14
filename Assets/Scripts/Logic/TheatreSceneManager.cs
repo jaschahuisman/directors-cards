@@ -5,17 +5,23 @@ using UnityEngine.Timeline;
 using UnityEngine.Playables;
 using TMPro;
 
-public class BriefingManager : MonoBehaviour
+public class TheatreSceneManager : MonoBehaviour
 {
     [SerializeField] private PlayableDirector playableDirector;
-    [SerializeField] private AudioSource audioSourcePlayer1, audioSourcePlayer2;
+
+    [Header("Briefing")]
+    [SerializeField] private AudioSource audioSourcePlayer1;
+    [SerializeField] private AudioSource audioSourcePlayer2;
     [SerializeField] private TextMeshProUGUI roleTextPlayer1, roleTextPlayer2;
     [SerializeField] private TextMeshProUGUI scenarioTextPlayer1, scenarioTextPlayer2;
     [SerializeField] private GameObject rolePanelPlayer1, rolePanelPlayer2;
     [SerializeField] private GameObject scenarioPanelPlayer1, scenarioPanelPlayer2;
 
-    private static BriefingManager instance;
-    public static BriefingManager Instance { get { return instance; } }
+    [Header("Finish")]
+    [SerializeField] private TimelineAsset finishTimeline;
+
+    private static TheatreSceneManager instance;
+    public static TheatreSceneManager Instance { get { return instance; } }
 
     private void Awake()
     {
@@ -72,5 +78,20 @@ public class BriefingManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         player.CmdFinishPlayerBriefing();
+    }
+
+    public void FinishScene(NetworkPlayer player)
+    {
+        player.playerGameplayManager.DestroyCards();
+        playableDirector.playableAsset = finishTimeline;
+        playableDirector.Play();
+
+        StartCoroutine(NotifyWhenFinishedDone(player, (float) finishTimeline.duration));
+    }
+
+    private IEnumerator NotifyWhenFinishedDone(NetworkPlayer player, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        player.CmdFinishPlayerSceneDone();
     }
 }

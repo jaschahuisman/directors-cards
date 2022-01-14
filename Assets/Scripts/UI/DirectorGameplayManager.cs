@@ -17,7 +17,9 @@ public class DirectorGameplayManager : MonoBehaviour
     [SerializeField] private Transform cardHolderTransformPlayer2;
     [SerializeField] private Transform cardHolderEndCard;
     [SerializeField] private Button endGameButton;
-    [SerializeField] private TextMeshProUGUI endCardTitle;
+    [SerializeField] private GameObject deckTitlePlayer1;
+    [SerializeField] private GameObject deckTitlePlayer2;
+    [SerializeField] private GameObject endCardTitle;
 
     private NetworkManagerExtended network;
     private NetworkManagerExtended Network
@@ -31,8 +33,12 @@ public class DirectorGameplayManager : MonoBehaviour
 
     private void Start()
     {
+        deckTitlePlayer1.SetActive(true);
+        deckTitlePlayer2.SetActive(true);
+        endCardTitle.SetActive(false);
+        
         endGameButton.gameObject.SetActive(false);
-        endCardTitle.gameObject.SetActive(false);
+        endGameButton.onClick.AddListener(Applause);
 
         DrawCards();
     }
@@ -68,15 +74,41 @@ public class DirectorGameplayManager : MonoBehaviour
     {
         List<Card> endCards = Database.Instance.cards.Where(card => card.type == CardType.Einde).ToList();
         
-        // assign 3 end cards in each player deck
+        deckTitlePlayer1.SetActive(false);
+        deckTitlePlayer2.SetActive(false);
+        endCardTitle.SetActive(true);
+
+        foreach (PlayerType playerType in System.Enum.GetValues(typeof(PlayerType)))
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (endCards.Count == 0)
+                {
+                    Debug.LogWarning("Not enough endcards left");
+                    break;
+                }
+
+                Card card = endCards[Random.Range(0, endCards.Count)];
+                endCards.Remove(card);
+
+                DirectorCard cardObject = Instantiate(directorCardPrefab);
+                cardObject.SetData(card, playerType, this, true);
+
+                Transform transformParent = (playerType == PlayerType.Player1)
+                    ? deckTransformPlayer1
+                    : deckTransformPlayer2;
+
+                cardObject.transform.SetParent(transformParent);
+            }
+        }
     }
 
-    public void UseCard(DirectorCard card, PlayerType team)
+    public void UseCard(DirectorCard card)
     {
-        Transform destination = (team == PlayerType.Player1) 
+        Transform destination = (card.team == PlayerType.Player1) 
             ? cardHolderTransformPlayer1 
             : cardHolderTransformPlayer2;
-
+        
         if (card.isEndCard) 
         { 
             destination = cardHolderEndCard; 
@@ -84,17 +116,31 @@ public class DirectorGameplayManager : MonoBehaviour
             Destroy(cardHolderTransformPlayer1.gameObject);
             Destroy(cardHolderTransformPlayer2.gameObject);
 
+            deckTransformPlayer1.gameObject.SetActive(false);
+            deckTransformPlayer2.gameObject.SetActive(false);
+
             endGameButton.gameObject.SetActive(true);
         }
 
         card.transform.SetParent(destination, true);
         StartCoroutine(card.MoveCard(card.transform.position, destination.position, 0.4f));
 
-        var databaseDeck = (team == PlayerType.Player1)
+        var databaseDeck = (card.team == PlayerType.Player1)
             ? Database.Instance.deckPlayer1
             : Database.Instance.deckPlayer2;
 
         databaseDeck.Remove(card.card);
+
+        Network.SendCardToPlayer(card.card, card.team);
+
         DrawCards();
+    }
+
+    public void Applause()
+    {
+        Network.FinishScene();
+        endCardTitle.SetActive(false);
+        endGameButton.gameObject.SetActive(false);
+        cardHolderEndCard.gameObject.SetActive(false);
     }
 }

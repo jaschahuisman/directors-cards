@@ -15,6 +15,7 @@ public class NetworkManagerExtended : NetworkManager
     public List<NetworkPlayer> networkPlayers = new List<NetworkPlayer>();
     public List<NetworkPlayer> briefedPlayers = new List<NetworkPlayer>();
     public List<NetworkPlayer> playingPlayers = new List<NetworkPlayer>();
+    public List<NetworkPlayer> finishedPlayers = new List<NetworkPlayer>();
 
     public static event Action ConnectionEvent;
     public static event Action<bool> GameplayReadyEvent;
@@ -81,16 +82,36 @@ public class NetworkManagerExtended : NetworkManager
         Debug.LogWarning("NetworkManager: Gameplay Started after briefing all players");
     }
 
+    public void FinishScene()
+    {
+        LoopTroughPlayers((NetworkPlayer player) => {
+            player.RpcFinishScene();
+        });
+    }
+
     public void StopGameplay()
     {
         GameplayStartedEvent?.Invoke(false);
         playingPlayers.Clear();
+        finishedPlayers.Clear();
 
         LoopTroughPlayers((NetworkPlayer player) => {
             player.isReady = false;
         });
 
         ServerChangeScene(onlineScene);
+    }
+
+    public void SendCardToPlayer(Card card, PlayerType team)
+    {
+        LoopTroughPlayers((NetworkPlayer player) =>
+        {
+            if (player.team == team || card.type == CardType.Einde)
+            {
+                int cardIndex = Database.Instance.cards.IndexOf(card);
+                player.playerGameplayManager.RpcReceiveCard(cardIndex);
+            }
+        });
     }
 
     public void HandlePlayerReadyStateChange()
@@ -109,8 +130,15 @@ public class NetworkManagerExtended : NetworkManager
     public void HandlePlayerBriefingFinished()
     {
         Debug.LogWarning("NetworkManager: Scene loaded on player");
-        if (IsReadyToStartBriefing())
+        if (IsFinishedBriefing())
             StartGameplay();
+    }
+
+    public void HandlePlayerFinishedScene()
+    {
+        Debug.LogWarning("NetworkManager: Scene finished on player");
+        if (IsFinishedScene())
+            StopGameplay();
     }
 
     public bool IsReadyToLoadGameplay()
@@ -136,6 +164,12 @@ public class NetworkManagerExtended : NetworkManager
     {
         Scene activeScene = SceneManager.GetActiveScene();
         return gameplayScene.Contains(activeScene.name) && briefedPlayers.Count == networkPlayers.Count;
+    }
+
+    public bool IsFinishedScene()
+    {
+        Scene activeScene = SceneManager.GetActiveScene();
+        return gameplayScene.Contains(activeScene.name) && finishedPlayers.Count == networkPlayers.Count;
     }
 
     public void LoopTroughPlayers(Action<NetworkPlayer> function, List<NetworkPlayer> playerList = null)

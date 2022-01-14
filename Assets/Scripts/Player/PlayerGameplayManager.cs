@@ -92,7 +92,6 @@ public class PlayerGameplayManager : NetworkBehaviour
             PlayerCard playerCard = playerCardObject.GetComponent<PlayerCard>();
 
             playerCard.SetData(card);
-
             playerCardObject.transform.SetParent(playerWristTransform, false);
             playerCardObject.SetActive(true);
 
