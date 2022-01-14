@@ -3118,7 +3118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8a38d92b6e2be69428f7b9c52040336a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.682
+      value: 0.688
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8a38d92b6e2be69428f7b9c52040336a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3152,6 +3152,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8045813214730231047, guid: 8a38d92b6e2be69428f7b9c52040336a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f8173c8c6d295142b13a42f3500452e, type: 2}
+    - target: {fileID: -4102182496389152248, guid: 8a38d92b6e2be69428f7b9c52040336a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f8173c8c6d295142b13a42f3500452e, type: 2}
     - target: {fileID: 919132149155446097, guid: 8a38d92b6e2be69428f7b9c52040336a, type: 3}
       propertyPath: m_Name
       value: radio_wrapped_meshfixes.01
@@ -3635,6 +3643,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1591236884}
     m_Modifications:
+    - target: {fileID: 24230322117887826, guid: b4e0195bb53a4ae4995bb57ef5ed3054, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f8173c8c6d295142b13a42f3500452e, type: 2}
     - target: {fileID: 1696497678726218304, guid: b4e0195bb53a4ae4995bb57ef5ed3054, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -3683,6 +3695,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: radio_wrapped_meshfixes
       objectReference: {fileID: 0}
+    - target: {fileID: 6274512757653727139, guid: b4e0195bb53a4ae4995bb57ef5ed3054, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f8173c8c6d295142b13a42f3500452e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4e0195bb53a4ae4995bb57ef5ed3054, type: 3}
 --- !u!1001 &5361350236820842086
