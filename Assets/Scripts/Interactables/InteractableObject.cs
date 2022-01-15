@@ -18,9 +18,6 @@ public class InteractableObject : NetworkBehaviour
     [HideInInspector] public XRGrabInteractable grabInteractable;
     [SyncVar] public NetworkIdentity owner;
 
-
-    AudioSource src;
-
     public override void OnStartServer()
     {
         base.OnStartServer();
@@ -36,20 +33,16 @@ public class InteractableObject : NetworkBehaviour
 
     private void Setup()
     {
-        src = GetComponent<AudioSource>();
-
         networkIdentity = GetComponent<NetworkIdentity>();
         grabInteractable = GetComponent<XRGrabInteractable>();
 
         GetComponent<NetworkTransform>().clientAuthority = true;
-        // GetComponent<Mirror.Experimental.NetworkRigidbody>().clientAuthority = true;
 
         grabInteractable.onSelectEntered.AddListener(PickupItem);
     }
 
     private void PickupItem(XRBaseInteractor interactor)
     {
-        src.Play();
         CmdAssignAuthority();
     }
 
