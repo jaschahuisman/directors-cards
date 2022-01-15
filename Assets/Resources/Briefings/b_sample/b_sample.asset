@@ -18,9 +18,9 @@ MonoBehaviour:
     role: Role 1
     scenario: Scenario 1
     headPrefab: {fileID: 0}
-    handsColor: {r: 0, g: 0, b: 0, a: 0}
+    handsColor: {r: 0.15395391, g: 1, b: 0, a: 0}
   playerRole2:
     role: Role 2
     scenario: Scenario 2
     headPrefab: {fileID: 0}
-    handsColor: {r: 0, g: 0, b: 0, a: 0}
+    handsColor: {r: 1, g: 0, b: 0, a: 0}

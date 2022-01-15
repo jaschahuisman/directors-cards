@@ -105,6 +105,11 @@ public class NetworkPlayer : NetworkBehaviour
         TheatreSceneManager.Instance.StartBriefing(briefing, this);
     }
 
+    public void FinishBriefing()
+    {
+        if (isLocalPlayer) CmdFinishPlayerBriefing();
+    }
+
     [Command]
     public void CmdFinishPlayerBriefing()
     {
@@ -118,17 +123,16 @@ public class NetworkPlayer : NetworkBehaviour
         TheatreSceneManager.Instance.FinishScene(this);
     }
 
+    public void FinishPlayerSceneDone()
+    {
+        if (isLocalPlayer) CmdFinishPlayerSceneDone();
+    }
+
     [Command]
     public void CmdFinishPlayerSceneDone()
     {
         Network.finishedPlayers.Add(this);
         Network.HandlePlayerFinishedScene();
-    }
-
-    [Server]
-    public void UpdateCharacter(int briefingIndex)
-    {
-        playerGameplayManager.UpdateCharacter(briefingIndex);
     }
 
     private void Update()

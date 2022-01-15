@@ -77,7 +77,7 @@ public class TheatreSceneManager : MonoBehaviour
     private IEnumerator NotifyWhenBriefingFinished(NetworkPlayer player, float delay)
     {
         yield return new WaitForSeconds(delay);
-        player.CmdFinishPlayerBriefing();
+        player.FinishBriefing();
     }
 
     public void FinishScene(NetworkPlayer player)
@@ -92,6 +92,6 @@ public class TheatreSceneManager : MonoBehaviour
     private IEnumerator NotifyWhenFinishedDone(NetworkPlayer player, float delay)
     {
         yield return new WaitForSeconds(delay);
-        player.CmdFinishPlayerSceneDone();
+        player.FinishPlayerSceneDone();
     }
 }

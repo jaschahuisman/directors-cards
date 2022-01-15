@@ -31,33 +31,33 @@ public class PlayerGameplayManager : NetworkBehaviour
         foreach (Transform child in playerHeadTransform) { NetworkServer.UnSpawn(child.gameObject); }
     }
 
-    [Server]
-    public void UpdateCharacter(int briefingIndex)
-    {
+   [Server]
+   public void UpdateCharacter(int briefingIndex)
+   {
         UpdateHead(briefingIndex);
         UpdateHandsColor(briefingIndex);
-    }
+   }
 
     [Server]
     private void UpdateHead(int briefingIndex)
     {
         var briefing = Database.Instance.briefings[briefingIndex];
-
+    
         DestroyHead();
         GameObject headObject = networkPlayer.team == PlayerType.Player1
                 ? briefing.playerRole1.headPrefab
                 : briefing.playerRole2.headPrefab;
-
+    
         if (headObject != null)
         {
             GameObject head = Instantiate(headObject);
-
+    
             head.transform.SetParent(playerHeadTransform, false);
-
+    
             head.transform.position = playerHeadTransform.position;
             head.transform.rotation = playerHeadTransform.rotation;
             head.transform.localScale = playerHeadTransform.localScale;
-
+    
             NetworkServer.Spawn(head, gameObject);
         }
     }
@@ -71,7 +71,13 @@ public class PlayerGameplayManager : NetworkBehaviour
            ? briefing.playerRole1.handsColor
            : briefing.playerRole2.handsColor;
 
-        // playerHandsController.handleSetHandColor(handsColor.r, handsColor.g, handsColor.b); 
+        RpcHandleSetHandColor(handsColor.r, handsColor.g, handsColor.b);
+    }
+
+    [ClientRpc]
+    private void RpcHandleSetHandColor(float r, float g, float b)
+    {
+        playerHandsController.HandleSetHandColor(r,g,b); 
     }
 
 

@@ -83,6 +83,7 @@ public class DirectorLobbyManager : MonoBehaviour
 
     private void GameplayReadyEvent(bool enoughPlayers)
     {
+        Debug.Log("GameplayReadyEvent triggered");
         startButton.interactable = (enoughPlayers && directorReady);
 
         if (directorReady == false)
@@ -92,14 +93,24 @@ public class DirectorLobbyManager : MonoBehaviour
                 ? "Laat de show beginnen!"
                 : "Wachten tot de spelers er ook klaar voor zijn...";
 
-        Network.LoopTroughPlayers((NetworkPlayer player) => {
-            string readyText = (player.isReady)
-                ? "*is er helemaal klaar voor*"
-                : "*krekel geluid*";
+        bool team1Ready = false;
+        bool team2Ready = false;
 
-            if (player.team == PlayerType.Player1) playerReadyTextPlayer1.text = readyText;
-            if (player.team == PlayerType.Player2) playerReadyTextPlayer2.text = readyText;
+        Network.LoopTroughPlayers((NetworkPlayer player) => {
+            if (player.isReady && player.team == PlayerType.Player1) { team1Ready = true; }
+            if (player.isReady && player.team == PlayerType.Player2) { team2Ready = true; }
         });
+
+        playerReadyTextPlayer1.text = GetReadyText(team1Ready);
+        playerReadyTextPlayer2.text = GetReadyText(team2Ready);
+    }
+
+    private string GetReadyText(bool isReady)
+    {
+        string readyText = (isReady)
+            ? "*Is er helemaal klaar voor*"
+            : "*Krekelgeluid*";
+        return readyText;
     }
 
     public void HandleCardToggle(DirectorLobbyCard card)

@@ -40,7 +40,17 @@ public class NetworkManagerExtended : NetworkManager
     {
         GameObject player = Instantiate(playerPrefab);
         NetworkServer.AddPlayerForConnection(conn, player);
+        
         ConnectionEvent?.Invoke();
+        GameplayReadyEvent?.Invoke(IsReadyToLoadGameplay());
+    }
+
+    public override void OnServerDisconnect(NetworkConnection conn)
+    {
+        base.OnServerDisconnect(conn);
+        
+        ConnectionEvent?.Invoke();
+        GameplayReadyEvent?.Invoke(IsReadyToLoadGameplay());
     }
 
     public override void OnClientSceneChanged(NetworkConnection conn)
@@ -72,7 +82,7 @@ public class NetworkManagerExtended : NetworkManager
         
         LoopTroughPlayers((NetworkPlayer player) => {
             player.RpcStartBriefing(briefingIndex);
-            player.UpdateCharacter(briefingIndex);
+            player.playerGameplayManager.UpdateCharacter(briefingIndex);
         });
     }
 

@@ -14,12 +14,12 @@ public class FistPot : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
         if (other.GetComponent<XRController>() != null)
         {
+            Debug.LogWarning("Pot Triggered", other);
             NetworkPlayer player = other.GetComponentInParent<NetworkPlayer>();
 
-            if (NetworkServer.localClientActive && player != null)
+            if (player != null)
                 OnFistEnterJoinEvent?.Invoke(team, player);
             else
                 OnFistEnterDiscoverEvent?.Invoke();
