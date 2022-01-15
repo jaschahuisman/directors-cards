@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2343057727079824866}
   - component: {fileID: 2343057727079824868}
   - component: {fileID: 2343057727079824867}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
+  m_Color: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 2343057727185955427}
   - component: {fileID: 2343057727185955426}
   - component: {fileID: 2343057727185955425}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Offline Menu Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 2343057727405741687}
   - component: {fileID: 2343057727405741641}
   - component: {fileID: 2343057727405741640}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Start Button Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 2343057728210640093}
   - component: {fileID: 2343057728210640092}
   - component: {fileID: 2343057728210640091}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Start Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
