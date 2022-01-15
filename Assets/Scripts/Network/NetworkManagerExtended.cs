@@ -141,7 +141,9 @@ public class NetworkManagerExtended : NetworkManager
     {
         Debug.LogWarning("NetworkManager: Scene loaded on player");
         if (IsFinishedBriefing())
+        {
             StartGameplay();
+        }
     }
 
     public void HandlePlayerFinishedScene()

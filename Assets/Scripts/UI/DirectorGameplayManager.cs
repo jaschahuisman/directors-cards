@@ -20,6 +20,7 @@ public class DirectorGameplayManager : MonoBehaviour
     [SerializeField] private GameObject deckTitlePlayer1;
     [SerializeField] private GameObject deckTitlePlayer2;
     [SerializeField] private GameObject endCardTitle;
+    [SerializeField] private GameObject waitingPanel;
 
     private NetworkManagerExtended network;
     private NetworkManagerExtended Network
@@ -32,15 +33,31 @@ public class DirectorGameplayManager : MonoBehaviour
     }
 
     private void Start()
-    {
+    { 
+        Network.IsFinishedBriefing();
         deckTitlePlayer1.SetActive(true);
         deckTitlePlayer2.SetActive(true);
         endCardTitle.SetActive(false);
-        
+
         endGameButton.gameObject.SetActive(false);
         endGameButton.onClick.AddListener(Applause);
 
         DrawCards();
+
+        NetworkManagerExtended.GameplayStartedEvent += OnGameplayStarted;
+        OnGameplayStarted(false);
+    }
+
+    private void OnDestroy()
+    {
+        NetworkManagerExtended.GameplayStartedEvent -= OnGameplayStarted;
+    }
+
+    private void OnGameplayStarted(bool started)
+    {
+        waitingPanel.SetActive(!started);
+        deckTransformPlayer1.gameObject.SetActive(started);
+        deckTransformPlayer2.gameObject.SetActive(started);
     }
 
     private void DrawCards()
