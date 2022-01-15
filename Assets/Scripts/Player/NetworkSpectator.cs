@@ -9,8 +9,8 @@ public class NetworkSpectator : NetworkBehaviour
     [SerializeField] private float zoomFactor = 1.5f;
     [SerializeField] private float smoothTime = 0.8f;
     [SerializeField] private float yOffset = 0.8f;
+    [SerializeField] private Vector3 defaultPosition = new Vector3(0, 0, 0);
     private Vector3 velocity = Vector3.zero;
-    private Vector3 defaultPosition = new Vector3(0, 0, 0);
 
 
     private NetworkManagerExtended network;
@@ -21,11 +21,6 @@ public class NetworkSpectator : NetworkBehaviour
             if (network != null) { return network; }
             return network = NetworkManagerExtended.singleton as NetworkManagerExtended;
         }
-    }
-
-    private void Start()
-    {
-        defaultPosition = transform.position;
     }
 
     private void Update()
