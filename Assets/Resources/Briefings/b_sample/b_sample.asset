@@ -15,12 +15,12 @@ MonoBehaviour:
   title: Sample
   timeline: {fileID: 11400000, guid: 29325201fb5c80c479f0021a61b27306, type: 2}
   playerRole1:
-    role: 
-    scenario: 
+    role: Role 1
+    scenario: Scenario 1
     headPrefab: {fileID: 0}
     handsColor: {r: 0, g: 0, b: 0, a: 0}
   playerRole2:
-    role: 
-    scenario: 
+    role: Role 2
+    scenario: Scenario 2
     headPrefab: {fileID: 0}
     handsColor: {r: 0, g: 0, b: 0, a: 0}

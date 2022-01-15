@@ -17,20 +17,20 @@ public class PlayerDiscoverySystem : MonoBehaviour
             return network = NetworkManagerExtended.singleton as NetworkManagerExtended;
         }
     }
-
     private void Start()
     {
         discovery.OnServerFound.AddListener(OnServerFound);
+        FistPot.OnFistEnterDiscoverEvent += StartDiscovery;
+    }
+    private void OnDestroy()
+    {
+        FistPot.OnFistEnterDiscoverEvent -= StartDiscovery;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void StartDiscovery()
     {
-        XRController controller = other.GetComponent<XRController>();
-        if (controller != null)
-        {
-            discovery.StartDiscovery();
-            Debug.LogWarning(other);
-        }
+        discovery.StartDiscovery();
+        Debug.LogWarning("Discovery Started");
     }
 
     private void OnServerFound(ServerResponse response)
