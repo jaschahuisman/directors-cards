@@ -98,7 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 0
   playerHandsController: {fileID: 0}
-  thumbMoveSpeed: 0.45
+  thumbMoveSpeed: 0.275
+  offline: 0
+  offlineAnimator: {fileID: 0}
 --- !u!1 &705566594066377639
 GameObject:
   m_ObjectHideFlags: 0
