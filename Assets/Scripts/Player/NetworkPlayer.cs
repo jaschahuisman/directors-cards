@@ -46,12 +46,14 @@ public class NetworkPlayer : NetworkBehaviour
         base.OnStartAuthority();
     }
 
-    public override void OnStartClient() {
+    public override void OnStartClient() 
+    {
         OnReadyStateChanged?.Invoke(false);
         SetupPlayerInNetwork(); 
     }
 
-    public override void OnStartServer() { 
+    public override void OnStartServer() 
+    { 
         if(isServerOnly) 
             SetupPlayerInNetwork(); 
     }
@@ -62,7 +64,8 @@ public class NetworkPlayer : NetworkBehaviour
         RemovePlayerFromNetwork(); 
     }
 
-    public override void OnStopServer() { 
+    public override void OnStopServer() 
+    { 
         if (isServerOnly)
             RemovePlayerFromNetwork();
     }
