@@ -107,7 +107,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -184,3 +184,4 @@ MonoBehaviour:
   zoomFactor: 1.5
   smoothTime: 0.8
   yOffset: 0.8
+  defaultPosition: {x: 0, y: 0, z: 0}
