@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Mirror.Discovery;
+using TMPro;
 
 public class PlayerDiscoverySystem : MonoBehaviour
 {
     [SerializeField] private NetworkDiscovery discovery;
     [SerializeField] private FistPot joinPot;
+    [SerializeField] private TextMeshProUGUI joinText;
 
     private NetworkManagerExtended network;
     private NetworkManagerExtended Network
@@ -30,6 +32,7 @@ public class PlayerDiscoverySystem : MonoBehaviour
 
     private void StartDiscovery()
     {
+        joinText.text = "Op zoek naar een regisseur...";
         joinPot.Activate(true);
         discovery.StartDiscovery();
         Debug.LogWarning("Discovery Started");
@@ -37,6 +40,7 @@ public class PlayerDiscoverySystem : MonoBehaviour
 
     private void OnServerFound(ServerResponse response)
     {
+        joinText.text = "Onderweg naar de set!";
         Network.StartClient(response.uri);
     }
 }

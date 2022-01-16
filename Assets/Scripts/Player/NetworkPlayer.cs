@@ -15,7 +15,7 @@ public class NetworkPlayer : NetworkBehaviour
     [SerializeField] public PlayerGameplayManager playerGameplayManager;
 
     [Header("Network Player Status")]
-    [SyncVar]
+    [SyncVar(hook = nameof(HandleTeamChanged))]
     public PlayerType team = PlayerType.Player1;
 
     [SyncVar(hook = nameof(HandleReadyStateChanged))]
@@ -48,7 +48,7 @@ public class NetworkPlayer : NetworkBehaviour
 
     public override void OnStartClient() 
     {
-        OnReadyStateChanged?.Invoke(false);
+        OnReadyStateChanged?.Invoke(isReady);
         SetupPlayerInNetwork(); 
     }
 
@@ -60,7 +60,7 @@ public class NetworkPlayer : NetworkBehaviour
 
     public override void OnStopClient() 
     {
-        OnReadyStateChanged?.Invoke(false);
+        OnReadyStateChanged?.Invoke(isReady);
         RemovePlayerFromNetwork(); 
     }
 
@@ -89,6 +89,11 @@ public class NetworkPlayer : NetworkBehaviour
 
         if (newReadyState == false)
             playerGameplayManager.DestroyCards();
+    }
+
+    public void HandleTeamChanged(PlayerType oldValue, PlayerType newValue)
+    {
+        OnReadyStateChanged?.Invoke(isReady);
     }
 
     [Command]

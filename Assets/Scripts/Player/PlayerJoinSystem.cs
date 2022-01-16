@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using TMPro;
 
 public class PlayerJoinSystem : NetworkBehaviour
 {
     [SerializeField] private FistPot fistPotPlayer1;
     [SerializeField] private FistPot fistPotPlayer2;
+    [SerializeField] private TextMeshProUGUI joinTextPlayer1;
+    [SerializeField] private TextMeshProUGUI joinTextPlayer2;
 
     private NetworkManagerExtended network;
     private NetworkManagerExtended Network
@@ -35,7 +38,16 @@ public class PlayerJoinSystem : NetworkBehaviour
         });
 
         fistPotPlayer1.Activate(team1Ready && fistPotPlayer1.activated == false); 
-        fistPotPlayer2.Activate(team2Ready && fistPotPlayer2.activated == false); 
+        fistPotPlayer2.Activate(team2Ready && fistPotPlayer2.activated == false);
+
+       
+        joinTextPlayer1.text = (team1Ready) 
+            ? "Speler 1 is er helemaal klaar voor! \n Nu de regisseur nog..."
+            : "Hand in de pot als je speler 1 wilt zijn!";
+
+        joinTextPlayer2.text = (team2Ready)
+            ? "Speler 2 is er helemaal klaar voor! \n Nu de regisseur nog..."
+            : "Hand in de pot als je speler 2 wilt zijn!";
     }
 
     private void OnDestroy()

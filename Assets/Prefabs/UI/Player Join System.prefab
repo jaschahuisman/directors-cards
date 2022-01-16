@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 210564208296047318}
   - component: {fileID: 210564208296047305}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Join Text Player 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 210564208749262930}
   - component: {fileID: 210564208749262933}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Join Text Player 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hand in de pot als je speler 1 wilt zijn
+  m_text: Hand in de pot als je speler 1 wilt zijn!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 62491174adac5ee4ab3cdb4600aa8511, type: 2}
   m_sharedMaterial: {fileID: -4468508821556099587, guid: 62491174adac5ee4ab3cdb4600aa8511, type: 2}
@@ -639,6 +639,8 @@ MonoBehaviour:
   syncInterval: 0.1
   fistPotPlayer1: {fileID: 719822857893722983}
   fistPotPlayer2: {fileID: 6957232855778636656}
+  joinTextPlayer1: {fileID: 210564208749262933}
+  joinTextPlayer2: {fileID: 210564208296047305}
 --- !u!1001 &53815982635433264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -696,7 +698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 667203767754491479, guid: 9096d00203017b549aaa5695e53f927b, type: 3}
       propertyPath: team
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9096d00203017b549aaa5695e53f927b, type: 3}
