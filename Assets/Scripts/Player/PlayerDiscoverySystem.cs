@@ -6,7 +6,8 @@ using Mirror.Discovery;
 
 public class PlayerDiscoverySystem : MonoBehaviour
 {
-    [SerializeField] NetworkDiscovery discovery;
+    [SerializeField] private NetworkDiscovery discovery;
+    [SerializeField] private FistPot joinPot;
 
     private NetworkManagerExtended network;
     private NetworkManagerExtended Network
@@ -29,6 +30,7 @@ public class PlayerDiscoverySystem : MonoBehaviour
 
     private void StartDiscovery()
     {
+        joinPot.Activate(true);
         discovery.StartDiscovery();
         Debug.LogWarning("Discovery Started");
     }

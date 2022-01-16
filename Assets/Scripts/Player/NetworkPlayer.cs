@@ -21,7 +21,7 @@ public class NetworkPlayer : NetworkBehaviour
     [SyncVar(hook = nameof(HandleReadyStateChanged))]
     public bool isReady = false;
 
-    public event System.Action<bool> OnReadyStateChanged;
+    public static event System.Action<bool> OnReadyStateChanged;
 
     private NetworkManagerExtended network;
     private NetworkManagerExtended Network
@@ -46,15 +46,22 @@ public class NetworkPlayer : NetworkBehaviour
         base.OnStartAuthority();
     }
 
-    public override void OnStartClient() { 
+    public override void OnStartClient() {
+        OnReadyStateChanged?.Invoke(false);
         SetupPlayerInNetwork(); 
     }
+
     public override void OnStartServer() { 
         if(isServerOnly) 
             SetupPlayerInNetwork(); 
     }
 
-    public override void OnStopClient() { RemovePlayerFromNetwork(); }
+    public override void OnStopClient() 
+    {
+        OnReadyStateChanged?.Invoke(false);
+        RemovePlayerFromNetwork(); 
+    }
+
     public override void OnStopServer() { 
         if (isServerOnly)
             RemovePlayerFromNetwork();
