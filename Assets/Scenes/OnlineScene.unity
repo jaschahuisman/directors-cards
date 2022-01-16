@@ -660,6 +660,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5684377772760344120, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.27
+      objectReference: {fileID: 0}
     - target: {fileID: 5684377772982386672, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
       propertyPath: m_Name
       value: Network Specator
@@ -834,6 +838,10 @@ PrefabInstance:
     - target: {fileID: 210564209017087159, guid: 66d707e5f76d3914fa2b68f23329cd92, type: 3}
       propertyPath: sceneId
       value: 131768911
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903592688923617906, guid: 66d707e5f76d3914fa2b68f23329cd92, type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66d707e5f76d3914fa2b68f23329cd92, type: 3}
