@@ -42,8 +42,8 @@ public class DirectorLobbyCard : MonoBehaviour, IPointerClickHandler
     public void SetColor()
     {
         cardBackgroundImage.color = (selected == true)
-            ? new Color(1, 1, 1, 1)
-            : new Color(1, 1, 1, 0.3f);
+            ? new Color(1, 0.9f, 0.7f, 1)
+            : new Color(1, 1, 1, 0.5f);
     }
 
     public void OnPointerClick(PointerEventData eventData)

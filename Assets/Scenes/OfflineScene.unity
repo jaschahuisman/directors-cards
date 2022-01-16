@@ -467,7 +467,10 @@ MonoBehaviour:
   playerPrefab: {fileID: 2328162234810218690, guid: fae55fb1e34d747438167e19b64892c5, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 7141070010027020957, guid: 0bad0a7ce93421146aab1088877ee9e9, type: 3}
+  - {fileID: 7141070010027020957, guid: eed747bf5b7d15d46b606ef17b72d867, type: 3}
+  - {fileID: 7141070010027020957, guid: 232c7879a47637c46b3138c55b48238b, type: 3}
   gameplayScene: Assets/Scenes/GameplayScene.unity
   networkPlayers: []
   briefedPlayers: []

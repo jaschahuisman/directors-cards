@@ -7,6 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3386857167839572139, guid: 8e68d384a1a48b64daf8528a0a2f5da5, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386857167839572139, guid: 8e68d384a1a48b64daf8528a0a2f5da5, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386857167839572139, guid: 8e68d384a1a48b64daf8528a0a2f5da5, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6430771926306689101, guid: 8e68d384a1a48b64daf8528a0a2f5da5, type: 3}
       propertyPath: m_Name
       value: Director Card (Lobby)
