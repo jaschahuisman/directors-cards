@@ -10,6 +10,7 @@ public class PlayerJoinSystem : NetworkBehaviour
     [SerializeField] private FistPot fistPotPlayer2;
     [SerializeField] private TextMeshProUGUI joinTextPlayer1;
     [SerializeField] private TextMeshProUGUI joinTextPlayer2;
+    [SerializeField] private DoorManager door1, door2;
 
     private NetworkManagerExtended network;
     private NetworkManagerExtended Network
@@ -23,8 +24,11 @@ public class PlayerJoinSystem : NetworkBehaviour
 
     private void Start()
     {
-        NetworkPlayer.OnReadyStateChanged += OnReadyStateChanged;        
-        FistPot.OnFistEnterJoinEvent += JoinPlayer;        
+        NetworkPlayer.OnReadyStateChanged += OnReadyStateChanged;
+        FistPot.OnFistEnterJoinEvent += JoinPlayer;
+        
+        door1.SetOpen(true);
+        door2.SetOpen(true);
     }
 
     private void OnReadyStateChanged(bool _isReady)

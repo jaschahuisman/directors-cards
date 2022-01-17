@@ -128,6 +128,7 @@ public class NetworkPlayer : NetworkBehaviour
     [Command]
     public void CmdFinishPlayerBriefing()
     {
+        TheatreSceneManager.Instance.OpenDoors();
         Network.briefedPlayers.Add(this);
         Network.HandlePlayerBriefingFinished();
     }

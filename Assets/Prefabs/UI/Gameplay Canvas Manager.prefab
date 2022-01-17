@@ -1159,6 +1159,7 @@ GameObject:
   - component: {fileID: 6642297112570700985}
   - component: {fileID: 1042701417884595243}
   - component: {fileID: 2057493739759819183}
+  - component: {fileID: 5392079111831576898}
   m_Layer: 5
   m_Name: Gameplay Canvas Manager
   m_TagString: Untagged
@@ -1273,6 +1274,23 @@ MonoBehaviour:
   deckTitlePlayer2: {fileID: 789165190418840953}
   endCardTitle: {fileID: 1127123368165590687}
   waitingPanel: {fileID: 4603331997503373127}
+--- !u!114 &5392079111831576898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7109014323871898317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 1
+  visible: 0
+  m_AssetId: 4860b48aed9809d45a3dd4cbc8b2235e
+  hasSpawned: 0
 --- !u!1 &7810800225554813613
 GameObject:
   m_ObjectHideFlags: 0

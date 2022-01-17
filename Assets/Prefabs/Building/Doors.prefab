@@ -39,6 +39,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1440122296096947775}
     m_Modifications:
+    - target: {fileID: -7163100102235365500, guid: e95671f3560ba8c40bdcae93c60127b4, type: 3}
+      propertyPath: openSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -7163100102235365500, guid: e95671f3560ba8c40bdcae93c60127b4, type: 3}
+      propertyPath: openPosition.x
+      value: 1.911
+      objectReference: {fileID: 0}
+    - target: {fileID: -7163100102235365500, guid: e95671f3560ba8c40bdcae93c60127b4, type: 3}
+      propertyPath: openPosition.y
+      value: -2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7163100102235365500, guid: e95671f3560ba8c40bdcae93c60127b4, type: 3}
+      propertyPath: openPosition.z
+      value: -1.027
+      objectReference: {fileID: 0}
     - target: {fileID: 5829523021824329223, guid: e95671f3560ba8c40bdcae93c60127b4, type: 3}
       propertyPath: m_Name
       value: Door Player 2
@@ -53,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6606060343439219901, guid: e95671f3560ba8c40bdcae93c60127b4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6606060343439219901, guid: e95671f3560ba8c40bdcae93c60127b4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -101,6 +117,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1440122296096947775}
     m_Modifications:
+    - target: {fileID: -1560612945201178129, guid: 1f2cb332a5d6b704cafb48cd98247dfe, type: 3}
+      propertyPath: openSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -1560612945201178129, guid: 1f2cb332a5d6b704cafb48cd98247dfe, type: 3}
+      propertyPath: openPosition.x
+      value: 1.911
+      objectReference: {fileID: 0}
+    - target: {fileID: -1560612945201178129, guid: 1f2cb332a5d6b704cafb48cd98247dfe, type: 3}
+      propertyPath: openPosition.y
+      value: -2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1560612945201178129, guid: 1f2cb332a5d6b704cafb48cd98247dfe, type: 3}
+      propertyPath: openPosition.z
+      value: 1.039
+      objectReference: {fileID: 0}
     - target: {fileID: 4903234629288146370, guid: 1f2cb332a5d6b704cafb48cd98247dfe, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -111,7 +143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4903234629288146370, guid: 1f2cb332a5d6b704cafb48cd98247dfe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4903234629288146370, guid: 1f2cb332a5d6b704cafb48cd98247dfe, type: 3}
       propertyPath: m_LocalPosition.z

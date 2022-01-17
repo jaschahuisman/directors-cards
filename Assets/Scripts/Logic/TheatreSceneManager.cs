@@ -16,6 +16,7 @@ public class TheatreSceneManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scenarioTextPlayer1, scenarioTextPlayer2;
     [SerializeField] private GameObject rolePanelPlayer1, rolePanelPlayer2;
     [SerializeField] private GameObject scenarioPanelPlayer1, scenarioPanelPlayer2;
+    [SerializeField] private DoorManager door1, door2;
 
     [Header("Finish")]
     [SerializeField] private TimelineAsset finishTimeline;
@@ -78,6 +79,13 @@ public class TheatreSceneManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         player.FinishBriefing();
+        OpenDoors();
+    }
+
+    public void OpenDoors()
+    {
+        door1.SetOpen(true);
+        door2.SetOpen(true);
     }
 
     public void FinishScene(NetworkPlayer player)
