@@ -29,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 744927436755101744}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.3}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.005, y: 0.005, z: 0.05}
   m_Children:
   - {fileID: 201371888454227062}
   - {fileID: 3782010794211415640}
@@ -38,7 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.6}
+  m_AnchoredPosition: {x: 0, y: 1.156}
   m_SizeDelta: {x: 120, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5393611568265490214
@@ -204,7 +204,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: 80}
+  m_SizeDelta: {x: -30, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3872416636885139252
 CanvasRenderer:
@@ -261,8 +261,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 11
+  m_fontSizeBase: 11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -407,19 +407,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 667203767754491478, guid: 9096d00203017b549aaa5695e53f927b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 667203767754491478, guid: 9096d00203017b549aaa5695e53f927b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.2
+      value: 0.135
       objectReference: {fileID: 0}
     - target: {fileID: 667203767754491478, guid: 9096d00203017b549aaa5695e53f927b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.953717
       objectReference: {fileID: 0}
     - target: {fileID: 667203767754491478, guid: 9096d00203017b549aaa5695e53f927b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.30070576
       objectReference: {fileID: 0}
     - target: {fileID: 667203767754491478, guid: 9096d00203017b549aaa5695e53f927b, type: 3}
       propertyPath: m_LocalRotation.y
@@ -431,7 +431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 667203767754491478, guid: 9096d00203017b549aaa5695e53f927b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 667203767754491478, guid: 9096d00203017b549aaa5695e53f927b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
