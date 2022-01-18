@@ -17,10 +17,10 @@ MonoBehaviour:
   playerRole1:
     role: Escaperoom speler
     scenario: Je wilt niet ontsnappen want je bent verliefd op je tegenspeler.
-    headPrefab: {fileID: 0}
-    handsColor: {r: 0.15395391, g: 1, b: 0, a: 0}
+    headPrefab: {fileID: 4612725156243169091, guid: 82e7a237d8a10cd45be9219d953888d2, type: 3}
+    handsColor: {r: 0.9245283, g: 0.6933962, b: 0.89661986, a: 1}
   playerRole2:
     role: Role 2
     scenario: Ontsnap en overtuig je tegenspeler van je ingenieuze oplossingen!
-    headPrefab: {fileID: 0}
-    handsColor: {r: 1, g: 0, b: 0, a: 0}
+    headPrefab: {fileID: 1237892229583767786, guid: 43e1ad97755e73f44ae635332fa5f9e9, type: 3}
+    handsColor: {r: 0.9254902, g: 0.69411767, b: 0.8980392, a: 1}
