@@ -535,9 +535,15 @@ MonoBehaviour:
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs:
-  - {fileID: 7141070010027020957, guid: 0bad0a7ce93421146aab1088877ee9e9, type: 3}
-  - {fileID: 7141070010027020957, guid: eed747bf5b7d15d46b606ef17b72d867, type: 3}
-  - {fileID: 7141070010027020957, guid: 232c7879a47637c46b3138c55b48238b, type: 3}
+  - {fileID: 9049021810204718202, guid: 8848618ae5d8835489d1e509bc5a244d, type: 3}
+  - {fileID: 995247151846060180, guid: efbe70f736a126a4eaaedaafe7d314b0, type: 3}
+  - {fileID: 1237892229583767786, guid: 43e1ad97755e73f44ae635332fa5f9e9, type: 3}
+  - {fileID: 273134004017845644, guid: 71a76e55437979543919af5c9c575507, type: 3}
+  - {fileID: 4612725156243169091, guid: 82e7a237d8a10cd45be9219d953888d2, type: 3}
+  - {fileID: 6753624943323889911, guid: 8c03bc332a37f5d4999d4e33b871e455, type: 3}
+  - {fileID: 3415787271239376164, guid: 899ce20fb0041244a99bd91829d3d952, type: 3}
+  - {fileID: 5373152797386475025, guid: 011bf3148352e2b458cf9c1b7d4abe2d, type: 3}
+  - {fileID: 5890297636006449640, guid: 3668d8bb1615a464f929fdcfe99e7787, type: 3}
   gameplayScene: Assets/Scenes/GameplayScene.unity
   networkPlayers: []
   briefedPlayers: []
