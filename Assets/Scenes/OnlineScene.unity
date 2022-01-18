@@ -879,10 +879,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5684377772760344120, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.27
-      objectReference: {fileID: 0}
     - target: {fileID: 5684377772982386672, guid: fdc81ac854530014e8f0ae41fbc98cb4, type: 3}
       propertyPath: m_Name
       value: Network Specator

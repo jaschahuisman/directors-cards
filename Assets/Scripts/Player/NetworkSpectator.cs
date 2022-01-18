@@ -10,6 +10,7 @@ public class NetworkSpectator : NetworkBehaviour
     [SerializeField] private float smoothTime = 0.8f;
     [SerializeField] private float yOffset = 0.8f;
     [SerializeField] private Vector3 defaultPosition = new Vector3(0, 0, 0);
+    [SerializeField] private Vector3 offlinePosition = new Vector3(0, 1, 0);
     private Vector3 velocity = Vector3.zero;
 
 
@@ -21,6 +22,11 @@ public class NetworkSpectator : NetworkBehaviour
             if (network != null) { return network; }
             return network = NetworkManagerExtended.singleton as NetworkManagerExtended;
         }
+    }
+
+    private void Awake()
+    {
+        transform.position = offlinePosition;
     }
 
     private void Update()
@@ -36,13 +42,13 @@ public class NetworkSpectator : NetworkBehaviour
             float yAxis = GetAveragePosition().y + yOffset;
             float zAxis = CalculateDistance() * zoomFactor * -1;
 
-            Vector3 newPosition = new Vector3(xAxis, yAxis, zAxis) + defaultPosition;
+            Vector3 newPosition = (new Vector3(xAxis, yAxis, zAxis) + defaultPosition) / 2;
 
             transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
         }
         else
         {
-            transform.position = Vector3.SmoothDamp(transform.position, defaultPosition, ref velocity, smoothTime);
+            transform.position = Vector3.SmoothDamp(transform.position, offlinePosition, ref velocity, smoothTime);
         }
     }
 
