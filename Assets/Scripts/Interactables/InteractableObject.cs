@@ -6,7 +6,6 @@ using Mirror;
 using System;
 
 [DisallowMultipleComponent]
-[RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(NetworkIdentity))]
 [RequireComponent(typeof(NetworkTransform))]

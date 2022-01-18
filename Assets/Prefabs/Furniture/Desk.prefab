@@ -313,7 +313,7 @@ Transform:
   m_GameObject: {fileID: 2299936488674494652}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.03672099, y: -0.0011662319, z: -0.004920602}
-  m_LocalScale: {x: 0.07936288, y: 0.18135378, z: 0.7716171}
+  m_LocalScale: {x: 0.07936288, y: 0.18, z: 0.7716171}
   m_Children: []
   m_Father: {fileID: 2299936490553163652}
   m_RootOrder: 1
@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 2299936488836857629}
   - component: {fileID: 7910449729537625063}
   - component: {fileID: 3545346354233159264}
+  - component: {fileID: 1647653938015184533}
   m_Layer: 0
   m_Name: Bureau La 4
   m_TagString: Untagged
@@ -691,6 +692,23 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 01daf1df2f7f0334b8d5d9518020796a
   hasSpawned: 0
+--- !u!114 &1647653938015184533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299936488836857630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83b8801ec12abb428a218422202c4fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  networkIdentity: {fileID: 0}
+  grabInteractable: {fileID: 0}
+  owner: {fileID: 0}
 --- !u!1 &2299936489094020989
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +737,7 @@ Transform:
   m_GameObject: {fileID: 2299936489094020989}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.03672099, y: 0.0016337633, z: -0.004920602}
-  m_LocalScale: {x: 0.07936288, y: 0.18135378, z: 0.7716171}
+  m_LocalScale: {x: 0.07936288, y: 0.18, z: 0.7716171}
   m_Children: []
   m_Father: {fileID: 2299936489359813940}
   m_RootOrder: 1
@@ -800,6 +818,7 @@ GameObject:
   - component: {fileID: 2299936489359813938}
   - component: {fileID: 5294150360161866436}
   - component: {fileID: 817476857159772263}
+  - component: {fileID: 8967295061718176163}
   m_Layer: 0
   m_Name: Bureau La 1
   m_TagString: Untagged
@@ -1097,6 +1116,23 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 01daf1df2f7f0334b8d5d9518020796a
   hasSpawned: 0
+--- !u!114 &8967295061718176163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299936489359813943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83b8801ec12abb428a218422202c4fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  networkIdentity: {fileID: 0}
+  grabInteractable: {fileID: 0}
+  owner: {fileID: 0}
 --- !u!1 &2299936489377497584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,6 +1147,7 @@ GameObject:
   - component: {fileID: 2299936489377497580}
   - component: {fileID: 2874186843014197070}
   - component: {fileID: 4361781325421443815}
+  - component: {fileID: 5848029587777623929}
   m_Layer: 0
   m_Name: Kluisdeur
   m_TagString: Untagged
@@ -1348,6 +1385,23 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 01daf1df2f7f0334b8d5d9518020796a
   hasSpawned: 0
+--- !u!114 &5848029587777623929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299936489377497584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83b8801ec12abb428a218422202c4fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  networkIdentity: {fileID: 0}
+  grabInteractable: {fileID: 0}
+  owner: {fileID: 0}
 --- !u!1 &2299936489523489125
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,6 +1416,7 @@ GameObject:
   - component: {fileID: 2299936489523489120}
   - component: {fileID: 5570163150435395231}
   - component: {fileID: 8932198365234587942}
+  - component: {fileID: 4039476307351472192}
   m_Layer: 0
   m_Name: Bureau La 2
   m_TagString: Untagged
@@ -1659,6 +1714,23 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 01daf1df2f7f0334b8d5d9518020796a
   hasSpawned: 0
+--- !u!114 &4039476307351472192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299936489523489125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83b8801ec12abb428a218422202c4fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  networkIdentity: {fileID: 0}
+  grabInteractable: {fileID: 0}
+  owner: {fileID: 0}
 --- !u!1 &2299936489552181766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1687,7 +1759,7 @@ Transform:
   m_GameObject: {fileID: 2299936489552181766}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.03672099, y: -0.00036627054, z: -0.004920602}
-  m_LocalScale: {x: 0.07936288, y: 0.18135378, z: 0.7716171}
+  m_LocalScale: {x: 0.07936288, y: 0.18, z: 0.7716171}
   m_Children: []
   m_Father: {fileID: 2299936488836857631}
   m_RootOrder: 1
@@ -1782,7 +1854,7 @@ Transform:
   m_GameObject: {fileID: 2299936489611291531}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.03672099, y: 0.009933777, z: -0.004920602}
-  m_LocalScale: {x: 0.07936288, y: 0.18135378, z: 0.7716171}
+  m_LocalScale: {x: 0.07936288, y: 0.18, z: 0.7716171}
   m_Children: []
   m_Father: {fileID: 2299936489523489122}
   m_RootOrder: 1
@@ -1958,6 +2030,7 @@ GameObject:
   - component: {fileID: 2299936490553163650}
   - component: {fileID: 2275584965848634172}
   - component: {fileID: 6207656484634432349}
+  - component: {fileID: 5156558503191513464}
   m_Layer: 0
   m_Name: Bureau La 3
   m_TagString: Untagged
@@ -2255,6 +2328,23 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 01daf1df2f7f0334b8d5d9518020796a
   hasSpawned: 0
+--- !u!114 &5156558503191513464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299936490553163655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83b8801ec12abb428a218422202c4fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  networkIdentity: {fileID: 0}
+  grabInteractable: {fileID: 0}
+  owner: {fileID: 0}
 --- !u!1 &5123480865026921805
 GameObject:
   m_ObjectHideFlags: 0
