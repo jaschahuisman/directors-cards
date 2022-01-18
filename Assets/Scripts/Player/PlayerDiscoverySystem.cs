@@ -41,6 +41,12 @@ public class PlayerDiscoverySystem : MonoBehaviour
     private void OnServerFound(ServerResponse response)
     {
         joinText.text = "Onderweg naar de set!";
-        Network.StartClient(response.uri);
+        StartCoroutine(StartClientAfterTime(response.uri, 3.0f));
+    }
+
+    private IEnumerator StartClientAfterTime(System.Uri uri, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Network.StartClient(uri);
     }
 }

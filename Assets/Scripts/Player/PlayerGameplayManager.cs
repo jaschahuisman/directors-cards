@@ -59,7 +59,18 @@ public class PlayerGameplayManager : NetworkBehaviour
             head.transform.localScale = playerHeadTransform.localScale;
     
             NetworkServer.Spawn(head, gameObject);
+            RpcSetHeadTransform(head);
         }
+    }
+
+    [ClientRpc]
+    private void RpcSetHeadTransform(GameObject head)
+    {
+        head.transform.SetParent(playerHeadTransform, false);
+
+        head.transform.position = playerHeadTransform.position;
+        head.transform.rotation = playerHeadTransform.rotation;
+        head.transform.localScale = playerHeadTransform.localScale;
     }
 
     [Server]

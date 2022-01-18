@@ -19,7 +19,7 @@ public class TheatreSceneManager : MonoBehaviour
     [SerializeField] private DoorManager door1, door2;
 
     [Header("Finish")]
-    [SerializeField] private TimelineAsset finishTimeline;
+    [SerializeField] private PlayableDirector finishPlayable;
 
     private static TheatreSceneManager instance;
     public static TheatreSceneManager Instance { get { return instance; } }
@@ -91,10 +91,9 @@ public class TheatreSceneManager : MonoBehaviour
     public void FinishScene(NetworkPlayer player)
     {
         player.playerGameplayManager.DestroyCards();
-        playableDirector.playableAsset = finishTimeline;
-        playableDirector.Play();
+        finishPlayable.Play();
 
-        StartCoroutine(NotifyWhenFinishedDone(player, (float) finishTimeline.duration));
+        StartCoroutine(NotifyWhenFinishedDone(player, (float) finishPlayable.playableAsset.duration));
     }
 
     private IEnumerator NotifyWhenFinishedDone(NetworkPlayer player, float delay)

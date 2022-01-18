@@ -32,7 +32,7 @@ public class FistPot : MonoBehaviour
 
         if (value == true)
         {
-            currentController.SendHapticImpulse(1, 1);
+            currentController.SendHapticImpulse(1, 0.4f);
             particleSystem.Play();
             audioSource.Play();
         }

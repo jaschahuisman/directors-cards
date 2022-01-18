@@ -614,7 +614,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   briefings:
-  - {fileID: 11400000, guid: 0ff85a6bf9d39834596b9b3eb15d108a, type: 2}
+  - {fileID: 11400000, guid: 87f068f5fe9af7246af0ff7dd35ed2d4, type: 2}
+  - {fileID: 11400000, guid: 3db5a2240a407444e9a44771932551e6, type: 2}
   cards:
   - {fileID: 11400000, guid: e00e8a261f3f6954883a46f9c4c9dc52, type: 2}
   - {fileID: 11400000, guid: 3520dc63c93d2e94787fcdb0cd101bb8, type: 2}

@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: f432cd1f0244c1143a5ee482da4d4601, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -519,6 +519,9 @@ MonoBehaviour:
   typeText1: {fileID: 1140422115848474404}
   typeText2: {fileID: 2609409338575480834}
   contentText: {fileID: 7740407858259896665}
+  endCardColor: {r: 1, g: 0.6392157, b: 0.5803922, a: 1}
+  frontImage: {fileID: 6885892214766631951}
+  backImage: {fileID: 1283160222317916769}
   type: 0
 --- !u!1 &8774635666486704615
 GameObject:
