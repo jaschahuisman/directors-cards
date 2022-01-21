@@ -33,6 +33,13 @@ public class NetworkPlayer : NetworkBehaviour
         }
     }
 
+    [Command]
+    public void CmdDebug(string value)
+    {
+        Debug.LogWarning(value);
+        Debug.LogWarning(team.ToString());
+    }
+
     public override void OnStartAuthority()
     {
         foreach (Behaviour behaviour in authoritativeBehaviours)
@@ -116,8 +123,11 @@ public class NetworkPlayer : NetworkBehaviour
     [ClientRpc]
     public void RpcStartBriefing(int briefingIndex)
     {
-        var briefing = Database.Instance.briefings[briefingIndex];
-        TheatreSceneManager.Instance.StartBriefing(briefing, this);
+        if (isLocalPlayer)
+        {
+            var briefing = Database.Instance.briefings[briefingIndex];
+            TheatreSceneManager.Instance.StartBriefing(briefing, this);
+        }
     }
 
     public void FinishBriefing()

@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61f0a255995e8049a5a99b5177bbd20, type: 3}
   m_Name: b_01_een-nieuw-paar-hersenen
   m_EditorClassIdentifier: 
-  title: Nieuw paar hersenen
+  title: Een nieuw paar hersenen
   timeline: {fileID: 11400000, guid: 8114e68615fa0b54388aaacc59b14a34, type: 2}
   playerRole1:
-    role: Schizofrene hersenverkoper
-    scenario: Je verkoopt hersenen op de zwarte markt.
-    headPrefab: {fileID: 3415787271239376164, guid: 899ce20fb0041244a99bd91829d3d952, type: 3}
-    handsColor: {r: 0.9056604, g: 0.4876969, b: 0.31185475, a: 1}
-  playerRole2:
     role: Klant
     scenario: 'Je bent op zoek naar een nieuw paar hersenen. Maar wees voorzichtig
       voor de onbetrouwbare verkoper! '
+    headPrefab: {fileID: 3415787271239376164, guid: 899ce20fb0041244a99bd91829d3d952, type: 3}
+    handsColor: {r: 0.9056604, g: 0.4876969, b: 0.31185475, a: 1}
+  playerRole2:
+    role: Schizofrene hersenverkoper
+    scenario: Je verkoopt hersenen op de zwarte markt.
     headPrefab: {fileID: 5373152797386475025, guid: 011bf3148352e2b458cf9c1b7d4abe2d, type: 3}
     handsColor: {r: 0.4433962, g: 0.29328325, b: 0.20287469, a: 1}

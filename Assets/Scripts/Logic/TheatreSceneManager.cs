@@ -24,6 +24,16 @@ public class TheatreSceneManager : MonoBehaviour
     private static TheatreSceneManager instance;
     public static TheatreSceneManager Instance { get { return instance; } }
 
+    private NetworkManagerExtended network;
+    private NetworkManagerExtended Network
+    {
+        get
+        {
+            if (network != null) { return network; }
+            return network = NetworkManagerExtended.singleton as NetworkManagerExtended;
+        }
+    }
+
     private void Awake()
     {
         instance = this;
@@ -38,10 +48,11 @@ public class TheatreSceneManager : MonoBehaviour
 
         TimelineAsset timeline = briefing.timeline;
         playableDirector.playableAsset = timeline;
+        player.CmdDebug("test");
 
         foreach (TrackAsset track in timeline.GetOutputTracks())
         {
-            track.muted = false;
+            track.muted = true;
 
             switch (track.name)
             {
@@ -59,11 +70,11 @@ public class TheatreSceneManager : MonoBehaviour
                     break;
                 case "audio_player_1":
                     playableDirector.SetGenericBinding(track, audioSourcePlayer1);
-                    if (player.team == PlayerType.Player2) track.muted = true;
+                    if (player.team == PlayerType.Player2) track.muted = false;
                     break;
                 case "audio_player_2":
                     playableDirector.SetGenericBinding(track, audioSourcePlayer2);
-                    if (player.team == PlayerType.Player1) track.muted = true;
+                    if (player.team == PlayerType.Player1) track.muted = false;
                     break;
                 default:
                     break;

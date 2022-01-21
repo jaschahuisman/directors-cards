@@ -20,7 +20,7 @@ MonoBehaviour:
     headPrefab: {fileID: 4612725156243169091, guid: 82e7a237d8a10cd45be9219d953888d2, type: 3}
     handsColor: {r: 0.9245283, g: 0.6933962, b: 0.89661986, a: 1}
   playerRole2:
-    role: Role 2
+    role: Escaperoom speler
     scenario: Ontsnap en overtuig je tegenspeler van je ingenieuze oplossingen!
     headPrefab: {fileID: 1237892229583767786, guid: 43e1ad97755e73f44ae635332fa5f9e9, type: 3}
     handsColor: {r: 0.9254902, g: 0.69411767, b: 0.8980392, a: 1}

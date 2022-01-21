@@ -2315,6 +2315,42 @@ PrefabInstance:
       propertyPath: door2
       value: 
       objectReference: {fileID: 1905625242}
+    - target: {fileID: 4647503046670304119, guid: 4194f9ffbe822a44a90be61771a0f7db, type: 3}
+      propertyPath: m_InitialState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647503046670304119, guid: 4194f9ffbe822a44a90be61771a0f7db, type: 3}
+      propertyPath: m_PlayableAsset
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647503046670304119, guid: 4194f9ffbe822a44a90be61771a0f7db, type: 3}
+      propertyPath: m_SceneBindings.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647503046670304119, guid: 4194f9ffbe822a44a90be61771a0f7db, type: 3}
+      propertyPath: m_SceneBindings.Array.data[0].key
+      value: 
+      objectReference: {fileID: -2883405515769459447, guid: 475d74481c7b716458d9cd951eaf09ea, type: 2}
+    - target: {fileID: 4647503046670304119, guid: 4194f9ffbe822a44a90be61771a0f7db, type: 3}
+      propertyPath: m_SceneBindings.Array.data[1].key
+      value: 
+      objectReference: {fileID: -2883405515769459447, guid: 475d74481c7b716458d9cd951eaf09ea, type: 2}
+    - target: {fileID: 4647503046670304119, guid: 4194f9ffbe822a44a90be61771a0f7db, type: 3}
+      propertyPath: m_SceneBindings.Array.data[2].key
+      value: 
+      objectReference: {fileID: -2883405515769459447, guid: 475d74481c7b716458d9cd951eaf09ea, type: 2}
+    - target: {fileID: 4647503046670304119, guid: 4194f9ffbe822a44a90be61771a0f7db, type: 3}
+      propertyPath: m_SceneBindings.Array.data[3].key
+      value: 
+      objectReference: {fileID: -2883405515769459447, guid: 475d74481c7b716458d9cd951eaf09ea, type: 2}
+    - target: {fileID: 4647503046670304119, guid: 4194f9ffbe822a44a90be61771a0f7db, type: 3}
+      propertyPath: m_SceneBindings.Array.data[4].key
+      value: 
+      objectReference: {fileID: -2883405515769459447, guid: 475d74481c7b716458d9cd951eaf09ea, type: 2}
+    - target: {fileID: 4647503046670304119, guid: 4194f9ffbe822a44a90be61771a0f7db, type: 3}
+      propertyPath: m_SceneBindings.Array.data[5].key
+      value: 
+      objectReference: {fileID: -2883405515769459447, guid: 475d74481c7b716458d9cd951eaf09ea, type: 2}
     - target: {fileID: 6373856796269180467, guid: 4194f9ffbe822a44a90be61771a0f7db, type: 3}
       propertyPath: m_RootOrder
       value: 4

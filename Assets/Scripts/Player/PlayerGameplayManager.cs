@@ -28,15 +28,19 @@ public class PlayerGameplayManager : NetworkBehaviour
 
     public void DestroyHead()
     {
-        foreach (Transform child in playerHeadTransform) { NetworkServer.UnSpawn(child.gameObject); }
+        foreach (Transform child in playerHeadTransform)
+        {
+            NetworkServer.Destroy(child.gameObject);
+            NetworkServer.UnSpawn(child.gameObject);
+        }
     }
 
-   [Server]
-   public void UpdateCharacter(int briefingIndex)
-   {
+    [Server]
+    public void UpdateCharacter(int briefingIndex)
+    {
         UpdateHead(briefingIndex);
         UpdateHandsColor(briefingIndex);
-   }
+    }
 
     [Server]
     private void UpdateHead(int briefingIndex)
