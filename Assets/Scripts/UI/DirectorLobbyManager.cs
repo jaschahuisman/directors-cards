@@ -103,6 +103,8 @@ public class DirectorLobbyManager : MonoBehaviour
 
         playerReadyTextPlayer1.text = GetReadyText(team1Ready);
         playerReadyTextPlayer2.text = GetReadyText(team2Ready);
+        playerReadyTextPlayer1.color = GetReadyColor(team1Ready);
+        playerReadyTextPlayer2.color = GetReadyColor(team2Ready);
     }
 
     private string GetReadyText(bool isReady)
@@ -111,6 +113,15 @@ public class DirectorLobbyManager : MonoBehaviour
             ? "*Is er helemaal klaar voor*"
             : "*Krekelgeluid*";
         return readyText;
+    }
+
+    private Color GetReadyColor(bool isReady)
+    {
+        Color readyColor = (isReady)
+            ? new Color(0, 0.7f, 0, 1)
+            : new Color(0.7f, 0, 0, 1);
+
+        return readyColor;
     }
 
     public void HandleCardToggle(DirectorLobbyCard card)

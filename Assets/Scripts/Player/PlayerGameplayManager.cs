@@ -11,6 +11,10 @@ public class PlayerGameplayManager : NetworkBehaviour
     [SerializeField] private NetworkPlayer networkPlayer;
     [SerializeField] private PlayerHandsController playerHandsController;
 
+    [Header("Camera related components")]
+    [SerializeField] private Camera playerCamera;
+    private int defaultCullingMask;
+
     [Header("Card related components")]
     [SerializeField] private GameObject playerCardPrefab;
     [SerializeField] private Transform playerWristTransform;
@@ -20,6 +24,12 @@ public class PlayerGameplayManager : NetworkBehaviour
 
     [Header("Head related components")]
     [SerializeField] public Transform playerHeadTransform;
+
+    public override void OnStartAuthority()
+    {
+        defaultCullingMask = playerCamera.cullingMask;
+        base.OnStartAuthority();
+    }
 
     public void DestroyCards()
     {
@@ -40,6 +50,8 @@ public class PlayerGameplayManager : NetworkBehaviour
     {
         UpdateHead(briefingIndex);
         UpdateHandsColor(briefingIndex);
+        
+        RpcSetCameraCulling();
     }
 
     [Server]
@@ -93,6 +105,40 @@ public class PlayerGameplayManager : NetworkBehaviour
     private void RpcHandleSetHandColor(float r, float g, float b)
     {
         playerHandsController.HandleSetHandColor(r,g,b); 
+    }
+
+    [ClientRpc]
+    public void RpcSetCameraCulling()
+    {
+        if (isLocalPlayer)
+        {
+            string layerToHide = (networkPlayer.team == PlayerType.Player1)
+                ? "Player2Only"
+                : "Player1Only";
+
+            string layerToShow = (networkPlayer.team == PlayerType.Player1)
+                ? "Player1Only"
+                : "Player2Only";
+
+            HideLayer(layerToHide);
+            ShowLayer(layerToShow);
+        }
+    }
+
+    [ClientRpc]
+    public void RpcResetCameraCulling()
+    {
+        playerCamera.cullingMask = defaultCullingMask;
+    }
+
+    private void ShowLayer(string layer)
+    {
+        playerCamera.cullingMask |= 1 << LayerMask.NameToLayer(layer);
+    }
+
+    private void HideLayer(string layer)
+    {
+        playerCamera.cullingMask &= ~(1 << LayerMask.NameToLayer(layer));
     }
 
 

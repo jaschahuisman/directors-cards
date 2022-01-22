@@ -96,6 +96,7 @@ public class NetworkManagerExtended : NetworkManager
     {
         LoopTroughPlayers((NetworkPlayer player) => {
             player.RpcFinishScene();
+            player.playerGameplayManager.RpcResetCameraCulling();
         });
     }
 

@@ -495,6 +495,7 @@ MonoBehaviour:
   syncInterval: 0.1
   networkPlayer: {fileID: 6907291901144105151}
   playerHandsController: {fileID: 9169406511811117348}
+  playerCamera: {fileID: 8292672317834010125}
   playerCardPrefab: {fileID: 8756260766429884793, guid: 20c4b2b9aa3a7a040b891e0c1074aac5, type: 3}
   playerWristTransform: {fileID: 4656192906649155549}
   leftController: {fileID: 5876415152500851959}
@@ -809,7 +810,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 183
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
