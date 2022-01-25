@@ -6,6 +6,7 @@ using Mirror;
 
 public class NetworkSpectator : NetworkBehaviour
 {
+    [SerializeField] private Camera camera;
     [SerializeField] private float zoomFactor = 1.5f;
     [SerializeField] private float smoothTime = 0.8f;
     [SerializeField] private float yOffset = 0.8f;
@@ -29,9 +30,33 @@ public class NetworkSpectator : NetworkBehaviour
         transform.position = offlinePosition;
     }
 
+    private void Start()
+    {
+        HideLayer("Player1Only");
+        HideLayer("Player2Only");
+
+        string layerToShow = (Random.value > 0.5f)
+            ? "Player1Only"
+            : "Player2Only";
+
+        ShowLayer(layerToShow);
+    }
+
+   
+
     private void Update()
     {
         UpdatePosition();
+    }
+
+    private void ShowLayer(string layer)
+    {
+        camera.cullingMask |= 1 << LayerMask.NameToLayer(layer);
+    }
+
+    private void HideLayer(string layer)
+    {
+        camera.cullingMask &= ~(1 << LayerMask.NameToLayer(layer));
     }
 
     private void UpdatePosition()

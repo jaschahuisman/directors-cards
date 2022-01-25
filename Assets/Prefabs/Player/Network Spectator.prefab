@@ -181,6 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  camera: {fileID: 5684377772760344125}
   zoomFactor: 0.5
   smoothTime: 2.5
   yOffset: 0.8

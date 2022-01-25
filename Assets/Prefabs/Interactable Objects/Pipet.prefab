@@ -64,7 +64,7 @@ Transform:
   m_GameObject: {fileID: 8033617938463563518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.316, y: 0, z: 0}
-  m_LocalScale: {x: 51.77388, y: 49.999485, z: 79.16667}
+  m_LocalScale: {x: 51.773876, y: 49.999485, z: 79.16667}
   m_Children:
   - {fileID: 7052691113395236486}
   m_Father: {fileID: 0}
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  clientAuthority: 0
+  clientAuthority: 1
   sendInterval: 0.05
   syncPosition: 1
   syncRotation: 1
