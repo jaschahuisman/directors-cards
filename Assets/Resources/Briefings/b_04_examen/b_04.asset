@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f61f0a255995e8049a5a99b5177bbd20, type: 3}
+  m_Name: b_04
+  m_EditorClassIdentifier: 
+  title: Het examen
+  timeline: {fileID: 11400000, guid: d34524014ae4e46eca680b048ae7c838, type: 2}
+  playerRole1:
+    role: Student
+    scenario: Je moet een practicum afleggen maar je hebt gisteren te hard gefeest
+    headPrefab: {fileID: 0}
+    handsColor: {r: 0.15395391, g: 1, b: 0, a: 0}
+  playerRole2:
+    role: Examinator
+    scenario: Je neemt een practicum examen af, je bent alleen vergeten welke...
+    headPrefab: {fileID: 0}
+    handsColor: {r: 1, g: 0, b: 0, a: 0}
