@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.027049195, g: 0.029134769, b: 0.038443744, a: 1}
+  m_IndirectSpecularColor: {r: 0.027010206, g: 0.029093614, b: 0.038394444, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2171,6 +2171,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 953434702}
     m_Modifications:
+    - target: {fileID: 207966981985551527, guid: 7ebf92fa6ca8a2a4ea1ff43bba6e4af4, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 573729315229633465, guid: 7ebf92fa6ca8a2a4ea1ff43bba6e4af4, type: 3}
       propertyPath: m_Name
       value: StandingDesk
@@ -2230,6 +2234,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 918060774961565955, guid: 7ebf92fa6ca8a2a4ea1ff43bba6e4af4, type: 3}
   m_PrefabInstance: {fileID: 1569338524}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1569338526 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8825788795302376288, guid: 7ebf92fa6ca8a2a4ea1ff43bba6e4af4, type: 3}
+  m_PrefabInstance: {fileID: 1569338524}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1569338527
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569338526}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5557942, y: 0.070596814, z: 1.0139061}
+  m_Center: {x: 0.62210274, y: 0.91470164, z: -0.085817754}
 --- !u!1001 &1590424118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3720,7 +3742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 81467529702120001, guid: 3623e55fd10bdf5418610d38545c50b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00015258789
+      value: 0.076
       objectReference: {fileID: 0}
     - target: {fileID: 81467529702120001, guid: 3623e55fd10bdf5418610d38545c50b0, type: 3}
       propertyPath: m_LocalPosition.z

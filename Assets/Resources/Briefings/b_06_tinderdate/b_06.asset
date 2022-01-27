@@ -17,10 +17,10 @@ MonoBehaviour:
   playerRole1:
     role: Alien
     scenario: Je gaat op je eerste date en hoopt op een knappe alien
-    headPrefab: {fileID: 0}
-    handsColor: {r: 0.15395391, g: 1, b: 0, a: 0}
+    headPrefab: {fileID: 5890297636006449640, guid: 3668d8bb1615a464f929fdcfe99e7787, type: 3}
+    handsColor: {r: 0.6981132, g: 0.023050921, b: 0.0932243, a: 1}
   playerRole2:
     role: Harry
     scenario: Je gaat gedwongen op date. Je ziet het niet heel erg zitten.
-    headPrefab: {fileID: 0}
-    handsColor: {r: 1, g: 0, b: 0, a: 0}
+    headPrefab: {fileID: 995247151846060180, guid: efbe70f736a126a4eaaedaafe7d314b0, type: 3}
+    handsColor: {r: 1, g: 0.4392157, b: 1, a: 1}

@@ -810,7 +810,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 183
+    m_Bits: 119
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1360,14 +1360,14 @@ PrefabInstance:
       objectReference: {fileID: 9169406511811117348}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 745e85a75582de541b8fe9927f40860a, type: 3}
---- !u!95 &29925039163383171 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1037105062498892763, guid: 745e85a75582de541b8fe9927f40860a, type: 3}
-  m_PrefabInstance: {fileID: 1012985719615415896}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4380784629604830801 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3658459242008815625, guid: 745e85a75582de541b8fe9927f40860a, type: 3}
+  m_PrefabInstance: {fileID: 1012985719615415896}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &29925039163383171 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1037105062498892763, guid: 745e85a75582de541b8fe9927f40860a, type: 3}
   m_PrefabInstance: {fileID: 1012985719615415896}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &567710663070759197 stripped
